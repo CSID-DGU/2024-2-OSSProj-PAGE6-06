@@ -4,6 +4,9 @@ const nextConfig = {
   experimental: {
     reactRefresh: false,
   },
+  compiler: {
+    styledComponents: true,
+  },
 };
 
 export default nextConfig;
