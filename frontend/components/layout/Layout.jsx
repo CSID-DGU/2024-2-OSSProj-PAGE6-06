@@ -19,7 +19,7 @@ export default function Layout({ children }) {
 
   return (
     <LS.LayoutWrapper>
-      <Header />
+      {/* <Header /> */}
       <LS.LayoutContent>{children}</LS.LayoutContent>
       {footerNav && <Footer />}
     </LS.LayoutWrapper>
