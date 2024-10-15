@@ -22,3 +22,12 @@ export const LibraryButtonBox = styled.div`
 export const LibraryAddButton = styled(FontAwesomeIcon)`
   font-size: 24px;
 `;
+
+export const LibraryList = styled.div`
+  width: 90%;
+  margin: 0 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
