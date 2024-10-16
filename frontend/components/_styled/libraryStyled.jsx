@@ -1,6 +1,33 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+export const LibraryWrapper = styled.div`
+  width: 100%;
+  max-width: 430px;
+  height: 100%;
+  display: flex;
+  position: relative;
+`;
+
+export const LibraryContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+  height: calc(100vh - 13%);
+`;
+
+export const LibraryRecordModalOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: #9fa2a6b3;
+  z-index: 200;
+`;
+
 export const LibraryAdd = styled.div`
   width: 90%;
   margin: 5%;
