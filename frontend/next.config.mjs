@@ -7,6 +7,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    domains: ["contents.kyobobook.co.kr"], // dummy
+  },
 };
 
 export default nextConfig;
