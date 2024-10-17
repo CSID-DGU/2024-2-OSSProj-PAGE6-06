@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Layout
 export const LayoutWrapper = styled.div`
@@ -47,10 +48,17 @@ export const FooterContainer = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  border: 1px solid black;
+  justify-content: space-between;
+  border-top: 1px solid #cbd5e1;
   background-color: white;
   z-index: 150;
   padding: 3% 5%;
   bottom: 0;
   position: absolute;
+`;
+
+export const FooterButton = styled(FontAwesomeIcon)`
+  color: ${(props) => (props.$isActive ? `#475569` : `#cbd5e1`)};
+  font-size: 25px;
+  padding: 5%;
 `;
