@@ -2,6 +2,7 @@ import Header from "@/components/layout/Header";
 import * as MS from "../../components/_styled/mainStyled";
 import * as RS from "../../components/_styled/recordStyled";
 import { useState } from "react";
+import RecordCalendar from "@/components/record/RecordCalendar";
 
 export default function Record() {
   const [currentTap, setCurrentTap] = useState("month");
@@ -12,6 +13,34 @@ export default function Record() {
   const handleCurrentTap = (type) => {
     setCurrentTap(type);
   };
+
+  const calendar_data = [
+    {
+      date: "Sat Oct 19 2024 00:00:00 GMT+0900",
+      percent: 100,
+      routines: [],
+    },
+    {
+      date: "Sun Oct 20 2024 00:00:00 GMT+0900",
+      percent: 70,
+      routines: [],
+    },
+    {
+      date: "Mon Oct 21 2024 00:00:00 GMT+0900",
+      percent: 60,
+      routines: [],
+    },
+    {
+      date: "Tus Oct 22 2024 00:00:00 GMT+0900",
+      percent: 50,
+      routines: [],
+    },
+    {
+      date: "Wed Oct 23 2024 00:00:00 GMT+0900",
+      percent: 40,
+      routines: [],
+    },
+  ];
 
   return (
     <MS.MainWrapper>
@@ -30,7 +59,12 @@ export default function Record() {
           ))}
         </RS.RecordTap>
 
-        {/* type별 */}
+        {/* type별 루틴 */}
+        <RS.RecordContents>
+          {currentTap === "month" ? (
+            <RecordCalendar data={calendar_data} />
+          ) : null}
+        </RS.RecordContents>
       </MS.MainContainer>
     </MS.MainWrapper>
   );

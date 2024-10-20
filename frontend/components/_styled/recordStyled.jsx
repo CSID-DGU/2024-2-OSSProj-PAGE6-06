@@ -21,3 +21,9 @@ export const RecordTapButton = styled.div`
   color: ${(props) => (props.$isActive ? `#f8fafc` : `#64748B`)};
   background-color: ${(props) => (props.$isActive ? `#64748b` : `#E2E8F0`)};
 `;
+
+export const RecordContents = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
