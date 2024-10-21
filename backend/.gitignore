@@ -4,3 +4,6 @@ page6/
 # 파이썬 캐시 파일 무시
 __pycache__/
 *.pyc
+
+# db 비공개
+db.sqlite3
