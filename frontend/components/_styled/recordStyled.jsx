@@ -26,4 +26,19 @@ export const RecordContents = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  /* margin-bottom: 20px; */
+`;
+
+export const RecordList = styled.div`
+  width: 100%;
+  margin-bottom: 80px;
+  flex-direction: column;
+  padding: 5%;
+  overflow-y: auto;
+
+  /* Custom scrollbar styles */
+  &::-webkit-scrollbar {
+    width: 5px; // Width of the scrollbar
+    display: none;
+  }
 `;

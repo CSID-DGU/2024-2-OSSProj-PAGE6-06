@@ -14,8 +14,7 @@ export const LibraryContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  height: 100%;
-  height: calc(100vh - 13%);
+  height: calc(100vh - 80px);
 `;
 
 export const LibraryRecordModalOverlay = styled.div`

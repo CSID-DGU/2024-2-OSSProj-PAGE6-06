@@ -72,13 +72,13 @@ export const RecordCalendartWeekText = styled.div`
 
 export const RecordCalenderDay = styled.div`
   width: 100%;
+  /* height: 350px; */
   gap: 1%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   border-top: 1px solid #0f172a;
   border-bottom: 1px solid #0f172a;
   padding: 2% 0 5% 0;
-  position: absolute;
 `;
 
 export const RecordCalendDayText = styled.div`
@@ -86,8 +86,9 @@ export const RecordCalendDayText = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20%;
-  padding: 15%;
+  margin: 10%;
+  width: 80%;
+  padding: 25% 0;
   color: #0f172a;
   border-radius: 100%;
   /* background-color: #94a3b8; */
@@ -97,5 +98,25 @@ export const RecordCalendDayText = styled.div`
     })`}; // 진한 파란색의 투명도 조정
 
   opacity: ${(props) => (props.$isCurrentMonth ? `1` : `0`)};
-  border: ${(props) => (props.$isActive ? `1px solid #0F172A` : null)};
+  border: ${(props) =>
+    props.$isActive ? `1px solid #0F172A` : `1px solid transparent`};
+`;
+
+// RecordCard
+export const RecordCardRoutineInfo = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 3%;
+  font-size: 10px;
+  color: #475569;
+  margin-bottom: 5%;
+`;
+
+export const RecordCardRoutineInfoText = styled.div``;
+
+export const RecordCardBookTitle = styled.div`
+  color: #475569;
+  font-size: 12px;
+  padding-bottom: 2%;
 `;

@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useR } from "react";
 import * as RS from "./Styled";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function RecordCalendar({ data }) {
+export default function RecordCalendar({ data, isSelect, setIsSelect }) {
   const [calendarDate, setCalendarDate] = useState([]);
-  const [toDay, setToDay] = useState(new Date());
   const [currentDate, setCurrentDate] = useState(new Date());
   const week = ["일", "월", "화", "수", "목", "금", "토"];
   const goPrevMonth = () => {
@@ -28,7 +27,7 @@ export default function RecordCalendar({ data }) {
   };
 
   const handleDateClick = (date) => {
-    setCurrentDate(date);
+    setIsSelect(date);
   };
 
   const getCalendarData = () => {
@@ -76,26 +75,6 @@ export default function RecordCalendar({ data }) {
 
   const [loading, setLoading] = useState(true);
   const [direction, setDirection] = useState(0);
-  const variants = {
-    enter: (direction) => {
-      return {
-        x: direction > 0 ? 1000 : -1000,
-        opacity: 0,
-      };
-    },
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction) => {
-      return {
-        zIndex: 0,
-        x: direction < 0 ? 1000 : -1000,
-        opacity: 0,
-      };
-    },
-  };
 
   return (
     <RS.RecordCalendarContainer>
@@ -118,21 +97,14 @@ export default function RecordCalendar({ data }) {
         ))}
       </RS.RecordCalendarWeek>
       {!loading && (
-        <AnimatePresence initial={false} custom={direction}>
+        <AnimatePresence mode="wait">
           <motion.div
-            key={currentDate.toString()}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 50 },
-              opacity: { duration: 0.2 },
-            }}
-            style={{
-              width: "100%",
-            }}
+            style={{ width: "100%" }}
+            key={currentDate}
+            initial={{ x: direction === 1 ? 300 : -300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: direction === 1 ? -300 : 300, opacity: 0 }}
+            transition={{ duration: 0.1 }}
           >
             <RS.RecordCalenderDay>
               {calendarDate.map((date, idx) => {
@@ -147,7 +119,7 @@ export default function RecordCalendar({ data }) {
                   <RS.RecordCalendDayText
                     key={idx}
                     onClick={() => handleDateClick(date)}
-                    $isActive={isSameDay(toDay, date)}
+                    $isActive={isSameDay(isSelect, date)}
                     $isCurrentMonth={isSameMonth(currentDate, date)}
                     $percent={percent}
                   >
