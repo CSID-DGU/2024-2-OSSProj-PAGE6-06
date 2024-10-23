@@ -1,11 +1,12 @@
 import Header from "@/components/layout/Header";
 import * as MS from "../../components/_styled/mainStyled";
 import * as RS from "../../components/_styled/recordStyled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RecordCalendar from "@/components/record/RecordCalendar";
 import RecordCard from "@/components/record/RecordCard";
 
 import { motion } from "framer-motion";
+import RecordMonthList from "@/components/record/RecordMonthList";
 
 export default function Record() {
   const [currentTap, setCurrentTap] = useState("month");
@@ -63,15 +64,89 @@ export default function Record() {
     },
   ];
 
+  const [currentRoutine, setCurrentRoutine] = useState("all");
+  const routine_list = [
+    {
+      id: 1,
+      title: "루틴명",
+      time: "30분",
+      place: "운동장",
+    },
+    {
+      id: 2,
+      title: "루틴명222",
+      time: "30분",
+      place: "운동장",
+    },
+    {
+      id: 3,
+      title: "루틴명22233",
+      time: "30분",
+      place: "운동장",
+    },
+  ];
+
+  const fetchRoutineList = async () => {
+    try {
+      // const response = await API.get(``);
+      // const data = response.data;
+      // setRoutineList(data);
+      console.log(currentRoutine);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleCurrentRoutine = (id) => {
+    setCurrentRoutine(id);
+  };
+
+  const [routineData, setRoutineData] = useState([]);
+  const routine_data = [
+    {
+      routine_title: "루틴명",
+      routine_time: "30분",
+      routine_place: "운동장",
+      created_date: "2024.10.19",
+      book_title: "책 제목",
+      description: "루틴 설명",
+    },
+    {
+      routine_title: "루틴명",
+      routine_time: "30분",
+      routine_place: "운동장",
+      created_date: "2024.10.19",
+      book_title: "책 제목",
+      description: "루틴 설명2",
+    },
+  ];
+
+  const fetchRoutineData = async () => {
+    try {
+      // const response = await API.get(``); // 선택한 루틴별로 요청
+      // const data = response.data;
+      // setRoutineData(data);
+      console.log(routine_data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    fetchRoutineList();
+    fetchRoutineData();
+  }, [currentRoutine]);
+
   const [isSelect, setIsSelect] = useState(new Date());
   const handleDateClick = (date) => {
     setIsSelect(date);
   };
-  const selectedData = calendar_data.find(
+  const selectedCalendarData = calendar_data.find(
     (item) => new Date(item.date).getDate() === isSelect.getDate()
   );
-  const selectedRoutine = selectedData ? selectedData.routines : [];
-  console.log(selectedRoutine);
+  const selectedCalendarRoutine = selectedCalendarData
+    ? selectedCalendarData.routines
+    : [];
 
   return (
     <MS.MainWrapper>
@@ -98,17 +173,35 @@ export default function Record() {
               isSelect={isSelect}
               setIsSelect={handleDateClick}
             />
-          ) : null}
+          ) : (
+            <RecordMonthList
+              routine_list={routine_list}
+              currentRoutine={currentRoutine}
+              setCurrentRoutine={handleCurrentRoutine}
+            />
+          )}
         </RS.RecordContents>
         <RS.RecordList>
-          {currentTap === "month" && selectedRoutine.length > 0 ? (
-            selectedRoutine.map((routine, idx) => (
+          {currentTap === "month" && selectedCalendarRoutine.length > 0 ? (
+            selectedCalendarRoutine.map((routine, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }} // 초기 상태: 투명하고 아래에서 시작
                 animate={{ opacity: 1, y: 0 }} // 애니메이션: 불투명해지고 원래 위치로 올라옴
                 exit={{ opacity: 0, y: 20 }} // 종료 상태: 투명하고 아래로
                 transition={{ duration: 0.3, delay: idx * 0.1 }} // 각 항목에 지연을 주어 순차적으로 나타남
+              >
+                <RecordCard record={routine} />
+              </motion.div>
+            ))
+          ) : currentTap === "routine" ? (
+            routine_data.map((routine, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.3, delay: idx * 0.1 }}
               >
                 <RecordCard record={routine} />
               </motion.div>

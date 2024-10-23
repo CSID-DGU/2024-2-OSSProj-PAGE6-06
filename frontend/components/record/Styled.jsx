@@ -120,3 +120,55 @@ export const RecordCardBookTitle = styled.div`
   font-size: 12px;
   padding-bottom: 2%;
 `;
+
+// Record Month List
+export const RecordMonthListContainer = styled.div`
+  width: 90%;
+  margin: 5%;
+`;
+
+export const RecordMonthListSearch = styled.div`
+  border-radius: 10px;
+  border: #64748b 1px solid;
+  padding: 3% 5%;
+  font-size: 14px;
+  font-weight: 500;
+  color: ${(props) => (props.$isActive ? `#64748b` : `#0f172a`)};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const RecordMonthListIcon = styled(FontAwesomeIcon)`
+  font-size: 20px;
+  color: #64748b;
+`;
+
+export const RecordMonthListModalContainer = styled.div`
+  width: 100%;
+  margin: 5% 0;
+  border-radius: 10px;
+  border: #64748b 1px solid;
+  /* padding: 3% 0; */
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* position: absolute; */
+`;
+
+export const RecordMonthListModalText = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f172a;
+  width: 100%;
+  padding: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  border-bottom: ${(props) => (props.$isBorder ? `none` : `1px solid #64748b`)};
+`;
