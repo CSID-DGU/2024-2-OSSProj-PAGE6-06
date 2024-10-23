@@ -3,7 +3,7 @@ import * as S from "./Styled";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import { API } from "@/pages/api";
-import RecordCard from "../record/RecordCard";
+import RecordCard from "../record/RecordBookCard";
 
 export default function RecordModal({ book, handleRecordClose }) {
   // const [records, setRecords] = useState([]);
