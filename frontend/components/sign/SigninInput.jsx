@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import * as S from "./Styled.jsx";
+import { useRouter } from 'next/router';
+import Link from 'next/link.js';
 
-export default function Input(props) {
+export default function SigninInput(props) {
+    const router = useRouter();
     const [isValid, setIsValid] = useState(false);
     const [values, setValues] = useState({
         email: '',
@@ -33,11 +36,9 @@ export default function Input(props) {
 
     return (
         <S.InputFormContainer>
-            <S.InputContainer>
-                <S.SignInForm onSubmit={handleSubmit}>
-                    <S.InputLabel>이메일</S.InputLabel>
-                    <S.InputBox
-                        id="email"
+                <S.SigninForm onSubmit={handleSubmit}>
+                    <S.SigninInputLabel>이메일</S.SigninInputLabel>
+                    <S.SigninInputBox
                         name="email"
                         type="email"
                         value={values.email}
@@ -45,9 +46,8 @@ export default function Input(props) {
                         placeholder="이메일을 입력해주세요"
                         required
                     />
-                    <S.InputLabel>비밀번호</S.InputLabel>
-                    <S.InputBox
-                        id="password"
+                    <S.SigninInputLabel>비밀번호</S.SigninInputLabel>
+                    <S.SigninInputBox
                         name="password"
                         type="password"
                         value={values.password}
@@ -55,9 +55,12 @@ export default function Input(props) {
                         placeholder="비밀번호를 입력해주세요"
                         required
                     />
-                    <S.LoginButton type="submit" disabled={!isValid}>로그인</S.LoginButton> 
-                </S.SignInForm>
-            </S.InputContainer>
+                    <S.SubmitButton type="submit" disabled={!isValid}>로그인</S.SubmitButton> 
+                    
+                </S.SigninForm>
+                <Link href='/sign/up'>
+                        <S.SingupLink>회원가입</S.SingupLink>
+                </Link>
         </S.InputFormContainer>
     );
 }

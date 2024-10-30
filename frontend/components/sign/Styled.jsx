@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //Title
 export const TitleContainer = styled.div`
     width: 185px;
@@ -13,7 +13,6 @@ export const TitleContainer = styled.div`
 export const MainTitle = styled.div`
     color: #0F172A;
     text-align: center;
-    font-family: Inter;
     font-size: 24px;
     font-weight: 700;
     letter-spacing: -0.48px;
@@ -22,29 +21,21 @@ export const MainTitle = styled.div`
 export const SubTitle = styled.div`
     color: #0F172A;
     text-align: center;
-    font-family: Inter;
     font-size: 15px;
     font-weight: 400;
     line-height: 132%; /* 19.8px */
     letter-spacing: -0.3px;
 `;
 
-//Input
+//SigninInput
 export const InputFormContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 42px;
 `;
-export const InputContainer = styled.div`
-    width: 100%;
-    display: flex;
-    gap: 21px;
-`;
 
-
-
-export const SignInForm = styled.form`
+export const SigninForm = styled.form`
     display:flex;
     flex-direction:column;
     align-items:flex-start;
@@ -52,46 +43,107 @@ export const SignInForm = styled.form`
     gap: 15px;
 `;
 
-export const InputLabel = styled.label`
+export const SigninInputLabel = styled.label`
     color: var(--gray900, #0F172A);
     text-align: center;
-    font-family: var(--font-pretendard);
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: 132%; 
     letter-spacing: -0.32px;
 `;
-export const InputBox = styled.input`
+export const SigninInputBox = styled.input`
     width:100%;
     height:57px;
     border:none;
     border-radius: 10px;
     background: var(--gray100, #F1F5F9);
     padding: 2% 5%;
-    font-size: 16px;
+    font-size: 14px;
     &::placeholder {
         color: var(--gray500, #64748B);
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 500;
         line-height: 132%; /* 21.12px */
         letter-spacing: -0.32px;
     }
-    
+    &:focus {
+        outline-color: #64748B;
+        outline-width:0.6ßpx;
+    }  
 `;
 
-export const LoginButton = styled.button`
+export const SubmitButton = styled.button`
     width: 100%;
     height:61px;
     margin-top:27px;
     border:none;
     border-radius: 10px;
-    background: var(--gray300, #CBD5E1);
+    background: var(--gray300, #64748B);
 
-    color: #0F172A;
+    color: #FFF;
     text-align: center;
     font-size: 18px;
     font-weight: 500;
-    line-height: 132%; /* 26.4px */
+    line-height: 132%; 
     letter-spacing: -0.4px;
+
+    &:disabled {
+        background-color: #CBD5E1;
+    }   
+    
 `;
+
+export const SingupLink = styled.div`
+    color: #0F172A;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 132%; 
+    letter-spacing: -0.28px;
+    text-decoration:underline;
+    
+`;
+//SignupInput
+export const ErrorMessage = styled.span`
+    color: #f74747;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+`;
+
+export const SignupForm = styled.form`
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    width:100%;
+    gap: 14px;
+`;
+
+export const SignupInputLabel = styled(SigninInputLabel)`
+    font-size: 14px;
+`;
+export const SignupInputBox = styled(SigninInputBox)`
+    height:46px;
+    font-size: 12px;
+    &::placeholder {
+        font-size: 12px;
+    } 
+`;
+
+export const ImageSelectionContainer = styled.div`
+    width:100%;
+    display:flex;
+    gap:15px;
+`;
+export const ImageOption = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:60px;
+    height:60px;
+    border-radius:95px;
+    border: ${props => (props.selected ? '1px solid #64748B' : 'none')};
+    background: var(--gray100, );
+`;
+

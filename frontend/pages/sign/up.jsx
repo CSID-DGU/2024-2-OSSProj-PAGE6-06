@@ -1,14 +1,14 @@
-import * as SS from "../../components/_styled/SignStyled";
+import * as SS from "../../components/_styled/signStyled";
+import Title from "@/components/sign/Title";
+import SignupInput from "@/components/sign/SignupInput";
 
-
-export default function SignUp() {
+export default function Signup() {
   return (
-    <SS.SignInContainer>
-      <SS.SignInContentContainer>
+    <SS.SignContainer>
+      <SS.SignContentContainer>
         <Title />
-        <Input />
-      </SS.SignInContentContainer>
-    </SS.SignInContainer>
+        <SignupInput />
+      </SS.SignContentContainer>
+    </SS.SignContainer>
   );
-
 }

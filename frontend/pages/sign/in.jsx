@@ -2,13 +2,13 @@ import * as SS from "../../components/_styled/signStyled";
 import Title from "@/components/sign/Title";
 import SigninInput from "@/components/sign/SigninInput";
 
-export default function SignIn() {
+export default function Signin() {
   return (
-    <SS.SignInContainer>
-        <SS.SignInContentContainer>
+    <SS.SignContainer>
+        <SS.SigninContentContainer>
           <Title />
           <SigninInput />
-        </SS.SignInContentContainer>
-    </SS.SignInContainer>
+        </SS.SigninContentContainer>
+    </SS.SignContainer>
   );
 }
