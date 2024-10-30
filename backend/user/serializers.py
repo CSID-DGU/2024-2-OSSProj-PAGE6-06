@@ -8,14 +8,14 @@ User = get_user_model()
 
 class SignupSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, validators=[validate_password])
-    password_confirm = serializers.CharField(write_only=True)
+    passwordConfirm = serializers.CharField(write_only=True)
     
     class Meta:
         model = User
-        fields = ['username', 'password', 'password_confirm', 'name', 'nickname', 'profile_image']
+        fields = ['username', 'password', 'passwordConfirm', 'name', 'nickname', 'profileImage']
     
     def validate(self, data):
-        if data['password'] != data['password_confirm']:
+        if data['password'] != data['passwordConfirm']:
             raise serializers.ValidationError("Passwords do not match.")
         
         if User.objects.filter(username=data['username']).exists():
@@ -24,13 +24,13 @@ class SignupSerializer(serializers.ModelSerializer):
         return data
     
     def create(self, validated_data):
-        validated_data.pop('password_confirm')
+        validated_data.pop('passwordConfirm')
         user = User.objects.create_user(
             username=validated_data['username'],
             password=validated_data['password'],
             name=validated_data['name'],
             nickname=validated_data['nickname'],
-            profile_image=validated_data['profile_image']
+            profileImage=validated_data['profileImage']
         )
         Token.objects.create(user=user)
         return user

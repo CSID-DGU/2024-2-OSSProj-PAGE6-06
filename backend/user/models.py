@@ -5,7 +5,7 @@ class UserProfile(AbstractUser):
     username = models.EmailField(unique=True) 
     nickname = models.CharField(max_length=50, unique=True)
     name = models.CharField(max_length=50)
-    profile_image = models.CharField(max_length=50, choices=[
+    profileImage = models.CharField(max_length=50, choices=[
         ('image1', 'Image 1'),
         ('image2', 'Image 2'),
         ('image3', 'Image 3'),
