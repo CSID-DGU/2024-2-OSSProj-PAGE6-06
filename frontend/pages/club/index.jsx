@@ -3,6 +3,7 @@ import * as MS from "../../components/_styled/mainStyled";
 import * as CS from "../../components/_styled/clubStyled";
 import ClubCard from "@/components/club/ClubCard";
 import { useState } from "react";
+import ClubSearch from "@/components/club/ClubSearch";
 
 export default function Club() {
   const [clubs, setClubs] = useState([]);
@@ -42,14 +43,25 @@ export default function Club() {
   return (
     <MS.MainWrapper>
       <Header path="Reading Club" />
-      <CS.ClubPopularContainer>
-        <CS.ClubPopularTitle>인기 리딩 클럽</CS.ClubPopularTitle>
-        <CS.ClubPopularCardSection>
-          {data.map((club, index) => (
-            <ClubCard key={index} club={club} />
-          ))}
-        </CS.ClubPopularCardSection>
-      </CS.ClubPopularContainer>
+      <CS.ClubContainer>
+        <CS.ClubPopularContainer>
+          <CS.ClubPopularTitle>인기 리딩 클럽</CS.ClubPopularTitle>
+          <CS.ClubPopularCardSection>
+            {data.map((club, index) => (
+              <ClubCard key={index} club={club} />
+            ))}
+          </CS.ClubPopularCardSection>
+        </CS.ClubPopularContainer>
+        <CS.ClubPopularContainer>
+          <CS.ClubPopularTitle>리딩클럽 모아보기</CS.ClubPopularTitle>
+          <ClubSearch />
+          <CS.ClubAllCardSection>
+            {data.map((club, index) => (
+              <ClubCard key={index} club={club} />
+            ))}
+          </CS.ClubAllCardSection>
+        </CS.ClubPopularContainer>
+      </CS.ClubContainer>
     </MS.MainWrapper>
   );
 }

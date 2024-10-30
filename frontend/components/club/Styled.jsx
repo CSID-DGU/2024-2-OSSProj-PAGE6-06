@@ -5,6 +5,7 @@ import styled from "styled-components";
 // ClubCard
 export const ClubCardContainer = styled.div`
   width: 160px;
+  height: 235px;
   flex-shrink: 0;
   border-radius: 10px;
   display: flex;
@@ -82,4 +83,51 @@ export const ClubCardButtonJoin = styled.div`
   color: #f1f5f9;
   padding: 5%;
   border-radius: 5px;
+`;
+
+// ClubSearch
+export const ClubSearchContainer = styled.div`
+  width: 100%;
+  padding: 3% 5%;
+  display: flex;
+  gap: 3%;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const ClubSearchSection = styled.form`
+  width: 70%;
+  padding: 3%;
+  background-color: #f1f4f7;
+  color: #9ca3af;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 3%;
+`;
+
+export const ClubSearchIcon = styled(FontAwesomeIcon)`
+  font-size: 12px;
+`;
+
+export const ClubSearchInput = styled.input`
+  font-size: 12px;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-weight: 500;
+`;
+
+export const ClubCreateButton = styled.div`
+  width: 30%;
+  padding: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #64748b;
+  color: #f8fafc;
+  font-size: 12px;
+  font-weight: 500;
 `;

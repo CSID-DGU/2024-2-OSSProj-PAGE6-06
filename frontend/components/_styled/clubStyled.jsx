@@ -1,7 +1,23 @@
 import styled from "styled-components";
 
+export const ClubContainer = styled.div`
+  width: 100%;
+  height: calc(100vh - 80px);
+  padding-bottom: 80px;
+  /* margin-bottom: 80px; */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: none; // Width of the scrollbar
+    display: none;
+  }
+`;
+
 export const ClubPopularContainer = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ClubPopularTitle = styled.div`
@@ -19,10 +35,21 @@ export const ClubPopularCardSection = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   overflow-x: auto;
-  gap: 8%;
+  gap: 6%;
 
+  /* Custom scrollbar styles */
   &::-webkit-scrollbar {
-    width: 5px; // Width of the scrollbar
+    width: none; // Width of the scrollbar
     display: none;
   }
+`;
+
+export const ClubAllCardSection = styled.div`
+  display: grid;
+  width: 100%;
+  gap: 3%;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  align-items: start;
+  padding: 0 5% 5% 5%;
 `;

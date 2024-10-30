@@ -13,7 +13,12 @@ export default function ClubCard({ club }) {
 
   return (
     <S.ClubCardContainer>
-      <S.ClubCardImage src={club.image} width={160} height={100} />
+      <S.ClubCardImage
+        src={club.image}
+        width={160}
+        height={100}
+        alt="club_image"
+      />
       <S.ClubCardInfo>
         <S.ClubCardInfoText>
           <S.ClubCardInfoIcon icon={faUserGroup} />
