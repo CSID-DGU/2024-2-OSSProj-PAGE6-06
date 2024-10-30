@@ -1,5 +1,14 @@
 import * as SS from "../../components/_styled/SignStyled";
 
+
 export default function SignUp() {
-  return <SS.SignContainer>SignUp</SS.SignContainer>;
+  return (
+    <SS.SignInContainer>
+      <SS.SignInContentContainer>
+        <Title />
+        <Input />
+      </SS.SignInContentContainer>
+    </SS.SignInContainer>
+  );
+
 }

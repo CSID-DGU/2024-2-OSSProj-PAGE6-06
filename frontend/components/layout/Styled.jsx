@@ -12,6 +12,7 @@ export const LayoutWrapper = styled.div`
   position: relative;
   border: 1px solid black;
   overflow: hidden;
+  font-family:Pretendard;
 `;
 
 export const LayoutContent = styled.div`
