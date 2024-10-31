@@ -6,7 +6,7 @@ class UserProfile(AbstractUser):
     nickname = models.CharField(max_length=50, unique=True)
     name = models.CharField(max_length=50)
     profileImage = models.CharField(max_length=50, choices=[
-        ('image1', 'Image 1'),
+        ('image1', 'Image 1'),  # image1은 데이터베이스에 저장되는 값, Image1은 사용자에게 보여주는 표시 이름
         ('image2', 'Image 2'),
         ('image3', 'Image 3'),
         ('image4', 'Image 4')
