@@ -26,19 +26,20 @@ def search_books(request):
         if not books_data:
             return Response({"error": "검색 결과가 없습니다."}, status=404)
 
-        # 첫 번째 책 정보만 가져오기 (필요시 다수 항목도 처리 가능)
+        # 첫 번째 책 정보만 가져오기
         book_data = books_data[0]
         
-        # 카테고리 정보 추출 (예: 2Depth 카테고리 이름)
-        category_name = data.get('searchCategoryName', '카테고리 없음')  # 예시로 상위 카테고리 추출
+        # 카테고리 정보 추출
+        category_name = data.get('searchCategoryName', '카테고리 없음')
 
-        # 데이터베이스에 저장
+        # 데이터베이스에 저장 (초기 summary는 빈 문자열로 설정)
         book, created = Book.objects.get_or_create(
             title=book_data['title'],
             author=book_data.get('author', '저자 정보 없음'),
             publisher=book_data.get('publisher', '출판사 정보 없음'),
-            category=category_name,  # 추출된 카테고리 이름으로 저장
-            cover_image=book_data.get('cover', '')
+            category=category_name,
+            cover_image=book_data.get('cover', ''),
+            summary=''  # 초기 summary는 빈 문자열
         )
 
         # 저장된 Book 데이터를 직렬화
@@ -67,17 +68,18 @@ class BookViewSet(viewsets.ModelViewSet):
 
         data = response.json()
         book_data = data.get('item', [])[0]
-        
-        # 카테고리 정보 추출 (예: 2Depth 카테고리 이름)
-        category_name = data.get('searchCategoryName', '카테고리 없음')  # 상위 카테고리 추출
 
-        # 데이터베이스에 저장
+        # 카테고리 정보 추출
+        category_name = data.get('searchCategoryName', '카테고리 없음')
+
+        # 데이터베이스에 저장 (초기 summary는 빈 문자열로 설정)
         book, created = Book.objects.get_or_create(
             title=book_data['title'],
             author=book_data.get('author', '저자 정보 없음'),
             publisher=book_data.get('publisher', '출판사 정보 없음'),
-            category=category_name,  # 추출된 카테고리 이름으로 저장
-            cover_image=book_data.get('cover', '')
+            category=category_name,
+            cover_image=book_data.get('cover', ''),
+            summary=''  # 초기 summary는 빈 문자열
         )
 
         serializer = self.get_serializer(book)
@@ -85,11 +87,30 @@ class BookViewSet(viewsets.ModelViewSet):
 
 # 루틴 완료 기록 뷰셋 추가
 class RoutineRecordViewSet(viewsets.ModelViewSet):
-    queryset = RoutineRecord.objects.all()
+    queryset = RoutineRecord.objects.filter(is_deleted=False)  # 활성화된 루틴 기록만 조회
     serializer_class = RoutineRecordSerializer
 
-    # 루틴 완료 기록 삭제
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    @action(detail=True, methods=['delete'])
+    def soft_delete(self, request, pk=None):
+        try:
+            routine_record = self.get_object()
+            routine_record.is_deleted = True  # 소프트 삭제
+            routine_record.save()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except RoutineRecord.DoesNotExist:
+            return Response({"error": "루틴 기록을 찾을 수 없습니다."}, status=status.HTTP_404_NOT_FOUND)
+
+# 책의 summary를 업데이트하는 API 메서드 추가
+@api_view(['PATCH'])
+def update_summary(request, book_id):
+    try:
+        book = Book.objects.get(id=book_id)
+        summary = request.data.get('summary', None)  # 요청에서 summary 가져오기
+        if summary is not None:
+            book.summary = summary  # summary 업데이트
+            book.save()
+            return Response({"message": "감상평이 성공적으로 저장되었습니다."}, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "감상평을 입력해주세요."}, status=status.HTTP_400_BAD_REQUEST)
+    except Book.DoesNotExist:
+        return Response({"error": "책을 찾을 수 없습니다."}, status=status.HTTP_404_NOT_FOUND)
