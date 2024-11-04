@@ -147,3 +147,71 @@ export const ImageOption = styled.div`
     background: var(--gray100, );
 `;
 
+//UserInfo
+export const UserInfoContainer = styled.div`
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:31px;
+`;
+export const UserProfile = styled.div`
+    width:90px;
+    height:90px;
+    border-radius: 90px;
+`;
+export const UserInfoTextContainer = styled.div`
+    width:100%;
+    display:flex;
+    flex-direction:column;
+
+    gap:20px;
+`;
+export const LabelText = styled.div`
+    color: #0F172A;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 132%; 
+    letter-spacing: -0.28px;
+`;
+export const UserInfoTextWrapper = styled.div`
+    width:100%;
+    border-radius: 10px;
+    background: #F1F5F9;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 12px;
+    padding:5%;
+
+`;
+export const DetailTextWrapper = styled.div`
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+`;
+export const InfoTag = styled.div`
+    color: #0F172A;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 132%;
+    letter-spacing: -0.28px;
+`
+export const InfoText = styled(InfoTag)`
+    font-weight:500;
+`;
+export const LogoutText = styled(InfoTag)`
+`;
+export const QuitText = styled(InfoTag)`
+    align-items: flex-start;    
+    color: #FF4830;
+`;
+export const LogoutTextWrapper = styled.div`
+    width:100%;
+    border-radius: 10px;
+    background: #F1F5F9;
+    display:flex;
+    flex-direction:column;
+    gap: 12px;
+    padding:5%;
+`;
