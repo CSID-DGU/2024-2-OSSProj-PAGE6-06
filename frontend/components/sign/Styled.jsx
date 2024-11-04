@@ -215,3 +215,5 @@ export const LogoutTextWrapper = styled.div`
     gap: 12px;
     padding:5%;
 `;
+
+//
