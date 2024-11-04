@@ -48,6 +48,7 @@ export const HeaderMypage = styled(Image)`
 export const FooterContainer = styled.div`
   display: flex;
   width: 100%;
+  height: 80px;
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid #cbd5e1;

@@ -13,7 +13,7 @@ export const MainContainer = styled.div`
   flex-direction: column;
   overflow-y: auto;
   height: 100%;
-  height: calc(100vh);
+  height: calc(100vh - 80px);
 
   /* Custom scrollbar styles */
   &::-webkit-scrollbar {

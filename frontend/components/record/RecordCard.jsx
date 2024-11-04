@@ -8,7 +8,21 @@ export default function RecordCard({ record }) {
         {record.routine_title}
         <S.RecordCardMore icon={faEllipsisVertical} />
       </S.RecordCardRoutine>
-      <S.RecordDescription>{record.description}</S.RecordDescription>
+      <S.RecordCardRoutineInfo>
+        <S.RecordCardRoutineInfoText>
+          {record.created_date}
+        </S.RecordCardRoutineInfoText>
+        <S.RecordCardRoutineInfoText>
+          {record.routine_time}
+        </S.RecordCardRoutineInfoText>
+        <S.RecordCardRoutineInfoText>
+          #{record.routine_place}
+        </S.RecordCardRoutineInfoText>
+      </S.RecordCardRoutineInfo>
+      <S.RecordDescription>
+        <S.RecordCardBookTitle>{record.book_title}</S.RecordCardBookTitle>
+        {record.description}
+      </S.RecordDescription>
     </S.RecordCardContainer>
   );
 }
