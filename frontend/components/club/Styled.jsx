@@ -131,3 +131,34 @@ export const ClubCreateButton = styled.div`
   font-size: 12px;
   font-weight: 500;
 `;
+
+// Club Routine Card
+export const ClubRoutineCardUser = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 3%;
+  gap: 3%;
+`;
+
+export const ClubRoutineCardUserImage = styled(Image)`
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+`;
+
+export const ClubRoutineCardUserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ClubRoutineCardUserInfoName = styled.div`
+  font-size: 12px;
+  color: #0f172a;
+  padding-bottom: 5%;
+`;
+
+export const ClubRoutineCardUserInfoDate = styled.div`
+  font-size: 10px;
+  color: #64748b;
+`;
