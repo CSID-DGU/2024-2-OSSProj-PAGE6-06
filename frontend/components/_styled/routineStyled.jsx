@@ -19,3 +19,25 @@ export const Line = styled.hr`
     background: #94A3B8;
     margin-top: 25px;
 `;
+
+//routineIng
+export const RoutineIngPage = styled.div`
+    width: 390px;
+    height: 844px;
+    background: #F1F5F9;
+    display:flex;
+    gap:93px;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+`;
+export const RoutineIngContainer = styled.div`
+    width: 100%;
+    height: 100vh;
+    display:flex;
+    gap:20vh;
+    flex-direction:column;
+    justify-content:space-evenly;
+    align-items:center;
+`;
+
