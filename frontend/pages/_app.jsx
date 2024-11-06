@@ -128,6 +128,9 @@ export default function App({ Component, pageProps }) {
           *[hidden] {
             display: none;
           }
+          html {
+            font-family: 'Pretendard';
+          }
           body {
             line-height: 1;
           }
@@ -160,6 +163,7 @@ export default function App({ Component, pageProps }) {
             text-decoration: none;
             color: inherit;
           }
+          
         `}
       </style>
     </Body>
