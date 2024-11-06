@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'user',
     'main',
     'routinelist',
+    'mylibrary'
 ]
 
 # REST framework 설정 추가
@@ -149,6 +150,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 APPEND_SLASH = False
+
+# 알라딘 api 키
+ALADIN_API_KEY = 'ttbpsh8500001218001'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
