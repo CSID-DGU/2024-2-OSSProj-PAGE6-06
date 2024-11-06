@@ -123,3 +123,60 @@ export const ClubDetailRoutineSection = styled.div`
   width: 100%;
   padding: 5%;
 `;
+
+// club create
+export const ClubCreateImageButton = styled.label`
+  width: 90%;
+  margin: 5%;
+  min-height: 200px;
+  display: block;
+  background-color: #f1f5f9;
+  color: #94a3b8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+`;
+
+export const ClubCreateImageButtonIcon = styled(FontAwesomeIcon)`
+  font-size: 45px;
+  margin: 3%;
+`;
+
+export const ClubCreateImage = styled(Image)`
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  overflow: hidden;
+  position: absolute; /* Use absolute positioning */
+  top: 0;
+  left: 0;
+`;
+
+export const ClubCreateImageInputHidden = styled.input`
+  display: none;
+`;
+
+export const ClubCreateImageDelete = styled.div`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #f1f5f9;
+  border-radius: 50%;
+  padding: 5px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #475569;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+`;
+
+export const ClubCreateImageDeleteIcon = styled(FontAwesomeIcon)``;

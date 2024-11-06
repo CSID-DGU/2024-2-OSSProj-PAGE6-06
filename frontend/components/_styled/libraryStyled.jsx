@@ -95,6 +95,10 @@ export const AddBookInput = styled.input`
   ::placeholder {
     color: #64748b;
   }
+
+  &:focus {
+    color: #0f172a;
+  }
 `;
 
 export const AddBookTextArea = styled.textarea`
@@ -113,6 +117,10 @@ export const AddBookTextArea = styled.textarea`
 
   ::placeholder {
     color: #64748b;
+  }
+
+  &:focus {
+    color: #0f172a;
   }
 `;
 
