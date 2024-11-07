@@ -105,7 +105,7 @@ export const AddBookTextArea = styled.textarea`
   font-size: 14px;
   line-height: 20px;
   width: 100%;
-  height: 20vh;
+  min-height: 20vh;
   padding: 5%;
   outline: none;
   border: none;
