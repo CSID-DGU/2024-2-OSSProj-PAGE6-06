@@ -21,5 +21,6 @@ urlpatterns = [
     path('api/mylibrary/', include('mylibrary.urls')),
     path('api/user/', include('user.urls')),
     path('api/routinelist/',include('routinelist.urls')),
+    path('api/mystats/',include('mystats.urls')),
 #    path('api/clublist/', include('clublist.urls'))
 ]
