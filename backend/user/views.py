@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.authtoken.models import Token
-from .serializers import SignupSerializer, LoginSerializer
+from .serializers import *
 from django.contrib.auth import get_user_model
 from .models import UserProfile
 from rest_framework.permissions import IsAuthenticated
@@ -49,3 +49,10 @@ class DeleteAccountView(APIView):
         user = request.user 
         user.delete()  
         return Response({"message": "User account has been deleted."}, status=status.HTTP_204_NO_CONTENT)
+    
+class UserProfileView(APIView):
+    permission_classes=[IsAuthenticated]
+
+    def get(self,request):
+        serializer = UserProfileSerializer(request.user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
