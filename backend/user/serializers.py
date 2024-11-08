@@ -38,3 +38,9 @@ class SignupSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     username = serializers.EmailField() 
     password = serializers.CharField(write_only=True)
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields=['username', 'name', 'nickname', 'profileImage']
+        read_only_fields=['username', 'name', 'nickname', 'profileImage']
