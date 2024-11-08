@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     'user',
     'main',
     'routinelist',
-    'mylibrary'
+    'mylibrary',
+    'clublist',
+
 ]
 
 # REST framework 설정 추가

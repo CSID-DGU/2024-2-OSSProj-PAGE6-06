@@ -5,5 +5,15 @@ class Routine(models.Model):
     id=models.AutoField(primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
-    time = models.DurationField() #특정 시간을 나타내는 필드
+    time = models.IntegerField()
     content = models.TextField(max_length=200)
+    is_club = models.BooleanField(default=False)
+
+class RoutineComplete(models.Model):
+    id = models.AutoField(primary_key=True)
+    routine = models.ForeignKey(Routine, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    memo = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
