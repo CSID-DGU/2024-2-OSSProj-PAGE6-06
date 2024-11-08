@@ -1,14 +1,14 @@
 from rest_framework import serializers
 from routinelist.models import Routine, RoutineComplete
 
-class RoutineSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Routine
-        fields = '__all__'
-
 class RoutineCompleteSerializer(serializers.ModelSerializer):
-    routine = RoutineSerializer(read_only=True)
-
     class Meta:
         model = RoutineComplete
-        fields = '__all__'
+        fields = ['date', 'title', 'location', 'memo']  # 'created_date'를 'date'로 수정
+        
+class RoutineSerializer(serializers.ModelSerializer):
+    completions = RoutineCompleteSerializer(many=True, read_only=True, source='routinecomplete_set')
+
+    class Meta:
+        model = Routine
+        fields = ['title', 'time', 'content', 'is_club', 'completions']
