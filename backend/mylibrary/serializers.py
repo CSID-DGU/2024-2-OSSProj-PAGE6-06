@@ -2,6 +2,7 @@
 
 from rest_framework import serializers
 from .models import Book
+from routinelist.models import RoutineComplete
 
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,3 +14,8 @@ class BookSerializer(serializers.ModelSerializer):
 #         class Meta:
 #              model = RoutineRecord
 #              fields = ['bookTitle']
+
+class RoutineCompleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RoutineComplete
+        fields = '__all__'
