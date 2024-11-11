@@ -5,13 +5,14 @@ import { Map, MapMarker, useMap } from 'react-kakao-maps-sdk';
 
 const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_JS_KEY}&libraries=services&autoload=false`;
 
-const KakaoMap = ({ searchKeyword }) => { 
+const KakaoMap = ({ searchKeyword, onClose }) => { 
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [places, setPlaces] = useState([]);
   const [userLocation, setUserLocation] = useState(null); 
-  const [isScriptLoaded, setIsScriptLoaded] = useState(false); // Manage script loading status
-  
+  const [isScriptLoaded, setIsScriptLoaded] = useState(false); 
+  const [selectedPlaceName, setSelectedPlaceName] = useState(null); 
+  const [selectedPlaceAddress, setSelectedPlaceAddress] = useState(null); 
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -22,7 +23,6 @@ const KakaoMap = ({ searchKeyword }) => {
     return () => document.body.removeChild(script);
   }, []);
 
- 
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -85,7 +85,13 @@ const KakaoMap = ({ searchKeyword }) => {
     console.log(places);
   }, [map, searchKeyword, userLocation, isScriptLoaded]);
 
-
+  const handleConfirmSelection = () => {
+    if (selectedPlaceName) {
+      localStorage.setItem('selectedPlaceName', selectedPlaceName);
+      localStorage.setItem('selectedPlaceAddress', selectedPlaceAddress);
+      onClose(); // 모달 닫기
+    }
+  };
 
   return (
     <S.MapContainer>
@@ -120,6 +126,8 @@ const KakaoMap = ({ searchKeyword }) => {
                     markers[i].position.lng
                   )
                 );
+                setSelectedPlaceName(item.place_name); 
+                setSelectedPlaceAddress(item.road_address_name)
               }}
             >
               <S.MarkerBg markerIndex={i} />
@@ -131,10 +139,10 @@ const KakaoMap = ({ searchKeyword }) => {
           ))}
         </S.PlacesList>
       )}
+      <S.PlaceSubmitButton onClick={handleConfirmSelection}>확인</S.PlaceSubmitButton>
     </S.MapContainer>
   );
 };
-
 const EventMarkerContainer = ({ position, content, i }) => {
   const map = useMap();
   const [isVisible, setIsVisible] = useState(false);
@@ -143,11 +151,8 @@ const EventMarkerContainer = ({ position, content, i }) => {
   const spriteSize = { width: 36, height: 691 };
 
   const handleMarkerClick = (marker) => {
-    // Pan to the marker's position
     map.panTo(marker.getPosition());
-    
-    // Zoom in to the marker (level 3 is a close zoom level)
-    map.setLevel(3); // You can adjust this level based on your preference
+    map.setLevel(3);
   };
 
   return (
@@ -162,7 +167,7 @@ const EventMarkerContainer = ({ position, content, i }) => {
           offset: new kakao.maps.Point(13, 37),
         },
       }}
-      onClick={(marker) => handleMarkerClick(marker)} // On marker click, zoom and pan to it
+      onClick={(marker) => handleMarkerClick(marker)} 
       onMouseOver={() => setIsVisible(true)}
       onMouseOut={() => setIsVisible(false)}
     >

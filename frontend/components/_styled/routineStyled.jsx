@@ -22,13 +22,13 @@ export const Line = styled.hr`
 
 //routineIng
 export const RoutineIngPage = styled.div`
-    width: 390px;
-    height: 844px;
+    width: 100%;
+    height:100%;
     background: #F1F5F9;
     display:flex;
     gap:93px;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-start;
     align-items:center;
 `;
 export const RoutineIngContainer = styled.div`
@@ -52,7 +52,14 @@ export const RoutineFinishContentContainer= styled.div`
     width: 346px;
     display:flex;
     flex-direction:column;
+    margin-top:30px;
     gap: 30px;
+`;
+export const RoutineInfo = styled.div`
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
 `;
 export const Date = styled.div`
     color: #0F172A;
@@ -60,4 +67,33 @@ export const Date = styled.div`
     font-weight: 600;
     line-height: 132%; /* 31.68px */
     letter-spacing: -0.48px;
+`;
+export const Title = styled.div`
+    color: #0F172A;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 132%; /* 31.68px */
+    letter-spacing: -0.48px;
+`;
+export const SubmitButton = styled.button`
+    width: 346px;
+    height: 61px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #E2E8F0;
+    border:none;
+    color: #0F172A;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 132%;
+    letter-spacing: -0.4px;
+
+    &:hover{
+        background: #CBD5E1;
+    }
+
+    position: absolute;
+    bottom:35px;
+
 `;

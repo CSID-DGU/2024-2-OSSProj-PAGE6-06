@@ -104,7 +104,7 @@ export const StartButton = styled.button`
 export const StartIcon = styled(FontAwesomeIcon)`
     width: 70px;
     height: 70px;
-    color:#CBD5E1;
+    color:#E2E8F0;
     &:hover {
         color:#334155;
     }
@@ -230,6 +230,10 @@ export const DropdownListItem = styled.div`
     font-weight: 500;
     line-height: 132%; 
     letter-spacing: -0.32px; 
+
+    &:hover{
+        background-color:#CBD5E1;
+    }
 `;
 export const InputBox = styled.div`
     width: 100%;
@@ -240,6 +244,7 @@ export const InputBox = styled.div`
 
 export const PlaceContainer = styled.div`
     width:100%;
+    height:88px;
 `;
 export const SearchInput = styled.input`
     width: 100%;
@@ -249,7 +254,7 @@ export const SearchInput = styled.input`
     background: #F1F4F7;
     padding: 13px;
     color: #0F172A;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 132%;
     letter-spacing: -0.32px;
@@ -276,6 +281,7 @@ export const SearchBox = styled.div`
     padding: 13px;
     color: #0F172A;
     font-size: 16px;
+
     font-weight: 500;
     line-height: 132%;
     letter-spacing: -0.32px;
@@ -309,6 +315,7 @@ export const MapContainer= styled.div`
     height:50%;;
     display:flex;
     flex-direction:column;
+    gap:15px;
 `;
 
 export const PlacesList = styled.ul`
@@ -326,7 +333,7 @@ export const Item = styled.li`
   align-items: center;
   gap:20px;
   &:hover {
-    background-color: #475569;
+    background-color: #CBD5E1;
   }
 `;
 
@@ -431,10 +438,11 @@ export const ModalOverlay = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index:10000;
 `;
 
 export const ModalContent = styled.div`
@@ -452,4 +460,44 @@ export const CloseButton = styled(FontAwesomeIcon)`
     position:relative;
     left:47%;
     color:#334155;
+`;
+export const PlaceSubmitButton = styled.button`
+    width:100%;
+    height:51px;
+    border-radius: 10px;
+    border:none;
+    background: #E2E8F0;
+
+    color: #0F172A;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 132%;
+    letter-spacing: -0.4px;
+
+    &:hover{
+        background: #CBD5E1;
+    }
+`;
+
+//Memo
+export const Textarea = styled.textarea`
+    width: 100%;
+    height: 151px;
+    flex-shrink: 0;
+    border:none;
+    border-radius: 10px;
+    background: #F1F4F7;
+    padding: 5%;
+    color: #0F172A;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 132%; 
+    letter-spacing: -0.28px;
+    resize:none;
+
+    &:focus {
+        border: 1px solid #94A3B8;
+        outline:none; s
+    }
 `;

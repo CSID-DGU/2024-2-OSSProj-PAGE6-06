@@ -12,6 +12,7 @@ export default function Book() {
     const selectBook = (book) => {
         setSelectedBook(book);
         setIsOpen(false); 
+        localStorage.setItem('book', book);
     };
 
     return (
