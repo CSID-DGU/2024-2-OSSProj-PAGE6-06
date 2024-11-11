@@ -1,13 +1,15 @@
 # mylibrary/views.py
-
 import requests
 from django.conf import settings
 from rest_framework import  status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view,  permission_classes
 from .models import Book
-from .serializers import BookSerializer
+from .serializers import BookSerializer, RoutineCompleteSerializer
 from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
+from routinelist.models import RoutineComplete
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -46,18 +48,21 @@ def save_selected_book(request):
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# # 책 관련 뷰셋 추가
-# class BookViewSet(viewsets.ModelViewSet):
-#     queryset = Book.objects.all()
-#     serializer_class = BookSerializer
-
-#     @action(detail=False, methods=['post'], url_path='add-book')
-#     def add_book(self, request, *args, **kwargs):
-#         serializer = self.get_serializer(data=request.data, many=True)  # 여러 개의 책 데이터를 받기 때문에 many=True 설정
-#         serializer.is_valid(raise_exception=True)
-#         self.perform_create(serializer, *args, **kwargs)
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+# 루틴 수정 및 삭제 기능
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def routine_complete_detail(request, routineCompleteId):  # 파라미터 이름을 routineCompleteId로 변경
+    routine_complete = get_object_or_404(RoutineComplete, pk=routineCompleteId, user=request.user)
     
-#     def perform_create(self, serializer):
-#         serializer.save()
+    if request.method == 'GET':
+        serializer = RoutineCompleteSerializer(routine_complete)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = RoutineCompleteSerializer(routine_complete, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        routine_complete.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

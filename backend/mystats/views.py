@@ -1,4 +1,4 @@
-# mystats/views.py
+# mystats/views.py 
 from django.utils.dateparse import parse_date
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -22,8 +22,8 @@ class RoutinesByDateAPIView(APIView):
 
 
 class RoutineRecordView(APIView):
-    permission_classes = [IsAuthenticated]
-
+    permission_classes = [IsAuthenticated] 
+ 
     def get(self, request, routine):
         if routine == "all":
             # 모든 루틴과 그에 따른 완료 기록을 가져오기
