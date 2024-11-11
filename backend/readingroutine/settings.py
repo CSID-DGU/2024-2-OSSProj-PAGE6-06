@@ -14,19 +14,16 @@ from pathlib import Path
 import os
 import environ
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 env=environ.Env(DEBUG=(bool, False))
-environ.Env.read_env(env_file=BASE_DIR / '.env')
-# environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
-# ALADIN_API_KEY = env('ALADIN_API_KEY')
-ALADIN_API_KEY ='ttbpsh8500001218001'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
@@ -50,7 +47,6 @@ INSTALLED_APPS = [
     'routinelist',
     'mylibrary',
     'clublist',
-    'mystats',
 
 ]
 
@@ -157,6 +153,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 APPEND_SLASH = False
 
+# 알라딘 api 키
+ALADIN_API_KEY = 'ttbpsh8500001218001'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
