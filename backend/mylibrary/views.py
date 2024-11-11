@@ -1,12 +1,14 @@
 # mylibrary/views.py
-
 import requests
 from django.conf import settings
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, action
 from .models import Book
-from .serializers import BookSerializer
+from .serializers import BookSerializer, RoutineCompleteSerializer
+from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
+from routinelist.models import RoutineComplete
 
 
 @api_view(['GET'])
@@ -60,3 +62,25 @@ class BookViewSet(viewsets.ModelViewSet):
         # 추가적인 로직을 여기에 구현할 수 있습니다, 예를 들어:
         # serializer.save(user=self.request.user)
         serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# 루틴 수정 및 삭제 기능
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def routine_complete_detail(request, routineCompleteId):  # 파라미터 이름을 routineCompleteId로 변경
+    routine_complete = get_object_or_404(RoutineComplete, pk=routineCompleteId, user=request.user)
+    
+    if request.method == 'GET':
+        serializer = RoutineCompleteSerializer(routine_complete)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = RoutineCompleteSerializer(routine_complete, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        routine_complete.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
