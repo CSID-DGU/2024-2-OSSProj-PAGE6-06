@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import * as S from './Styled';
 import ProgressBar from './ProgressBar';
 import { faCirclePause, faCirclePlay } from '@fortawesome/free-solid-svg-icons';
+import router from 'next/router';
 
 export default function Timer() {
     const [timeLeft, setTimeLeft] = useState(0);
     const [totalTime, setTotalTime] = useState(0);
     const [isPaused, setIsPaused] = useState(false); 
+    const [zeroCount, setZeroCount] = useState(0);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -24,8 +26,16 @@ export default function Timer() {
             }, 1000);
 
             return () => clearInterval(intervalID);
+        } else if (timeLeft === 0) {
+            setZeroCount((prevCount) => prevCount + 1);
         }
-    }, [timeLeft, isPaused]); 
+    }, [timeLeft, isPaused]);
+
+    useEffect(() => {
+        if (zeroCount === 3) {
+            router.push('/routine/routineFinish');
+        }
+    }, [zeroCount]);
 
     const progress = ((totalTime - timeLeft) / totalTime) * 100;
 
@@ -38,9 +48,16 @@ export default function Timer() {
     const minutes = String(Math.floor((timeLeft / 1000 / 60) % 60)).padStart(2, '0');
     const seconds = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, '0');
 
+    const totalHours = Math.floor((totalTime / (1000 * 60 * 60)) % 24);
+    const totalMinutes = String(Math.floor((totalTime / 1000 / 60) % 60));
+
     return (
         <S.TimerContainer>
-            <S.ContentText>{(totalTime/ 1000 / 60) % 60}분</S.ContentText>
+            {totalHours > 0 || totalMinutes >= 60 ? (
+                <S.ContentText>{String(totalHours)}시간 {totalMinutes}분</S.ContentText>
+            ) : (
+                <S.ContentText>{totalMinutes}분</S.ContentText>
+            )}
             <ProgressBar
                 children={
                     <S.TimerText>

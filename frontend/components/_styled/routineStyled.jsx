@@ -41,3 +41,23 @@ export const RoutineIngContainer = styled.div`
     align-items:center;
 `;
 
+//routineFinish
+export const RoutineFinishPage = styled(RoutineIngPage)`
+    background:#fff;
+    gap:21px;
+    display:flex;
+    width:100%;
+`;
+export const RoutineFinishContentContainer= styled.div`
+    width: 346px;
+    display:flex;
+    flex-direction:column;
+    gap: 30px;
+`;
+export const Date = styled.div`
+    color: #0F172A;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 132%; /* 31.68px */
+    letter-spacing: -0.48px;
+`;

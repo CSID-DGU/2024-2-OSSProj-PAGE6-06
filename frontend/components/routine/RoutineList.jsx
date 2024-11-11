@@ -14,21 +14,21 @@ export default function RoutineList(props) {
         {
             id: 2,
             title: "자기 전 책 20분 읽기",
-            time: "90",
+            time: "20",
             content: "간단한 독서 습관",
             user: 1
         },
         {
             id: 3,
             title: "기상 후 10분 읽기",
-            time: "80",
+            time: "10",
             content: "간단한 독서 습관",
             user: 1
         },
         {
             id: 4,
             title: "기상 후 10분 읽기",
-            time: "2",
+            time: "1",
             content: "간단한 독서 습관",
             user: 1
         }
