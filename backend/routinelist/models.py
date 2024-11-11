@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from clublist.models import Club
 # Create your models here.
 class Routine(models.Model):
     id=models.AutoField(primary_key=True)
@@ -8,6 +9,7 @@ class Routine(models.Model):
     time = models.IntegerField()
     content = models.TextField(max_length=200)
     is_club = models.BooleanField(default=False)
+    club = models.ForeignKey(Club, on_delete=models.CASCADE, null=True, blank=True)
 
 class RoutineComplete(models.Model):
     id = models.AutoField(primary_key=True)
