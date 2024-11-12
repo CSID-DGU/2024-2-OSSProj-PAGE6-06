@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as S from './Styled';
+import * as S from '../Styled';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 export default function Book() {

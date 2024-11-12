@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import PlaceModal from './PlaceModal'; 
-import * as S from './Styled';
+import * as S from '../Styled';
 import { useKakaoLoader } from 'react-kakao-maps-sdk'; 
 
 export default function Place() {

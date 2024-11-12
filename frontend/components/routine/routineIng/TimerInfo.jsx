@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import * as S from './Styled';
+import * as S from '../Styled';
 
 export default function TimerInfo(props) {
     const [title, setTitle] = useState('');

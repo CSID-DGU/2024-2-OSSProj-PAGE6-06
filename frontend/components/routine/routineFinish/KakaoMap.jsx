@@ -1,6 +1,6 @@
 import Script from 'next/script';
 import React, { useState, useEffect } from 'react'; 
-import * as S from './Styled';
+import * as S from '../Styled';
 import { Map, MapMarker, useMap } from 'react-kakao-maps-sdk';
 
 const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_JS_KEY}&libraries=services&autoload=false`;

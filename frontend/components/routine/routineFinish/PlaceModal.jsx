@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import KakaoMap from './KakaoMap';
-import * as S from './Styled';
+import * as S from '../Styled';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { useKakaoLoader } from 'react-kakao-maps-sdk'; 
 

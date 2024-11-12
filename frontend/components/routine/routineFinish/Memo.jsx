@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as S from './Styled';
+import * as S from '../Styled';
 
 export default function Memo() {
     const [memoText, setMemoText] = useState('');

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import * as S from './Styled';
+import * as S from '../Styled';
 import ProgressBar from './ProgressBar';
 import { faCirclePause, faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 import router from 'next/router';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CircularProgressbar } from "react-circular-progressbar";
-import * as S from './Styled'
+import * as S from '../Styled'
 export default function ProgressBar({children, value}) {
     const gradientTransform = `rotate(90)`;
     return (
