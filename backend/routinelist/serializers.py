@@ -14,9 +14,10 @@ class RoutineSerializer(serializers.ModelSerializer):
 
 
 class RoutineCompleteSerializer(serializers.ModelSerializer):
+    userNickname = serializers.CharField(source='user.nickname', read_only=True)
     class Meta:
         model = RoutineComplete
-        fields = ['id', 'routine', 'user', 'date', 'title', 'location', 'memo']
+        fields = ['id', 'routine', 'user', 'userNickname','date', 'title', 'location', 'memo']
         read_only_fields = ['date', 'user']  # 완료 날짜와 사용자 필드는 자동 설정
 
     def create(self, validated_data):
