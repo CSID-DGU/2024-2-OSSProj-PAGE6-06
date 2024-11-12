@@ -5,6 +5,7 @@ from routinelist.models import Routine
 # Create your views here.
 class ClubSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
+    userNickname = serializers.CharField(source='user.nickname', read_only=True)
     participantCount = serializers.SerializerMethodField()
 
     class Meta:
