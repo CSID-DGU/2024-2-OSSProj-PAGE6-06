@@ -6,6 +6,7 @@ from .serializers import *
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import ListAPIView
 from routinelist.serializers import *
+from django.db.models import Q
 
 class ClubCreateAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -90,3 +91,18 @@ class JoinClubAPIView(APIView):
 
         serializer = UserJoinedRoutineSerializer(user_joined_routine)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ClubSearchAPIView(ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ClubSerializer
+
+    def get_queryset(self):
+        queryset = Club.objects.all()
+        search_query = self.request.query_params.get('q', None)
+
+        if search_query:
+            queryset = queryset.filter(Q(title__icontains=search_query))
+            print(f"Search Query: {search_query}")  # 검색어 확인용
+            print(f"Filtered Queryset: {queryset}")  # 필터된 쿼리셋 출력
+        return queryset
