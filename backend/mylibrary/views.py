@@ -40,10 +40,12 @@ def search_books(request):
 
 # 선택한 책 한권만 db로 저장
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])  # 인증된 사용자만 접근 가능
 def save_selected_book(request):
-    serializer = BookSerializer(data=request.data)
+    # 현재 인증된 사용자에 의해 Book이 생성됨
+    serializer = BookSerializer(data=request.data, context={'request': request})
     if serializer.is_valid():
-        serializer.save()
+        serializer.save()  # user 필드는 자동으로 처리됨
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
