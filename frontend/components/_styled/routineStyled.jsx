@@ -8,7 +8,7 @@ export const RoutineContainer = styled.div`
 `;
 
 export const RoutineContentContainer = styled.div`
-    width: 100%;
+    width: 346px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -96,4 +96,21 @@ export const SubmitButton = styled.button`
     position: absolute;
     bottom:35px;
 
+`;
+
+//makeRoutine
+
+export const MakeRoutineContentContainer = styled(RoutineContentContainer)`
+    display:flex;
+    flex-direction:column;
+    gap:21px;
+    margin-top:22px;
+`;
+export const PageTitle = styled.div`
+    width:100%;
+    color: #0F172A;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 132%; 
+    letter-spacing: -0.48px;
 `;

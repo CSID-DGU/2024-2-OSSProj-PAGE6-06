@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 export default function MakeRoutine(props) {
     return (
-        <Link href='/makeRoutine'> 
+        <Link href='/routine/makeRoutine'> 
             <S.MakeRoutineButton>
                 <S.MakeRoutineButtonText>Make Reading Routine</S.MakeRoutineButtonText>
                 <S.PlusIcon icon={faPlus} />
