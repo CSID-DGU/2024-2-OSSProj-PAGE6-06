@@ -61,7 +61,7 @@ export const RecordBookTitle = styled.div`
   font-size: 20px;
   font-weight: 600;
   display: flex;
-  flex-direction: row-reverse;
+  /* flex-direction: row-reverse; */
   align-items: center;
   padding: 5%;
   width: 100%;
@@ -100,7 +100,7 @@ export const SearchContainer = styled.div`
   overflow: hidden;
 `;
 
-export const SearchBookInputSection = styled.div`
+export const SearchBookInputSection = styled.form`
   width: 90%;
   margin: 0 5%;
   padding: 3%;
