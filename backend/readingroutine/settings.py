@@ -140,7 +140,7 @@ USE_I18N = True
 
 USE_TZ = False
 
-MEDIA_URL = '/club_images/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 'media' 디렉토리에 저장
 
 
