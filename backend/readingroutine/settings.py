@@ -140,6 +140,9 @@ USE_I18N = True
 
 USE_TZ = False
 
+MEDIA_URL = '/club_images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 'media' 디렉토리에 저장
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
