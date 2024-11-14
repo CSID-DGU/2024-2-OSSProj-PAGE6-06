@@ -34,18 +34,17 @@ class ClubDetailAPIView(APIView):
 
     def get(self, request, club_id):
         club = get_object_or_404(Club, id=club_id)
-        serializer = ClubSerializer(club)
+        serializer = ClubSerializer(club, context={'request': request})  # context 추가
         
         club_routines = Routine.objects.filter(club=club)
-        
         routine_complete_records = RoutineComplete.objects.filter(routine__in=club_routines)
-
         routine_complete_serializer = RoutineCompleteSerializer(routine_complete_records, many=True)
 
         return Response({
             "club": serializer.data,
             "routineCompleteRecords": routine_complete_serializer.data
         }, status=status.HTTP_200_OK)
+
 
 
 class ClubRoutineListAPIView(ListAPIView):
