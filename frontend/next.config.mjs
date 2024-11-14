@@ -50,6 +50,11 @@ const nextConfig = {
         source: "/:club_id/clublist",
         destination: `http://${APIURL}/api/clublist/:club_id/`,
       },
+      // club search (GET)
+      {
+        source: "/search/clublist/:search",
+        destination: `http://${APIURL}/api/clublist/search/?q=:search`,
+      },
     ];
   },
 };

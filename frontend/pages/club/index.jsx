@@ -28,6 +28,31 @@ export default function Club() {
     fetchClubs();
   }, []);
 
+  const [searchClub, setSearchClub] = useState("");
+  const [searchClubList, setSearchClubList] = useState([]);
+
+  const fetchSearchClub = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await API.get(`/search/clublist/${searchClub}`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setSearchClubList(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      fetchSearchClub();
+    }
+  };
+
   return (
     <MS.MainWrapper>
       <Header path="Reading Club" />
@@ -42,11 +67,25 @@ export default function Club() {
         </CS.ClubPopularContainer>
         <CS.ClubPopularContainer>
           <CS.ClubPopularTitle>리딩클럽 모아보기</CS.ClubPopularTitle>
-          <ClubSearch />
+          <ClubSearch
+            serachClub={searchClub}
+            setSearchClub={setSearchClub}
+            handleKeyPress={handleKeyPress}
+          />
           <CS.ClubAllCardSection>
-            {clubs.map((club, index) => (
-              <ClubCard key={index} club={club} />
-            ))}
+            {searchClub ? (
+              <>
+                {searchClubList.map((club, index) => (
+                  <ClubCard key={index} club={club} />
+                ))}
+              </>
+            ) : (
+              <>
+                {clubs.map((club, index) => (
+                  <ClubCard key={index} club={club} />
+                ))}
+              </>
+            )}
           </CS.ClubAllCardSection>
         </CS.ClubPopularContainer>
       </CS.ClubContainer>
