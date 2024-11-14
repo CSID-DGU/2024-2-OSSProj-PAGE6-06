@@ -5,11 +5,9 @@ import { useRouter } from "next/router";
 export default function ClubCard({ club }) {
   const router = useRouter();
 
-  function shortenText(text, maxLength) {
-    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
-  }
-
-  const shortDescription = shortenText(club.description, 30);
+  const content = club.content;
+  const shortContent =
+    content.length > 30 ? content.slice(0, 30) + "..." : content;
 
   return (
     <S.ClubCardContainer>
@@ -22,7 +20,7 @@ export default function ClubCard({ club }) {
       <S.ClubCardInfo>
         <S.ClubCardInfoText>
           <S.ClubCardInfoIcon icon={faUserGroup} />
-          {club.count}명 참여중
+          {club.participantCount}명 참여중
         </S.ClubCardInfoText>
         <S.ClubCardInfoText>
           <S.ClubCardInfoIcon icon={faClock} />
@@ -30,7 +28,7 @@ export default function ClubCard({ club }) {
         </S.ClubCardInfoText>
       </S.ClubCardInfo>
       <S.ClubCardTitle>{club.title}</S.ClubCardTitle>
-      <S.ClubCardDescription>{shortDescription}</S.ClubCardDescription>
+      <S.ClubCardDescription>{shortContent}</S.ClubCardDescription>
       <S.ClubCardButtonSection>
         <S.ClubCardButtonShow onClick={() => router.push(`/club/${club.id}`)}>
           구경하기
