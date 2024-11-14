@@ -7,7 +7,7 @@ class ClubSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     userNickname = serializers.CharField(source='user.nickname', read_only=True)
     participantCount = serializers.SerializerMethodField()
-    # imageURL = serializers.SerializerMethodField()  # 이미지 경로 필드 추가
+    # imageURL = serializers.SerializerMethodField() 
 
     class Meta:
         model = Club
