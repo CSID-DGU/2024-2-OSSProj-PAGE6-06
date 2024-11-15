@@ -30,10 +30,10 @@ def search_books(request):
 
         # 검색된 책 정보만 클라이언트에 반환
         results = [BookSerializer(Book(title=book['title'],
-                                       author=book.get('author', '저자 정보 없음'),
-                                       publisher=book.get('publisher', '출판사 정보 없음'),
-                                       coverImage=book.get('cover', ''),
-                                       summary=book.get('description', ''))).data for book in books_data]
+                                        author=book.get('author', '저자 정보 없음'),
+                                        publisher=book.get('publisher', '출판사 정보 없음'),
+                                        coverImage=book.get('cover', ''),
+                                        summary=book.get('description', ''))).data for book in books_data]
         return Response(results)
     else:
         return Response({"error": "검색어가 필요합니다."}, status=400)

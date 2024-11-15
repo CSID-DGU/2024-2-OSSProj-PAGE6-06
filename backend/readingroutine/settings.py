@@ -14,19 +14,16 @@ from pathlib import Path
 import os
 import environ
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 env=environ.Env(DEBUG=(bool, False))
-environ.Env.read_env(env_file=BASE_DIR / '.env')
-# environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
-# ALADIN_API_KEY = env('ALADIN_API_KEY')
-ALADIN_API_KEY ='ttbpsh8500001218001'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
@@ -50,7 +47,6 @@ INSTALLED_APPS = [
     'routinelist',
     'mylibrary',
     'clublist',
-    'mystats',
 
 ]
 
@@ -144,6 +140,9 @@ USE_I18N = True
 
 USE_TZ = False
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 'media' 디렉토리에 저장
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -157,22 +156,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 APPEND_SLASH = False
 
+# 알라딘 api 키
+ALADIN_API_KEY = 'ttbpsh8500001218001'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # corsheaders
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True 
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOWED_ORIGINS = [
-# 로컬 개발용 주소
-'http://localhost:3000',
-'http://localhost:5173',
-'http://127.0.0.1:3000',
-'http://127.0.0.1:5173',
-
-# 프론트엔드 도메인 또는 IP주소
+#CORS_ALLOWED_ORIGINS = [
+## 로컬 개발용 주소
+#'http://localhost:3000',
+#'http://localhost:5173',
+#'http://127.0.0.1:3000',
+#'http://127.0.0.1:5173',
+#
+## 프론트엔드 도메인 또는 IP주소
 # 예를 들어, 아래와 같이 입력.
-'http://프론트엔드주소',
-'http://프론트주소:포트번호',
-]
+#'http://프론트엔드주소',
+#'http://프론트주소:포트번호',
+#]
