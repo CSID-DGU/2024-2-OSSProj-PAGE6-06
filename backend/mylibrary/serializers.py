@@ -1,7 +1,7 @@
 # mylibrary/serializers.py
 
 from rest_framework import serializers
-from .models import Book
+from .models import Book, UserBook
 from routinelist.models import RoutineComplete
 
 class BookSerializer(serializers.ModelSerializer):
@@ -19,3 +19,12 @@ class RoutineCompleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = RoutineComplete
         fields = '__all__'
+        
+class UserBookSerializer(serializers.ModelSerializer):
+    title = serializers.CharField(source='book.title')
+    author = serializers.CharField(source='book.author')
+    coverImage = serializers.URLField(source='book.coverImage')
+
+    class Meta:
+        model = UserBook
+        fields = ['title', 'author', 'coverImage']
