@@ -4,8 +4,8 @@ from django.conf import settings
 from rest_framework import  status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view,  permission_classes
-from .models import Book
-from .serializers import BookSerializer, RoutineCompleteSerializer
+from .models import Book, UserBook
+from .serializers import BookSerializer, RoutineCompleteSerializer, UserBookSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from routinelist.models import RoutineComplete
@@ -40,15 +40,15 @@ def search_books(request):
 
 # 선택한 책 한권만 db로 저장
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])  # 인증된 사용자만 접근 가능
+@permission_classes([IsAuthenticated])
 def save_selected_book(request):
-    # 현재 인증된 사용자에 의해 Book이 생성됨
-    serializer = BookSerializer(data=request.data, context={'request': request})
-    if serializer.is_valid():
-        serializer.save()  # user 필드는 자동으로 처리됨
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    book_serializer = BookSerializer(data=request.data)
+    if book_serializer.is_valid():
+        book = book_serializer.save()  # 책 객체 저장
+        UserBook.objects.create(user=request.user, book=book)  # UserBook 인스턴스 생성 및 저장
+        return Response(book_serializer.data, status=status.HTTP_201_CREATED)
     else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(book_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # 루틴 수정 및 삭제 기능
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -68,3 +68,11 @@ def routine_complete_detail(request, routineCompleteId):  # 파라미터 이름�
     elif request.method == 'DELETE':
         routine_complete.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+# 사용자 별 저장된 책 조회
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_books(request):
+    user_books = UserBook.objects.filter(user=request.user).select_related('book')
+    serializer = UserBookSerializer(user_books, many=True)
+    return Response(serializer.data)

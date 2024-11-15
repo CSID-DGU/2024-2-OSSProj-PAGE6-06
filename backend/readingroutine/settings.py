@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'routinelist',
     'mylibrary',
     'clublist',
+    'mainpage',
 
 ]
 
