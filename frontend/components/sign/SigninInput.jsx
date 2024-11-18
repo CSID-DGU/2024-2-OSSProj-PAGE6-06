@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import * as S from "./Styled.jsx";
 import { useRouter } from 'next/router';
 import Link from 'next/link.js';
+import { loginPost } from '@/apis/signApi.jsx';
 
-export default function SigninInput(props) {
+export default function SigninInput() {
     const router = useRouter();
     const [isValid, setIsValid] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(''); 
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -15,15 +17,22 @@ export default function SigninInput(props) {
         return (values.email.trim() !== '' &&
                 values.password.trim() !== '');
     } 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (!isFormValid(values)) {
             return;
         }
-        console.log(values);
+        try {
+            await loginPost(values.email, values.password); 
+            router.push('/'); 
+        } catch (error) {
+            setErrorMessage('로그인에 실패했습니다.');
+        }
     };
 
-    const handleChange = (e) => {
+    const handleChange = async(e) => {
+        e.preventDefault();
         const { name, value } = e.target;
         setValues((prevValues) => ({
             ...prevValues,

@@ -1,11 +1,16 @@
 import Header from "@/components/layout/Header";
-import * as MS from "../../components/_styled/mainStyled";
-
+import * as RS from "@/components/_styled/routineStyled";
+import MakeRoutineButton from "@/components/routine/MakeRoutineButton";
+import RoutineList from "@/components/routine/RoutineList";
 export default function Routine() {
   return (
-    <MS.MainWrapper>
-      <Header path="My Reading Routine" />
-      <MS.MainContainer>routine</MS.MainContainer>
-    </MS.MainWrapper>
+    <RS.RoutineContainer>
+        <Header path="My Reading Routine" />
+        <RS.RoutineContentContainer>
+          <MakeRoutineButton />
+          <RS.Line />
+          <RoutineList />
+        </RS.RoutineContentContainer>
+    </RS.RoutineContainer>
   );
 }
