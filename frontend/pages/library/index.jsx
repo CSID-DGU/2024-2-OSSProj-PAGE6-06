@@ -8,6 +8,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import BookDelete from "@/components/library/BookDelete";
 
 export default function Library() {
   const router = useRouter();
@@ -75,6 +76,9 @@ export default function Library() {
     handleRecordOpen();
   };
 
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [selectedDeleteBook, setSelectedDeleteBook] = useState(null);
+
   return (
     <LS.LibraryWrapper>
       {isRecordOpen && (
@@ -82,6 +86,14 @@ export default function Library() {
           <RecordModal
             book={currentBook}
             handleRecordClose={handleRecordClose}
+          />
+        </LS.LibraryRecordModalOverlay>
+      )}
+      {deleteModal && (
+        <LS.LibraryRecordModalOverlay>
+          <BookDelete
+            selectedDeleteBook={selectedDeleteBook}
+            setDeleteModal={setDeleteModal}
           />
         </LS.LibraryRecordModalOverlay>
       )}
@@ -105,6 +117,9 @@ export default function Library() {
               }}
               key={idx}
               book={book}
+              deleteModal={deleteModal}
+              setDeleteModal={setDeleteModal}
+              setSelectedDeleteBook={setSelectedDeleteBook}
             />
           ))}
         </LS.LibraryList>
