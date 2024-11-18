@@ -3,7 +3,7 @@ const API_URL = "http://3.39.46.222";
 
 export async function loginPost(username, password) {
     try {
-        const response = await axios.post(`${API_URL}/api/user/login`, {
+        const response = await axios.post(`${API_URL}/api/user/login/`, {
             username,
             password
         });

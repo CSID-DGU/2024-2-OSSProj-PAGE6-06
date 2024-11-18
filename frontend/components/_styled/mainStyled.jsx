@@ -14,6 +14,8 @@ export const MainContainer = styled.div`
   overflow-y: auto;
   height: 100%;
   height: calc(100vh);
+  align-items: center;
+  gap:20px;
 
   /* Custom scrollbar styles */
   &::-webkit-scrollbar {

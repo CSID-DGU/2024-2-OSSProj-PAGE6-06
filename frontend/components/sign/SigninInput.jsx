@@ -25,7 +25,7 @@ export default function SigninInput() {
         }
         try {
             await loginPost(values.email, values.password); 
-            router.push('/'); 
+            // router.push('/'); 
         } catch (error) {
             setErrorMessage('로그인에 실패했습니다.');
         }
