@@ -6,20 +6,29 @@ from .serializers import *
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 
-@api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
-def routine_list_create(request):
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def routine_list(request):
     if request.method=='GET':
         routines=Routine.objects.filter(user=request.user)
         serializer = RoutineSerializer(routines, many=True)
         return Response(data=serializer.data)
+
+
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def routine_list_create(request):
     
     if request.method=='POST':
         serializer = RoutineSerializer(data=request.data, context={'request': request})
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=request.user)
             return Response(data=serializer.data)
+        
+        
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])

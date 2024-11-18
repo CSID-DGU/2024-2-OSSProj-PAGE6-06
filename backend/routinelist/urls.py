@@ -4,6 +4,7 @@ from . import views
 
 app_name="routinelist"
 urlpatterns=[
+    path('', views.routine_list),
     path('create/',views.routine_list_create),
     path('create/<int:routine_id>/', views.routine_delete, name="routine_delete"),
     path('complete/', views.routine_complete),
