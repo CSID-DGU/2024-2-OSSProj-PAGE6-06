@@ -109,7 +109,15 @@ export const StartIcon = styled(FontAwesomeIcon)`
         color:#334155;
     }
 `;
-
+export const ClubIcon = styled(FontAwesomeIcon)`
+    color: #475569;
+    font-size: 12px; 
+`;
+export const RoutineTextContainer = styled.div`
+    display:flex;
+    align-items: center;
+    gap:10px;
+`;
 //Timer
 export const TimerContainer = styled.div`
     width:334px;

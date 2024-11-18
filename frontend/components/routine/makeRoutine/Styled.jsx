@@ -49,7 +49,7 @@ export const MemoInput = styled.textarea`
 
     &:focus {
         border: 1px solid #94A3B8;
-        outline:none; s
+        outline:none; 
     }
 `;
 

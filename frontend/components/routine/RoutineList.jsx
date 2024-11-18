@@ -1,46 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import * as S from './Styled';
-import { faGear } from "@fortawesome/free-solid-svg-icons";
-import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faCirclePlay, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from "next/router";
+import { getRoutineList } from '@/apis/routineApi';
 
-export default function RoutineList(props) {
+export default function RoutineList() {
     const router = useRouter();
+    const [routines, setRoutines] = useState([]);
     const [selectedRoutine, setSelectedRoutine] = useState(null);
-    const [isClient, setIsClient] = useState(false); 
+    const [isClient, setIsClient] = useState(false);
 
-    // 임시 데이터
-    const routines = [
-        {
-            id: 2,
-            title: "자기 전 책 20분 읽기",
-            time: "20",
-            content: "간단한 독서 습관",
-            user: 1
-        },
-        {
-            id: 3,
-            title: "기상 후 10분 읽기",
-            time: "10",
-            content: "간단한 독서 습관",
-            user: 1
-        },
-        {
-            id: 4,
-            title: "기상 후 10분 읽기",
-            time: "1",
-            content: "간단한 독서 습관",
-            user: 1
+    const fetchRoutine = useCallback(async () => {
+        try {
+            const routines = await getRoutineList();
+            setRoutines(routines);
+        } catch (err) {
+            console.error("Failed to fetch routines:", err);
         }
-
-    ];
-
-    useEffect(() => {
-        setIsClient(true); 
     }, []);
 
+    useEffect(() => {
+        fetchRoutine();
+        setIsClient(true); 
+    }, [fetchRoutine]);
+
     const handleStartButtonClick = () => {
-        if (selectedRoutine && isClient) { 
+        if (selectedRoutine && isClient) {
             localStorage.setItem("routineId", selectedRoutine.id);
             localStorage.setItem("routineTitle", selectedRoutine.title);
             localStorage.setItem("routineContent", selectedRoutine.content);
@@ -58,11 +43,16 @@ export default function RoutineList(props) {
                     <S.SettingIcon icon={faGear} />
                 </S.SettingIconWrapper>
                 {routines.map((routine) => (
-                    <S.RoutineContainer 
-                        key={routine.id} 
+                    <S.RoutineContainer
+                        key={routine.id}
                         onClick={() => setSelectedRoutine(routine)}
                     >
-                        <S.RoutineText>{routine.title}</S.RoutineText>
+                        <S.RoutineTextContainer>
+                            {routine.is_club && (
+                                <S.ClubIcon icon={faUserGroup} />
+                            )}
+                            <S.RoutineText>{routine.title}</S.RoutineText>
+                        </S.RoutineTextContainer>
                         <S.MinuteTextContainer>
                             <S.VerticalLine />
                             <S.MinuteText>{routine.time}분</S.MinuteText>
