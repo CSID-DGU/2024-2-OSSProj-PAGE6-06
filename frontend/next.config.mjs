@@ -55,6 +55,16 @@ const nextConfig = {
         source: "/search/clublist/:search",
         destination: `http://${APIURL}/api/clublist/search/?q=:search`,
       },
+      // club join (POST)
+      {
+        source: "/join/clublist/:club_id",
+        destination: `http://${APIURL}/api/clublist/join/:club_id/`,
+      },
+      // club create (POST)
+      {
+        source: "/create/clublist",
+        destination: `http://${APIURL}/api/clublist/create/`,
+      },
     ];
   },
 };

@@ -1,6 +1,7 @@
 import { faClock, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import * as S from "./Styled";
 import { useRouter } from "next/router";
+import { API } from "@/pages/api";
 
 export default function ClubCard({ club }) {
   const router = useRouter();
@@ -8,6 +9,31 @@ export default function ClubCard({ club }) {
   const content = club.content;
   const shortContent =
     content.length > 30 ? content.slice(0, 30) + "..." : content;
+
+  const fetchClubJoin = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      console.log(token, club.id);
+
+      const response = await API.post(
+        `/join/clublist/${club.id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleJoin = () => {
+    // console.log(club);
+    fetchClubJoin();
+  };
 
   return (
     <S.ClubCardContainer>
@@ -33,7 +59,9 @@ export default function ClubCard({ club }) {
         <S.ClubCardButtonShow onClick={() => router.push(`/club/${club.id}`)}>
           구경하기
         </S.ClubCardButtonShow>
-        <S.ClubCardButtonJoin>참여하기</S.ClubCardButtonJoin>
+        <S.ClubCardButtonJoin onClick={handleJoin}>
+          참여하기
+        </S.ClubCardButtonJoin>
       </S.ClubCardButtonSection>
     </S.ClubCardContainer>
   );
