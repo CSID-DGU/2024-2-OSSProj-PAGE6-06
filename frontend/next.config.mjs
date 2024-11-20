@@ -38,6 +38,11 @@ const nextConfig = {
         source: "/mylibrary/books/add",
         destination: `http://${APIURL}/api/mylibrary/books/save/`,
       },
+      // book list (GET)
+      {
+        source: "/mylibrary/booklist",
+        destination: `http://${APIURL}/api/mylibrary/books/user/`,
+      },
 
       // club
       // club list (GET)
