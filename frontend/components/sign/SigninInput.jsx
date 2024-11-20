@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as S from "./Styled.jsx";
 import { useRouter } from 'next/router';
 import Link from 'next/link.js';
-import { loginPost } from '@/apis/signApi.jsx';
+import { API } from "@/pages/api";
 
 export default function SigninInput() {
     const router = useRouter();
@@ -13,26 +13,42 @@ export default function SigninInput() {
         password: '',
     });
 
+    const fetchSignIn = async () => {
+        try {
+            const response = await API.post(`/sign/in`, { 
+                username: values.email,
+                password: values.password,
+            });
+            const token  = response.data.token; 
+            localStorage.setItem('token', token); 
+            console.log(values)
+            console.log(response)
+            // router.push('/'); 
+        } catch (error) {
+            console.error('로그인 요청 중 오류 발생:', error);
+            setErrorMessage('로그인 요청 중 오류가 발생했습니다.');
+        }
+    };
+
     const isFormValid  = (values) => {
         return (values.email.trim() !== '' &&
                 values.password.trim() !== '');
     } 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         if (!isFormValid(values)) {
+            setErrorMessage('모든 필드를 채워주세요.');
             return;
         }
         try {
-            await loginPost(values.email, values.password); 
-            router.push('/'); 
+            await fetchSignIn(); 
         } catch (error) {
             setErrorMessage('로그인에 실패했습니다.');
         }
     };
 
     const handleChange = async(e) => {
-        e.preventDefault();
         const { name, value } = e.target;
         setValues((prevValues) => ({
             ...prevValues,
