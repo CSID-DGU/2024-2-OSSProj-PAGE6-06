@@ -137,4 +137,8 @@ export const AddBookSubmitButton = styled.div`
   align-items: center;
   font-size: 20px;
   font-weight: 500;
+
+  background-color: ${(props) => (props.$isActive ? "#cbd5e1" : "#64748B")};
+  color: ${(props) => (props.$isActive ? "#0f172a" : "#F8FAFC")};
+  ${(props) => props.$isActive && "pointer-events: none;"}
 `;

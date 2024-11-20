@@ -5,7 +5,7 @@ export default function BookSearchCard({ book, onClick }) {
     <S.SearchCardContainer onClick={onClick}>
       <S.SearchCardImageSection>
         <S.SearchCardImage
-          src={book.image}
+          src={book.coverImage}
           layout="fill"
           objectFit="cover"
           alt="book_image"
@@ -14,10 +14,10 @@ export default function BookSearchCard({ book, onClick }) {
       <S.SearchCardInformation>
         <S.SearchCardTitle>{book.title}</S.SearchCardTitle>
         <S.SearchCardWriter>
-          {book.writer} | {book.publisher}
+          {book.author} | {book.publisher}
         </S.SearchCardWriter>
         <S.SearchCardWriter>
-          {book.summary.length > 20
+          {book.summary?.length > 20
             ? `${book.summary.slice(0, 20)}...`
             : book.summary}
         </S.SearchCardWriter>

@@ -34,6 +34,7 @@ export const BookTitle = styled.div`
 
 export const BookMore = styled(FontAwesomeIcon)`
   padding-right: 5%;
+  font-size: 10px;
   cursor: pointer;
   z-index: 150;
 `;
@@ -61,7 +62,7 @@ export const RecordBookTitle = styled.div`
   font-size: 20px;
   font-weight: 600;
   display: flex;
-  flex-direction: row-reverse;
+  /* flex-direction: row-reverse; */
   align-items: center;
   padding: 5%;
   width: 100%;
@@ -100,7 +101,7 @@ export const SearchContainer = styled.div`
   overflow: hidden;
 `;
 
-export const SearchBookInputSection = styled.div`
+export const SearchBookInputSection = styled.form`
   width: 90%;
   margin: 0 5%;
   padding: 3%;
@@ -183,4 +184,49 @@ export const SearchCardWriter = styled.div`
   font-size: 12px;
   color: #64748b;
   padding: 3% 0;
+`;
+
+// Book Delete Dropbox
+export const DeleteDropboxContainer = styled.div`
+  background-color: #fff;
+  color: #0f172a;
+  top: 30vh;
+  z-index: 400;
+  width: 90%;
+  margin: 5%;
+  padding-top: 7%;
+  position: absolute;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+`;
+
+export const DeleteDropboxButtonSection = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 7%;
+  border-top: 1px solid #64748b;
+  align-items: center;
+`;
+
+export const DeleteDropboxButtonLine = styled.div`
+  width: 0.5px;
+  background-color: #64748b;
+  align-self: stretch;
+  display: flex;
+  height: auto;
+`;
+
+export const DeleteDropboxButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 60px;
 `;

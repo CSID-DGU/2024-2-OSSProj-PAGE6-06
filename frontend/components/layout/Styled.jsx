@@ -12,7 +12,7 @@ export const LayoutWrapper = styled.div`
   position: relative;
   border: 1px solid black;
   overflow: hidden;
-  font-family:Pretendard;
+  font-family: Pretendard;
 `;
 
 export const LayoutContent = styled.div`
@@ -42,6 +42,8 @@ export const HeaderPath = styled.div`
 export const HeaderMypage = styled(Image)`
   /* border: 1px solid black; */
   cursor: pointer;
+  width: 30px;
+  height: 30px;
 `;
 
 // Footer
