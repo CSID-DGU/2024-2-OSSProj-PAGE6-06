@@ -21,6 +21,28 @@ const nextConfig = {
 
   async rewrites() {
     return [
+      //sign
+      //sign in (post)
+        {
+          source: "/sign/in",
+          destination: `http://${APIURL}/api/user/login/`,
+        },
+      //sign up (post)
+        {
+          source: "/sign/up",
+          destination: `http://${APIURL}/api/user/signup/`,
+        },
+      //routine
+      //routinelist (get)
+        {
+          source: "/routinelist",
+          destination: `http://${APIURL}/api/routinelist/`,
+        },
+      //main
+      {
+        source: "/main",
+        destination: `http://${APIURL}/api/mainpage/`,
+      },
       // user
       // user profile (GET)
       {
