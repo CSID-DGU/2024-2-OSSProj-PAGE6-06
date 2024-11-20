@@ -21,3 +21,15 @@ export const SigninContentContainer = styled(SignContentContainer)`
   margin-top:109px;
   gap:80px;
 `;
+
+//userInfo
+export const UserInfoContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+export const UserInfoContentContainer = styled(SignContentContainer)`
+  margin-top:56px;
+  gap:31px;
+`;
