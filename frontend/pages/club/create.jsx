@@ -4,9 +4,13 @@ import * as LS from "../../components/_styled/libraryStyled";
 import * as HCS from "../../components/layout/Styled";
 import { useState } from "react";
 import { API } from "../api";
+import { useRouter } from "next/router";
 
 export default function Create() {
+  const router = useRouter();
+
   const [image, setImage] = useState(null);
+  const [imageFile, setImageFile] = useState({});
 
   const handleImageChange = (e) => {
     const file = e.target.files?.[0];
@@ -15,6 +19,11 @@ export default function Create() {
       const imageUrl = URL.createObjectURL(file);
       setImage(imageUrl);
     }
+
+    // 서버 전송 image file
+    const fileInput = document.querySelector('input[type="file"]');
+    const file_image = fileInput?.files?.[0];
+    setImageFile(file_image);
   };
 
   const handleImageDelete = () => {
@@ -37,17 +46,17 @@ export default function Create() {
         `/create/clublist`,
         {
           title: clubTitle,
-          time: clubTime,
-          memo: clubMemo,
-          image: image,
+          time: parseInt(clubTime, 10),
+          content: clubMemo,
+          image: imageFile,
         },
         {
           headers: {
             Authorization: `Token ${token}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
-      console.log(response);
       router.push(`/club`);
     } catch (error) {
       console.log(error);
