@@ -148,6 +148,8 @@ export default function Record() {
     ? selectedCalendarData.routines
     : [];
 
+  // const [editModal, setEditModal] = useState(false);
+
   return (
     <MS.MainWrapper>
       <Header path="My Record" />

@@ -1,6 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
+export const RecordCardWrapper = styled.div`
+  width: 100%;
+`;
+
 export const RecordCardContainer = styled.div`
   margin: 0 0 5% 0;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
@@ -171,4 +175,37 @@ export const RecordMonthListModalText = styled.div`
   justify-content: start;
 
   border-bottom: ${(props) => (props.$isBorder ? `none` : `1px solid #64748b`)};
+`;
+
+// Record Edit Dropbox
+export const DropboxContainer = styled.div`
+  background-color: #f8fafc;
+  color: #0f172a;
+  border: 1px solid #cfcfcf;
+  z-index: 400;
+  width: 25%;
+  padding: 3% 0;
+  right: 10px;
+  top: 50px;
+  position: absolute;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 12px;
+  font-weight: 400;
+`;
+
+export const DropboxText = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 7%;
+`;
+
+export const DropboxIcon = styled(FontAwesomeIcon)`
+  margin: 0 5%;
+  font-size: 12px;
 `;
