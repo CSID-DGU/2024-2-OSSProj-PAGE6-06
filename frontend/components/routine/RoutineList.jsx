@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import * as S from './Styled';
 import { faGear, faCirclePlay, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from "next/router";
-import { getRoutineList } from '@/apis/routineApi';
+import { API } from "@/pages/api";
 
 export default function RoutineList() {
     const router = useRouter();
@@ -12,8 +12,14 @@ export default function RoutineList() {
 
     const fetchRoutine = useCallback(async () => {
         try {
-            const routines = await getRoutineList();
-            setRoutines(routines);
+            const token = localStorage.getItem("token");
+            const routines = await API.get(`/routinelist`, {
+                headers: {
+                    Authorization: `Token ${token}`
+                },
+            });
+            setRoutines(routines.data);
+            console.log(routines);
         } catch (err) {
             console.error("Failed to fetch routines:", err);
         }
