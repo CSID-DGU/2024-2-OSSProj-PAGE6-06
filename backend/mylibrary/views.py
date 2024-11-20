@@ -73,9 +73,11 @@ def routine_complete_detail(request, routineCompleteId):  # 파라미터 이름�
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def user_books(request):
-    user_books = UserBook.objects.filter(user=request.user).select_related('book')
+    # 사용자와 연결된, 삭제되지 않은 책만 조회
+    user_books = UserBook.objects.filter(user=request.user, book__is_deleted=False).select_related('book')
     serializer = UserBookSerializer(user_books, many=True)
     return Response(serializer.data)
+
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
