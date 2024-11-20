@@ -42,7 +42,7 @@ def search_books(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def save_selected_book(request):
-    book_serializer = BookSerializer(data=request.data)
+    book_serializer = BookSerializer(data=request.data, context={'request': request})
     if book_serializer.is_valid():
         book = book_serializer.save()  # 책 객체 저장
         UserBook.objects.create(user=request.user, book=book)  # UserBook 인스턴스 생성 및 저장
@@ -76,3 +76,14 @@ def user_books(request):
     user_books = UserBook.objects.filter(user=request.user).select_related('book')
     serializer = UserBookSerializer(user_books, many=True)
     return Response(serializer.data)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_book(request, book_id):
+    try:
+        book = Book.objects.get(id=book_id, user=request.user, is_deleted=False)
+        book.is_deleted = True
+        book.save()
+        return Response({'message': '책 삭제 완료.'}, status=status.HTTP_200_OK)
+    except Book.DoesNotExist:
+        return Response({'error': '책을 찾을 수 없습니다.'}, status=status.HTTP_404_NOT_FOUND)
