@@ -28,10 +28,11 @@ class RoutineCompleteSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class UserBookSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(source='book.id', read_only=True)
     title = serializers.CharField(source='book.title')
     author = serializers.CharField(source='book.author')
     coverImage = serializers.URLField(source='book.coverImage')
 
     class Meta:
         model = UserBook
-        fields = ['title', 'author', 'coverImage']
+        fields = ['id', 'title', 'author', 'coverImage']

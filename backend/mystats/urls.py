@@ -1,7 +1,8 @@
 # mystats/urls.py
 from django.urls import path
-from .views import RoutinesByDateAPIView, RoutineRecordView
+from .views import RoutinesByMonthAPIView, RoutineRecordView
 urlpatterns = [
-    path('record/date/', RoutinesByDateAPIView.as_view(), name='routines-by-date'),  # 쿼리 파라미터를 사용하여 날짜 전달
-    path('record/<str:routine>/', RoutineRecordView.as_view(), name='routine-record'),
-]
+    path('record/month/', RoutinesByMonthAPIView.as_view(), name='routines-by-month'),  # 월별 루틴 기록 조회
+    path('record/all/', RoutineRecordView.as_view(), kwargs={'routine': 'all'}, name='routine-all-record'),
+    path('record/<int:routine>/', RoutineRecordView.as_view(), name='routine-record'),
+    ]
