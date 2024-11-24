@@ -23,21 +23,21 @@ const nextConfig = {
     return [
       //sign
       //sign in (post)
-        {
-          source: "/sign/in",
-          destination: `http://${APIURL}/api/user/login/`,
-        },
+      {
+        source: "/sign/in",
+        destination: `http://${APIURL}/api/user/login/`,
+      },
       //sign up (post)
-        {
-          source: "/sign/up",
-          destination: `http://${APIURL}/api/user/signup/`,
-        },
+      {
+        source: "/sign/up",
+        destination: `http://${APIURL}/api/user/signup/`,
+      },
       //routine
       //routinelist (get)
-        {
-          source: "/routinelist",
-          destination: `http://${APIURL}/api/routinelist/`,
-        },
+      {
+        source: "/routinelist",
+        destination: `http://${APIURL}/api/routinelist/`,
+      },
       //main
       {
         source: "/main",
@@ -91,6 +91,13 @@ const nextConfig = {
       {
         source: "/create/clublist",
         destination: `http://${APIURL}/api/clublist/create/`,
+      },
+
+      // record
+      // routine recordlist (GET)
+      {
+        source: "/recordlist/:id/",
+        destination: `http://${APIURL}/api/mystats/record/:id/`,
       },
     ];
   },

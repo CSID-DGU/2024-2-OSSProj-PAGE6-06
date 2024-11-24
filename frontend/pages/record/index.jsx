@@ -7,6 +7,7 @@ import RecordCard from "@/components/record/RecordCard";
 
 import { motion } from "framer-motion";
 import RecordMonthList from "@/components/record/RecordMonthList";
+import { API } from "../api";
 
 export default function Record() {
   const [currentTap, setCurrentTap] = useState("month");
@@ -64,34 +65,39 @@ export default function Record() {
     },
   ];
 
+  const [routineList, setRoutineList] = useState([]);
   const [currentRoutine, setCurrentRoutine] = useState("all");
-  const routine_list = [
-    {
-      id: 1,
-      title: "루틴명",
-      time: "30분",
-      place: "운동장",
-    },
-    {
-      id: 2,
-      title: "루틴명222",
-      time: "30분",
-      place: "운동장",
-    },
-    {
-      id: 3,
-      title: "루틴명22233",
-      time: "30분",
-      place: "운동장",
-    },
-  ];
+  // const routine_list = [
+  //   {
+  //     id: 1,
+  //     title: "루틴명",
+  //     time: "30분",
+  //     place: "운동장",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "루틴명222",
+  //     time: "30분",
+  //     place: "운동장",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "루틴명22233",
+  //     time: "30분",
+  //     place: "운동장",
+  //   },
+  // ];
 
   const fetchRoutineList = async () => {
     try {
-      // const response = await API.get(``);
-      // const data = response.data;
-      // setRoutineList(data);
-      console.log(currentRoutine);
+      const token = localStorage.getItem("token");
+      const response = await API.get(`/routinelist`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      const data = response.data;
+      setRoutineList(data);
     } catch (e) {
       console.log(e);
     }
@@ -102,24 +108,6 @@ export default function Record() {
   };
 
   const [routineData, setRoutineData] = useState([]);
-  const routine_data = [
-    {
-      routine_title: "루틴명",
-      routine_time: "30분",
-      routine_place: "운동장",
-      created_date: "2024.10.19",
-      book_title: "책 제목",
-      description: "루틴 설명",
-    },
-    {
-      routine_title: "루틴명",
-      routine_time: "30분",
-      routine_place: "운동장",
-      created_date: "2024.10.19",
-      book_title: "책 제목",
-      description: "루틴 설명2",
-    },
-  ];
 
   const fetchRoutineData = async () => {
     try {
@@ -177,7 +165,7 @@ export default function Record() {
             />
           ) : (
             <RecordMonthList
-              routine_list={routine_list}
+              routine_list={routineList}
               currentRoutine={currentRoutine}
               setCurrentRoutine={handleCurrentRoutine}
             />
@@ -197,7 +185,7 @@ export default function Record() {
               </motion.div>
             ))
           ) : currentTap === "routine" ? (
-            routine_data.map((routine, idx) => (
+            routineData.map((routine, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
