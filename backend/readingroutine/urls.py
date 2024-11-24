@@ -24,5 +24,6 @@ urlpatterns = [
     path('api/user/', include('user.urls')),
     path('api/routinelist/',include('routinelist.urls')),
     path('api/clublist/', include('clublist.urls')),
-    path('api/mainpage/', include('mainpage.urls'))
+    path('api/mainpage/', include('mainpage.urls')),
+    path('api/mystats/', include('mystats.urls'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
