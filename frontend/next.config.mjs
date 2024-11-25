@@ -101,8 +101,13 @@ const nextConfig = {
       // record
       // routine recordlist (GET)
       {
-        source: "/recordlist/:id/",
-        destination: `http://${APIURL}/api/mystats/record/:id/`,
+        source: "/record/all",
+        destination: `http://${APIURL}/api/mystats/record/all/`,
+      },
+      // month recordlist (GET)
+      {
+        source: "/record/month/:year/:month",
+        destination: `http://${APIURL}/api/mystats/record/month/?year=:year&month=:month`,
       },
     ];
   },

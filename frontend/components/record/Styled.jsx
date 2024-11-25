@@ -149,7 +149,7 @@ export const RecordMonthListIcon = styled(FontAwesomeIcon)`
 `;
 
 export const RecordMonthListModalContainer = styled.div`
-  width: 100%;
+  width: 90%;
   margin: 5% 0;
   border-radius: 10px;
   border: #64748b 1px solid;
@@ -157,11 +157,13 @@ export const RecordMonthListModalContainer = styled.div`
   font-size: 14px;
   font-weight: 500;
   color: #64748b;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* position: absolute; */
+  position: absolute;
+  z-index: 300;
 `;
 
 export const RecordMonthListModalText = styled.div`

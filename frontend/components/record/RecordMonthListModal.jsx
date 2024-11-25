@@ -5,8 +5,8 @@ export default function RecordMonthListModal({
   handleCurrentRoutine,
   handleModalClose,
 }) {
-  const handleClick = (routine) => {
-    handleCurrentRoutine(routine);
+  const handleClick = (r) => {
+    handleCurrentRoutine(r.id);
     handleModalClose();
   };
   return (
@@ -15,7 +15,7 @@ export default function RecordMonthListModal({
         <S.RecordMonthListModalText
           key={idx}
           $isBorder={idx === routine.length - 1}
-          onClick={() => handleClick(r.title)}
+          onClick={() => handleClick(r)}
         >
           {r.title}
         </S.RecordMonthListModalText>

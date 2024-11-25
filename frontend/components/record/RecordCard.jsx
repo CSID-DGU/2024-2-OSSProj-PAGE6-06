@@ -3,7 +3,7 @@ import * as S from "./Styled";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import RecordEditDropbox from "./RecordEditDropbox";
 
-export default function RecordCard({ record }) {
+export default function RecordCard({ record, routine }) {
   const [editModal, setEditModal] = useState(false);
   const editModalRef = useRef();
 
@@ -20,11 +20,15 @@ export default function RecordCard({ record }) {
     };
   }, []);
 
+  const date = record.date;
+  const date_ = date?.split("T")[0];
+  const formmatedDate = date_?.replace(/-/g, ".");
+
   return (
     <S.RecordCardWrapper ref={editModalRef}>
       <S.RecordCardContainer>
         <S.RecordCardRoutine>
-          {record.routine_title}
+          {routine?.title}
           <S.RecordCardMore
             icon={faEllipsisVertical}
             onClick={() => setEditModal(!editModal)}
@@ -33,18 +37,18 @@ export default function RecordCard({ record }) {
         </S.RecordCardRoutine>
         <S.RecordCardRoutineInfo>
           <S.RecordCardRoutineInfoText>
-            {record.created_date}
+            {formmatedDate}
           </S.RecordCardRoutineInfoText>
           <S.RecordCardRoutineInfoText>
-            {record.routine_time}
+            {routine?.time}분
           </S.RecordCardRoutineInfoText>
           <S.RecordCardRoutineInfoText>
-            #{record.routine_place}
+            # {record.location}
           </S.RecordCardRoutineInfoText>
         </S.RecordCardRoutineInfo>
         <S.RecordDescription>
           <S.RecordCardBookTitle>{record.book_title}</S.RecordCardBookTitle>
-          {record.description}
+          {record.memo}
         </S.RecordDescription>
       </S.RecordCardContainer>
     </S.RecordCardWrapper>

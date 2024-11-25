@@ -1,7 +1,6 @@
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import * as S from "./Styled";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
 import RecordMonthListModal from "./RecordMonthListModal";
 
 export default function RecordMonthList({
@@ -17,18 +16,17 @@ export default function RecordMonthList({
   const handleModalClose = () => {
     setIsOpen(false);
   };
-  console.log(routine_list);
 
   return (
     <S.RecordMonthListContainer>
       <S.RecordMonthListSearch
         onClick={() => setIsOpen(!isOpen)}
-        $isActive={currentRoutine === "all"}
+        $isActive={currentRoutine === 0}
       >
-        {currentRoutine === "all" ? (
+        {currentRoutine === 0 ? (
           <>루틴을 선택하세요.</>
         ) : (
-          <>{currentRoutine}</>
+          <>{routine_list.filter((r) => r.id === currentRoutine)[0].title}</>
         )}
 
         <S.RecordMonthListIcon icon={!isOpen ? faAngleUp : faAngleDown} />
