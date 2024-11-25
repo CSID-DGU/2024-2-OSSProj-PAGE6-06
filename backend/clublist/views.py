@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.generics import ListAPIView
 from routinelist.serializers import *
 from django.db.models import Q
+from django.db.models import Count
 
 class ClubCreateAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -105,3 +106,14 @@ class ClubSearchAPIView(ListAPIView):
             print(f"Search Query: {search_query}")  # 검색어 확인용
             print(f"Filtered Queryset: {queryset}")  # 필터된 쿼리셋 출력
         return queryset
+    
+
+class PopularClubRoutineListAPIView(ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ClubSerializer
+
+    def get_queryset(self):
+        return (
+            Club.objects.annotate(totalParticipants=Count('participants'))
+            .order_by('-totalParticipants')[:5]
+        )
