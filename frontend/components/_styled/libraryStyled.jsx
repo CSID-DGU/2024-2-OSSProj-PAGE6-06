@@ -54,7 +54,8 @@ export const LibraryList = styled.div`
   margin: 0 5%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 9%;
+  /* justify-content: space-between; */
   align-items: flex-start;
 `;
 

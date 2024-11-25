@@ -8,6 +8,7 @@ export const BookContainer = styled.div`
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  margin-bottom: 5%;
 `;
 
 export const BookImage = styled(Image)`
@@ -229,4 +230,5 @@ export const DeleteDropboxButton = styled.div`
   justify-content: center;
   width: 50%;
   height: 60px;
+  cursor: pointer;
 `;

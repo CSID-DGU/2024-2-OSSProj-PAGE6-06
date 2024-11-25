@@ -1,12 +1,22 @@
 import { useRouter } from "next/router";
 import * as S from "./Styled";
+import { API } from "@/pages/api";
 
 export default function BookDelete({ selectedDeleteBook, setDeleteModal }) {
+  const router = useRouter();
   const fetchDeleteBook = async () => {
     try {
-      // const response = await API.delete(``);
-      console.log("삭제다");
+      const token = localStorage.getItem("token");
+      const response = await API.delete(
+        `/mylibrary/books/delete/${selectedDeleteBook.id}`,
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
       setDeleteModal(false);
+      router.reload();
     } catch (error) {
       console.log(error);
     }

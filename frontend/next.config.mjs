@@ -60,6 +60,11 @@ const nextConfig = {
         source: "/mylibrary/books/add",
         destination: `http://${APIURL}/api/mylibrary/books/save/`,
       },
+      // book delete (DELETE)
+      {
+        source: "/mylibrary/books/delete/:id",
+        destination: `http://${APIURL}/api/mylibrary/books/delete/:id/`,
+      },
       // book list (GET)
       {
         source: "/mylibrary/booklist",
