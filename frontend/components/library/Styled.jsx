@@ -8,7 +8,8 @@ export const BookContainer = styled.div`
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  margin-bottom: 5%;
+  /* margin-bottom: 5%; */
+  margin: 0 1vh 5%;
 `;
 
 export const BookImage = styled(Image)`
@@ -63,6 +64,7 @@ export const RecordBookTitle = styled.div`
   font-size: 20px;
   font-weight: 600;
   display: flex;
+  justify-content: space-between;
   /* flex-direction: row-reverse; */
   align-items: center;
   padding: 5%;

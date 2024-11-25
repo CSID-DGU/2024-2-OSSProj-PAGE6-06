@@ -6,39 +6,33 @@ import { API } from "@/pages/api";
 import RecordCard from "../record/RecordBookCard";
 
 export default function RecordModal({ book, handleRecordClose }) {
-  // const [records, setRecords] = useState([]);
-  // dummy
-  const records = [
-    {
-      id: 1,
-      routine_title: "통학의 서러움",
-      description:
-        "이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지",
-    },
-    {
-      id: 2,
-      routine_title: "통학의 서러움",
-      description: "그렇다",
-    },
-    {
-      id: 3,
-      routine_title: "하교의 즐거움",
-      description: "그렇다",
-    },
-    {
-      id: 4,
-      routine_title: "통학의 서러움",
-      description:
-        "이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지 300자는 어느 정도?? 이 편지는 어쩌구 저쩌구 행운의 편지",
-    },
-  ];
-
+  const [records, setRecords] = useState([]);
   const fetchRecords = async () => {
     try {
-      // const response = await API.get(``);
-      // const data = response.data;
-      // setBooks(data);
-      // console.log(records, book);
+      const token = localStorage.getItem("token");
+      const response = await API.get(`/mylibrary/books/record/${book.id}`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      const data = response.data;
+      setRecords(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const [routineList, setRoutineList] = useState([]);
+  const fetchRoutineList = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await API.get(`/routinelist`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      const data = response.data;
+      setRoutineList(data);
     } catch (e) {
       console.log(e);
     }
@@ -46,6 +40,7 @@ export default function RecordModal({ book, handleRecordClose }) {
 
   useEffect(() => {
     fetchRecords();
+    fetchRoutineList();
   }, []);
 
   return (
@@ -55,9 +50,12 @@ export default function RecordModal({ book, handleRecordClose }) {
         <S.RecordModalCloseButton icon={faXmark} onClick={handleRecordClose} />
       </S.RecordBookTitle>
       <S.RecordList>
-        {records.map((record, idx) => (
-          <RecordCard key={idx} record={record} />
-        ))}
+        {records.map((record, idx) => {
+          const routine = routineList.find(
+            (routine) => routine.id === record.routine
+          );
+          return <RecordCard key={idx} record={record} routine={routine} />;
+        })}
       </S.RecordList>
     </S.RecordModalContainer>
   );

@@ -70,6 +70,11 @@ const nextConfig = {
         source: "/mylibrary/booklist",
         destination: `http://${APIURL}/api/mylibrary/books/user/`,
       },
+      // book record (GET)
+      {
+        source: "/mylibrary/books/record/:id",
+        destination: `http://${APIURL}/api/mylibrary/books/:id/routines/`,
+      },
 
       // club
       // club list (GET)
