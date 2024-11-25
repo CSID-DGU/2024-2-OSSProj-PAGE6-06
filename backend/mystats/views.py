@@ -46,3 +46,5 @@ class RoutineRecordView(APIView):
             return Response(serializer.data)
         except (ValueError, Routine.DoesNotExist):
             return Response({"error": "Routine not found"}, status=404)
+
+
