@@ -82,6 +82,11 @@ const nextConfig = {
         source: "/clublist",
         destination: `http://${APIURL}/api/clublist/`,
       },
+      // club popular list (GET)
+      {
+        source: "/clublist/popular",
+        destination: `http://${APIURL}/api/clublist/popular/`,
+      },
       // club detail (GET)
       {
         source: "/:club_id/clublist",

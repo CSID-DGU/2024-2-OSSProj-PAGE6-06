@@ -8,7 +8,6 @@ import { API } from "../api";
 
 export default function Club() {
   const [clubs, setClubs] = useState([]);
-
   const fetchClubs = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -24,8 +23,25 @@ export default function Club() {
     }
   };
 
+  const [popularClubs, setPopularClubs] = useState([]);
+  const fetchPopularClubs = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await API.get(`/clublist/popular`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setPopularClubs(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchClubs();
+    fetchPopularClubs();
   }, []);
 
   const [searchClub, setSearchClub] = useState("");
@@ -60,7 +76,7 @@ export default function Club() {
         <CS.ClubPopularContainer>
           <CS.ClubPopularTitle>인기 리딩클럽</CS.ClubPopularTitle>
           <CS.ClubPopularCardSection>
-            {clubs.map((club, index) => (
+            {popularClubs.map((club, index) => (
               <ClubCard key={index} club={club} />
             ))}
           </CS.ClubPopularCardSection>
