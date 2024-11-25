@@ -78,6 +78,17 @@ def user_books(request):
     serializer = UserBookSerializer(user_books, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_book_routines(request, book_id):
+    # 특정 책에 대한 UserBook 인스턴스를 조회
+    user_book = get_object_or_404(UserBook, book_id=book_id, user=request.user, book__is_deleted=False)
+    
+    # 해당 책과 관련된 루틴 완료 기록 조회
+    routine_completes = RoutineComplete.objects.filter(book=user_book.book, user=request.user)
+    serializer = RoutineCompleteSerializer(routine_completes, many=True)
+    
+    return Response(serializer.data)
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
