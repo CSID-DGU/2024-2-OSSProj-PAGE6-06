@@ -16,11 +16,17 @@ class BookSerializer(serializers.ModelSerializer):
         validated_data['user'] = user  # user 필드에 할당
         return super().create(validated_data)
 
-# class RoutineRecordSerializer(serializers.ModelSerializer):
-#         book_title = serializers.CharField(source='book.title', read_only=True)
-#         class Meta:
-#              model = RoutineRecord
-#              fields = ['bookTitle']
+class RoutineCompleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RoutineComplete
+        fields = ['id', 'date', 'location', 'memo']
+
+class UserBookSerializer(serializers.ModelSerializer):
+    routines = RoutineCompleteSerializer(source='book.routinecomplete_set', many=True)
+    
+    class Meta:
+        model = UserBook
+        fields = ['book', 'routines']
 
 class RoutineCompleteSerializer(serializers.ModelSerializer):
     class Meta:
