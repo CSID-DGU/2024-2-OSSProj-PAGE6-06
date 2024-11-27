@@ -24,6 +24,7 @@ export default function RecordCard({ record, routine }) {
   const date_ = date?.split("T")[0];
   const formmatedDate = date_?.replace(/-/g, ".");
 
+  console.log(record);
   return (
     <S.RecordCardWrapper ref={editModalRef}>
       <S.RecordCardContainer>
@@ -49,7 +50,7 @@ export default function RecordCard({ record, routine }) {
           </S.RecordCardRoutineInfoText>
         </S.RecordCardRoutineInfo>
         <S.RecordDescription>
-          <S.RecordCardBookTitle>{record.book_title}</S.RecordCardBookTitle>
+          <S.RecordCardBookTitle>{record.book?.title}</S.RecordCardBookTitle>
           {record.memo}
         </S.RecordDescription>
       </S.RecordCardContainer>
