@@ -45,7 +45,7 @@ export default function JoinClub() {
         <S.JoinClubContainer>
             <S.Title>참여중인 리딩클럽</S.Title>
             {userClubs.length === 0 ? (
-                <p>참여 중인 리딩 클럽이 없습니다.</p>
+                <p>참여 중인 리딩 클럽이 없습니다.</p> // 디자인 수정 필요
             ) : (
                 userClubs.map((club) => (
                     <S.ClubCard key={club.id}>
@@ -66,7 +66,7 @@ export default function JoinClub() {
                                     </S.ClubIconTextWrapper>
                                     <S.ClubIconTextWrapper>
                                         <S.ClubIcon icon={faClock} />
-                                        <S.ClubSubInfoText>{formatTime(club.createdAt)}</S.ClubSubInfoText>
+                                        <S.ClubSubInfoText>{formatTime(club.createdAt)}</S.ClubSubInfoText> {/*시간 받아오는값 수정필요*/}
                                     </S.ClubIconTextWrapper>
                                 </S.ClubSubWrapper>
                             </S.ClubInfoContainer>

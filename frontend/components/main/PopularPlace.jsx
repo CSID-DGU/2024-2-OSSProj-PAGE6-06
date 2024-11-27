@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import * as S from './Styled';
 import ClubImage from '@/components/common/image/profile1.png';
+import { API } from "@/pages/api";
 
 function PopularPlace() {
-    const data = {
-        "topplaces": [
-            { "location": "우리집", "location_count": 9 },
-            { "location": "스타벅스 충무로점", "location_count": 124 },
-            { "location": "스타벅스 충무로점", "location_count": 124 },
-            { "location": "스타벅스 충무로점", "location_count": 124 },
-            { "location": "스타벅스 충무로점", "location_count": 124 },
-
-        ],
-    };
+    const[places, setPlaces] = useState([])
+    const fetchPlaces = async () => {
+        try {
+          const token = localStorage.getItem("token");
+          const response = await API.get(`/mainpage`, {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          });
+    
+          setPlaces(response.data.topplaces);
+        } catch (error) {
+          console.error("요청 중 오류 발생:", error);
+          setErrorMessage("데이터를 불러오는 데 실패했습니다.");
+        }
+      };
+      useEffect(() => {
+        fetchPlaces(); 
+    }, []);
+    
     return (
         <S.PopularPlaceContainer>
         <S.Title>뜨고 있는 장소</S.Title>
         <S.PlaceCardContainer>
-                {data.topplaces.map((place, index) => (
+                {places.map((place, index) => (
                     <S.PlaceCard key={index}>
                         <S.PlaceImage src={ClubImage} alt={`${place.location} 이미지`} />
                         <S.PlaceTextContainer>
