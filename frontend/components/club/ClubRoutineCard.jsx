@@ -67,7 +67,7 @@ export default function ClubRoutineCard({ routine }) {
         </S.ClubRoutineCardUserInfo>
       </S.ClubRoutineCardUser>
       <RCS.RecordDescription>
-        <RCS.RecordCardBookTitle>{routine.title}</RCS.RecordCardBookTitle>
+        <RCS.RecordCardBookTitle>{routine.book.title}</RCS.RecordCardBookTitle>
         {routine.memo}
       </RCS.RecordDescription>
     </RCS.RecordCardContainer>

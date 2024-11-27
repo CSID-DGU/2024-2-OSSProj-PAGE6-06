@@ -11,6 +11,7 @@ export const RecordCardContainer = styled.div`
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   border-radius: 10px;
   padding: 5%;
+  text-align: left;
 `;
 
 export const RecordCardRoutine = styled.div`

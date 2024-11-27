@@ -81,6 +81,9 @@ export const RecordList = styled.div`
   flex-direction: column;
   padding: 5%;
   overflow-y: auto;
+  text-align: center;
+  font-size: 14px;
+  color: #334155;
 
   /* Custom scrollbar styles */
   &::-webkit-scrollbar {
