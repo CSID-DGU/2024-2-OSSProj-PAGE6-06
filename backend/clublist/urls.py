@@ -11,5 +11,6 @@ urlpatterns = [
     path('<int:club_id>/', ClubDetailAPIView.as_view(), name='club_routine_detail'), 
     path('create/', ClubCreateAPIView.as_view(), name='club_routine_create'),
     path('join/<int:club_id>/', JoinClubAPIView.as_view(), name='join_club'),
-    path('search/', ClubSearchAPIView.as_view(), name='club-search'),  
+    path('search/', ClubSearchAPIView.as_view(), name='club-search'),
+    path('popular/', PopularClubRoutineListAPIView.as_view(), name='popular-club'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
