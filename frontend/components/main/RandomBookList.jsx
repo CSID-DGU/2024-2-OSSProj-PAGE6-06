@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './Styled';
 
-function RandomBookList() {
+function RandomBookList(topBooks) {
     const topbooks = [
         {
             "book": {
@@ -30,7 +30,7 @@ function RandomBookList() {
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
-
+    
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % topbooks.length);

@@ -22,12 +22,12 @@ const nextConfig = {
     //sign
     //sign in (post)
       {
-        source: "/sign/in",
+        source: "/signin",
         destination: `http://${APIURL}/api/user/login/`,
       },
     //sign up (post)
       {
-        source: "/sign/up",
+        source: "/signup",
         destination: `http://${APIURL}/api/user/signup/`,
       },
     //routine
@@ -38,7 +38,7 @@ const nextConfig = {
       },
     //main
     {
-      source: "/main",
+      source: "/mainpage",
       destination: `http://${APIURL}/api/mainpage/`,
     },
     

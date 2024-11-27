@@ -26,19 +26,17 @@ export default function SignupInput() {
 
   const fetchSignup = async () => {
     try {
-      const response = await API.post(`/sign/up`, {
+      const response = await API.post(`/signup`, {
         username: values.email,
         password: values.password,
         passwordConfirm: values.passwordConfirm,
-        nickname: values.nickname,
         name: values.name,
+        nickname: values.nickname,
         profileImage: values.image,
       });
-      const token = response.data;
-      localStorage.setItem('token', token);
       console.log("회원가입 성공:", response);
-      console.log(values)
-    //   router.push('/sign/in'); 
+      console.log(values);
+      router.push('/sign/in'); 
     } catch (error) {
       console.error('회원가입 요청 중 오류 발생:', error);
       setErrorMessage('회원가입 요청 중 오류가 발생했습니다.');
@@ -61,6 +59,7 @@ export default function SignupInput() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(values)
     if (isValid) {
       fetchSignup(); 
     }
@@ -82,7 +81,9 @@ export default function SignupInput() {
   };
 
   useEffect(() => {
-    setIsEmailValid(validateEmail(values.email));
+    if (values.email.trim() !== '') {
+      setIsEmailValid(validateEmail(values.email));
+    }
     setIsPasswordMatch(values.password === values.passwordConfirm);
     setIsValid(isFormValid() && isEmailValid && isPasswordMatch);
   }, [values]);

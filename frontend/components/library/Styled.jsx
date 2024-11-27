@@ -15,7 +15,7 @@ export const BookImage = styled(Image)`
   border-radius: 5px;
 `;
 
-export const BookInfomaion = styled.div`
+export const BookInformation = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
