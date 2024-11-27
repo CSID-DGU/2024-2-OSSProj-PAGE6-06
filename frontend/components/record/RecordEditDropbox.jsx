@@ -9,13 +9,14 @@ export default function RecordEditDropbox({ record, editModalRef }) {
   const [deleteModel, setDeleteModel] = useState(false);
   const router = useRouter();
 
+  const handleRouter = () => {
+    localStorage.setItem("record", JSON.stringify(record));
+    router.push({ pathname: `/record/edit`, query: { id: record.id } });
+  };
+
   return (
     <S.DropboxContainer ref={editModalRef}>
-      <S.DropboxText
-        onClick={() =>
-          router.push({ pathname: `/record/edit`, query: record.id })
-        }
-      >
+      <S.DropboxText onClick={handleRouter}>
         <S.DropboxIcon icon={faPenToSquare} />
         수정하기
       </S.DropboxText>
