@@ -3,13 +3,19 @@ import * as S from "./Styled";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import RecordDelete from "./RecordDelete";
+import { useRouter } from "next/router";
 
 export default function RecordEditDropbox({ record, editModalRef }) {
   const [deleteModel, setDeleteModel] = useState(false);
+  const router = useRouter();
 
   return (
     <S.DropboxContainer ref={editModalRef}>
-      <S.DropboxText>
+      <S.DropboxText
+        onClick={() =>
+          router.push({ pathname: `/record/edit`, query: record.id })
+        }
+      >
         <S.DropboxIcon icon={faPenToSquare} />
         수정하기
       </S.DropboxText>

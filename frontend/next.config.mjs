@@ -119,7 +119,7 @@ const nextConfig = {
         source: "/record/month/:year/:month",
         destination: `http://${APIURL}/api/mystats/record/month/?year=:year&month=:month`,
       },
-      // record delete (DELETE)
+      // record delete (DELETE), Edit (PUT)
       {
         source: "/record/delete/:id",
         destination: `http://${APIURL}/api/mylibrary/books/routines/:id/`,
