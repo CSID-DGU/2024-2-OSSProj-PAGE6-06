@@ -33,7 +33,9 @@ export default function RecordCard({ record, routine }) {
             icon={faEllipsisVertical}
             onClick={() => setEditModal(!editModal)}
           />
-          {editModal && <RecordEditDropbox editModalRef={editModalRef} />}
+          {editModal && (
+            <RecordEditDropbox record={record} editModalRef={editModalRef} />
+          )}
         </S.RecordCardRoutine>
         <S.RecordCardRoutineInfo>
           <S.RecordCardRoutineInfoText>
