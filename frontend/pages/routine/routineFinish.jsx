@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import * as RS from "@/components/_styled/routineStyled";
-import Book from '@/components/routine/Book';
-import Place from '@/components/routine/Place';
-import Memo from '@/components/routine/Memo';
+import Book from '@/components/routine/routineFinish/Book';
+import Place from '@/components/routine/routineFinish/Place';
+import Memo from '@/components/routine/routineFinish/Memo';
 
 export default function RoutineFinish() {
     const [date, setDate] = useState('');

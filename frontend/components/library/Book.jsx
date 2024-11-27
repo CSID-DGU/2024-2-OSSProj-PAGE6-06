@@ -29,7 +29,7 @@ export default function Book({
         </S.BookTitle>
 
         <S.BookWriter>{book.writer}</S.BookWriter>
-      </S.BookInfomaion>
+      </S.BookInformation>
     </S.BookContainer>
   );
 }

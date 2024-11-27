@@ -9,21 +9,20 @@ export default function SigninInput() {
     const [isValid, setIsValid] = useState(false);
     const [errorMessage, setErrorMessage] = useState(''); 
     const [values, setValues] = useState({
-        email: '',
+        username: '',
         password: '',
     });
 
     const fetchSignIn = async () => {
         try {
-            const response = await API.post(`/sign/in`, { 
-                username: values.email,
+            const response = await API.post(`/signin`, {
+                username: values.username,
                 password: values.password,
             });
-            const token  = response.data.token; 
-            localStorage.setItem('token', token); 
-            console.log(values)
-            console.log(response)
-            // router.push('/'); 
+            const token = response.data.token; 
+            localStorage.setItem('token', token);
+            console.log('로그인 성공', token);
+            router.push('/');
         } catch (error) {
             console.error('로그인 요청 중 오류 발생:', error);
             setErrorMessage('로그인 요청 중 오류가 발생했습니다.');
@@ -31,7 +30,7 @@ export default function SigninInput() {
     };
 
     const isFormValid  = (values) => {
-        return (values.email.trim() !== '' &&
+        return (values.username.trim() !== '' &&
                 values.password.trim() !== '');
     } 
     const handleSubmit = async (e) => {
@@ -64,9 +63,9 @@ export default function SigninInput() {
                 <S.SigninForm onSubmit={handleSubmit}>
                     <S.SigninInputLabel>이메일</S.SigninInputLabel>
                     <S.SigninInputBox
-                        name="email"
+                        name="username"
                         type="email"
-                        value={values.email}
+                        value={values.username}
                         onChange={handleChange}
                         placeholder="이메일을 입력해주세요"
                         required

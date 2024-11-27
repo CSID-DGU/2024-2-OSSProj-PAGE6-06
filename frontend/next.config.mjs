@@ -23,15 +23,15 @@ const nextConfig = {
     return [
       //sign
       //sign in (post)
-        {
-          source: "/sign/in",
-          destination: `http://${APIURL}/api/user/login/`,
-        },
+      { 
+        source: "/signin",
+        destination: `http://${APIURL}/api/user/login/`,
+      }
       //sign up (post)
-        {
-          source: "/sign/up",
-          destination: `http://${APIURL}/api/user/signup/`,
-        },
+      {
+        source: "/signup",
+        destination: `http://${APIURL}/api/user/signup/`,
+      }
       //routine
       //routinelist (get)
         {
@@ -92,6 +92,11 @@ const nextConfig = {
         source: "/create/clublist",
         destination: `http://${APIURL}/api/clublist/create/`,
       },
+    //main
+    {
+      source: "/mainpage",
+      destination: `http://${APIURL}/api/mainpage/`,
+    },
     ];
   },
 };
