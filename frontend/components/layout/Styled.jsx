@@ -12,7 +12,7 @@ export const LayoutWrapper = styled.div`
   position: relative;
   border: 1px solid black;
   overflow: hidden;
-  font-family:Pretendard;
+  font-family: Pretendard;
 `;
 
 export const LayoutContent = styled.div`
@@ -42,12 +42,15 @@ export const HeaderPath = styled.div`
 export const HeaderMypage = styled(Image)`
   /* border: 1px solid black; */
   cursor: pointer;
+  width: 30px;
+  height: 30px;
 `;
 
 // Footer
 export const FooterContainer = styled.div`
   display: flex;
   width: 100%;
+  height: 80px;
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid #cbd5e1;
