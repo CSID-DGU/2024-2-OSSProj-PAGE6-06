@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from routinelist.models import Routine, RoutineComplete
-from mystats.serializers import RoutineCompleteSerializer, RoutineSerializer
+from mystats.serializers import MonthlyRoutineCompleteSerializer, RoutineSerializer
 
 class RoutinesByMonthAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -24,7 +24,7 @@ class RoutinesByMonthAPIView(APIView):
 
         # 월별로 해당하는 모든 RoutineComplete 조회
         routines = RoutineComplete.objects.filter(date__year=year, date__month=month, user=request.user)
-        serializer = RoutineCompleteSerializer(routines, many=True)
+        serializer = MonthlyRoutineCompleteSerializer(routines, many=True)
         return Response(serializer.data)
 
 
