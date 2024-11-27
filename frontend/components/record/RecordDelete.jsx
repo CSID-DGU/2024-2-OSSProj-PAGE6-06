@@ -1,21 +1,21 @@
 import { useRouter } from "next/router";
-import * as S from "./Styled";
+import * as S from "../library/Styled";
 import { API } from "@/pages/api";
 
-export default function BookDelete({ selectedDeleteBook, setDeleteModal }) {
+export default function RecordDelete({ selectedDeleteRecord, setDeleteModel }) {
   const router = useRouter();
-  const fetchDeleteBook = async () => {
+  const fetchDeleteRecord = async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await API.delete(
-        `/mylibrary/books/delete/${selectedDeleteBook.id}`,
+        `/record/delete/${selectedDeleteRecord.id}`,
         {
           headers: {
             Authorization: `Token ${token}`,
           },
         }
       );
-      setDeleteModal(false);
+      setDeleteModel(false);
       router.reload();
     } catch (error) {
       console.log(error);
@@ -23,20 +23,20 @@ export default function BookDelete({ selectedDeleteBook, setDeleteModal }) {
   };
 
   return (
-    <S.DeleteDropboxContainer>
-      "{selectedDeleteBook.title}"을/를 삭제하시겠습니까?
+    <S.RecordDeleteDropboxContainer>
+      기록을 삭제하시겠습니까?
       <S.DeleteDropboxButtonSection>
         <S.DeleteDropboxButton
-          onClick={fetchDeleteBook}
+          onClick={fetchDeleteRecord}
           style={{ color: "red" }}
         >
           삭제
         </S.DeleteDropboxButton>
         <S.DeleteDropboxButtonLine />
-        <S.DeleteDropboxButton onClick={() => setDeleteModal(false)}>
+        <S.DeleteDropboxButton onClick={() => setDeleteModel(false)}>
           취소
         </S.DeleteDropboxButton>
       </S.DeleteDropboxButtonSection>
-    </S.DeleteDropboxContainer>
+    </S.RecordDeleteDropboxContainer>
   );
 }

@@ -25,10 +25,8 @@ export default function Library() {
           Authorization: `Token ${token}`,
         },
       });
-      console.log(response);
       const data = response.data;
       setBooks(data);
-      console.log(books);
     } catch (e) {
       console.log(e);
     }

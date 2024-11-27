@@ -17,7 +17,7 @@ export default function Book({
     <S.BookContainer>
       <S.BookImage
         onClick={onClick}
-        src={book.image}
+        src={book.coverImage}
         alt="book_image"
         width={100}
         height={150}
@@ -28,8 +28,8 @@ export default function Book({
           <S.BookMore icon={faDeleteLeft} onClick={handleDelete} />
         </S.BookTitle>
 
-        <S.BookWriter>{book.writer}</S.BookWriter>
-      </S.BookInformation>
+        <S.BookWriter>{book.author}</S.BookWriter>
+      </S.BookInfomaion>
     </S.BookContainer>
   );
 }

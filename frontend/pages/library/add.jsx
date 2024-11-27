@@ -42,7 +42,6 @@ export default function AddLibrary() {
           },
         }
       );
-      console.log(response);
       router.push(`/library`);
     } catch (error) {
       console.log(error);

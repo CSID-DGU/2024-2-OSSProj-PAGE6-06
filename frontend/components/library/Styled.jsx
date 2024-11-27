@@ -8,6 +8,8 @@ export const BookContainer = styled.div`
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  /* margin-bottom: 5%; */
+  margin: 0 1vh 5%;
 `;
 
 export const BookImage = styled(Image)`
@@ -62,6 +64,7 @@ export const RecordBookTitle = styled.div`
   font-size: 20px;
   font-weight: 600;
   display: flex;
+  justify-content: space-between;
   /* flex-direction: row-reverse; */
   align-items: center;
   padding: 5%;
@@ -229,4 +232,27 @@ export const DeleteDropboxButton = styled.div`
   justify-content: center;
   width: 50%;
   height: 60px;
+  cursor: pointer;
+`;
+
+// Record Delete Dropbox
+export const RecordDeleteDropboxContainer = styled.div`
+  background-color: #fff;
+  color: #0f172a;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 90%;
+  margin: 3% 5%;
+  padding-top: 7%;
+  position: fixed;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
 `;

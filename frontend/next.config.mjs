@@ -34,14 +34,9 @@ const nextConfig = {
       }
       //routine
       //routinelist (get)
-        {
-          source: "/routinelist",
-          destination: `http://${APIURL}/api/routinelist/`,
-        },
-      //main
       {
-        source: "/main",
-        destination: `http://${APIURL}/api/mainpage/`,
+        source: "/routinelist",
+        destination: `http://${APIURL}/api/routinelist/`,
       },
       // user
       // user profile (GET)
@@ -60,17 +55,31 @@ const nextConfig = {
         source: "/mylibrary/books/add",
         destination: `http://${APIURL}/api/mylibrary/books/save/`,
       },
+      // book delete (DELETE)
+      {
+        source: "/mylibrary/books/delete/:id",
+        destination: `http://${APIURL}/api/mylibrary/books/delete/:id/`,
+      },
       // book list (GET)
       {
         source: "/mylibrary/booklist",
         destination: `http://${APIURL}/api/mylibrary/books/user/`,
       },
-
+      // book record (GET)
+      {
+        source: "/mylibrary/books/record/:id",
+        destination: `http://${APIURL}/api/mylibrary/books/:id/routines/`,
+      },
       // club
       // club list (GET)
       {
         source: "/clublist",
         destination: `http://${APIURL}/api/clublist/`,
+      },
+      // club popular list (GET)
+      {
+        source: "/clublist/popular",
+        destination: `http://${APIURL}/api/clublist/popular/`,
       },
       // club detail (GET)
       {
@@ -92,11 +101,27 @@ const nextConfig = {
         source: "/create/clublist",
         destination: `http://${APIURL}/api/clublist/create/`,
       },
-    //main
-    {
-      source: "/mainpage",
-      destination: `http://${APIURL}/api/mainpage/`,
-    },
+      // record
+      // routine recordlist (GET)
+      {
+        source: "/record/all",
+        destination: `http://${APIURL}/api/mystats/record/all/`,
+      },
+      // month recordlist (GET)
+      {
+        source: "/record/month/:year/:month",
+        destination: `http://${APIURL}/api/mystats/record/month/?year=:year&month=:month`,
+      },
+      // record delete (DELETE), Edit (PUT)
+      {
+        source: "/record/delete/:id",
+        destination: `http://${APIURL}/api/mylibrary/books/routines/:id/`,
+      },
+      //main
+      {
+        source: "/mainpage",
+        destination: `http://${APIURL}/api/mainpage/`,
+      },
     ];
   },
 };

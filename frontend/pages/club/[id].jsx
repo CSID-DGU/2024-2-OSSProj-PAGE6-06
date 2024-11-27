@@ -25,7 +25,6 @@ export default function ClubDetail({}) {
           Authorization: `Token ${token}`,
         },
       });
-      console.log(response.data);
       setClub(response.data.club);
       setRoutines(response.data.routineCompleteRecords);
     } catch (e) {
@@ -36,7 +35,6 @@ export default function ClubDetail({}) {
   useEffect(() => {
     if (router.query.id) {
       fetchClubDetail();
-      console.log(club);
     }
   }, []);
 
