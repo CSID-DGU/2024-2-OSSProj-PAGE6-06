@@ -53,21 +53,24 @@ def save_selected_book(request):
 # 루틴 수정 및 삭제 기능
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
-def routine_complete_detail(request, routineCompleteId):  # 파라미터 이름을 routineCompleteId로 변경
+def routine_complete_detail(request, routineCompleteId):
     routine_complete = get_object_or_404(RoutineComplete, pk=routineCompleteId, user=request.user)
     
     if request.method == 'GET':
         serializer = RoutineCompleteSerializer(routine_complete)
         return Response(serializer.data)
+    
     elif request.method == 'PUT':
-        serializer = RoutineCompleteSerializer(routine_complete, data=request.data, partial=True)
+        serializer = RoutineCompleteSerializer(routine_complete, data=request.data, partial=True, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
     elif request.method == 'DELETE':
         routine_complete.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 # 사용자 별 저장된 책 조회
 @api_view(['GET'])

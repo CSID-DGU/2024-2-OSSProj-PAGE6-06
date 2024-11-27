@@ -16,10 +16,38 @@ class BookSerializer(serializers.ModelSerializer):
         validated_data['user'] = user  # user 필드에 할당
         return super().create(validated_data)
 
+class SimpleBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['id', 'title'] 
+
+
 class RoutineCompleteSerializer(serializers.ModelSerializer):
+    userNickname = serializers.CharField(source='user.nickname', read_only=True)
+    title = serializers.CharField(write_only=True, required=False)
+    book = SimpleBookSerializer(read_only=True)  
+
     class Meta:
         model = RoutineComplete
-        fields = ['id', 'date', 'location', 'memo']
+        fields = ['id', 'routine', 'user', 'userNickname', 'date', 'location', 'memo', 'book', 'title']
+        read_only_fields = ['date', 'user', 'book']
+
+    def update(self, instance, validated_data):
+        title = validated_data.pop('title', None)
+        if title:
+            try:
+                book = Book.objects.get(user=self.context['request'].user, title=title)
+                instance.book = book
+            except Book.DoesNotExist:
+                raise serializers.ValidationError("해당 제목의 책을 찾을 수 없습니다.")
+        
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        instance.save()
+        return instance
+
+
 
 class UserBookSerializer(serializers.ModelSerializer):
     routines = RoutineCompleteSerializer(source='book.routinecomplete_set', many=True)
@@ -28,10 +56,6 @@ class UserBookSerializer(serializers.ModelSerializer):
         model = UserBook
         fields = ['book', 'routines']
 
-class RoutineCompleteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RoutineComplete
-        fields = '__all__'
         
 class UserBookSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(source='book.id', read_only=True)
