@@ -29,7 +29,7 @@ class ClubSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Club
-        fields = ['id', 'title', 'content', 'imageURL', 'participantCount', 'createdAt']
+        fields = ['id', 'title', 'time', 'content', 'imageURL', 'participantCount', 'createdAt']
 
     def get_participantCount(self, obj):
         # 올바른 필드를 참조하여 참여자 수 계산
