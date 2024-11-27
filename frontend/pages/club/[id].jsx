@@ -9,6 +9,7 @@ import {
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { API } from "../api";
+import { motion } from "framer-motion";
 
 export default function ClubDetail({}) {
   const router = useRouter();
@@ -47,9 +48,9 @@ export default function ClubDetail({}) {
       <CS.ClubDetailContainer>
         <CS.ClubDetailTitle>{club.title}</CS.ClubDetailTitle>
         <CS.ClubDetailImage
+          src={club?.image || ""}
           width={400}
           height={200}
-          src={club.image}
           alt="club_image"
         />
         <CS.ClubDetailInfo>
@@ -69,9 +70,23 @@ export default function ClubDetail({}) {
         <CS.ClubDetailDescription>{formattedContent}</CS.ClubDetailDescription>
         <CS.ClubPopularTitle>루틴 완료 기록</CS.ClubPopularTitle>
         <CS.ClubDetailRoutineSection>
-          {routines.map((routine, idx) => (
-            <ClubRoutineCard key={idx} routine={routine} />
-          ))}
+          {routines.length === 0 ? (
+            <>작성된 기록이 없습니다.</>
+          ) : (
+            <>
+              {routines.map((routine, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }} // 초기 상태: 투명하고 아래에서 시작
+                  animate={{ opacity: 1, y: 0 }} // 애니메이션: 불투명해지고 원래 위치로 올라옴
+                  exit={{ opacity: 0, y: 20 }} // 종료 상태: 투명하고 아래로
+                  transition={{ duration: 0.3, delay: idx * 0.1 }} // 각 항목에 지연을 주어 순차적으로 나타남
+                >
+                  <ClubRoutineCard key={idx} routine={routine} />
+                </motion.div>
+              ))}
+            </>
+          )}
         </CS.ClubDetailRoutineSection>
       </CS.ClubDetailContainer>
     </MS.MainWrapper>

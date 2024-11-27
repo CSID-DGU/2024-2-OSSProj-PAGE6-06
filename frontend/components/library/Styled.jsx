@@ -81,6 +81,9 @@ export const RecordList = styled.div`
   flex-direction: column;
   padding: 5%;
   overflow-y: auto;
+  text-align: center;
+  font-size: 14px;
+  color: #334155;
 
   /* Custom scrollbar styles */
   &::-webkit-scrollbar {
@@ -216,6 +219,7 @@ export const DeleteDropboxButtonSection = styled.div`
   margin-top: 7%;
   border-top: 1px solid #64748b;
   align-items: center;
+  justify-content: center;
 `;
 
 export const DeleteDropboxButtonLine = styled.div`

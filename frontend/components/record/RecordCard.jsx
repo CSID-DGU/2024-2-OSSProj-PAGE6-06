@@ -28,7 +28,7 @@ export default function RecordCard({ record, routine }) {
     <S.RecordCardWrapper ref={editModalRef}>
       <S.RecordCardContainer>
         <S.RecordCardRoutine>
-          {routine?.title}
+          {routine?.title || record.routine.title}
           <S.RecordCardMore
             icon={faEllipsisVertical}
             onClick={() => setEditModal(!editModal)}
@@ -42,14 +42,14 @@ export default function RecordCard({ record, routine }) {
             {formmatedDate}
           </S.RecordCardRoutineInfoText>
           <S.RecordCardRoutineInfoText>
-            {routine?.time}분
+            {routine?.time || record.routine.time}분
           </S.RecordCardRoutineInfoText>
           <S.RecordCardRoutineInfoText>
             # {record.location}
           </S.RecordCardRoutineInfoText>
         </S.RecordCardRoutineInfo>
         <S.RecordDescription>
-          <S.RecordCardBookTitle>{record.book_title}</S.RecordCardBookTitle>
+          <S.RecordCardBookTitle>{record.book?.title}</S.RecordCardBookTitle>
           {record.memo}
         </S.RecordDescription>
       </S.RecordCardContainer>
