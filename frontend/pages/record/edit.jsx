@@ -51,6 +51,7 @@ export default function Edit() {
         }
       );
       router.push("/record");
+      localStorage.removeItem("record");
     } catch (e) {
       console.log(e);
     }

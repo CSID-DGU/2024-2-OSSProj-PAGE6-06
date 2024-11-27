@@ -3,7 +3,7 @@ import * as S from "./Styled";
 import { useRouter } from "next/router";
 import { API } from "@/pages/api";
 
-export default function ClubCard({ club }) {
+export default function ClubCard({ club, handleErrorModal }) {
   const router = useRouter();
 
   const content = club.content;
@@ -22,8 +22,13 @@ export default function ClubCard({ club }) {
           },
         }
       );
+      router.push(`/routine`);
     } catch (error) {
-      console.log(error);
+      if (error.response && error.response.status === 400) {
+        handleErrorModal(error.response.data.error);
+      } else {
+        console.log(error);
+      }
     }
   };
 

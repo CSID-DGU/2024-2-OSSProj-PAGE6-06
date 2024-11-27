@@ -216,6 +216,7 @@ export const DeleteDropboxButtonSection = styled.div`
   margin-top: 7%;
   border-top: 1px solid #64748b;
   align-items: center;
+  justify-content: center;
 `;
 
 export const DeleteDropboxButtonLine = styled.div`

@@ -53,7 +53,7 @@ export const ClubAllCardSection = styled.div`
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
   align-items: start;
-  padding: 0 5% 5% 5%;
+  padding: 0 5% 15% 5%;
 `;
 
 // Club Detail Page

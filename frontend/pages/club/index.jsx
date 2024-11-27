@@ -1,10 +1,12 @@
 import Header from "@/components/layout/Header";
 import * as MS from "../../components/_styled/mainStyled";
 import * as CS from "../../components/_styled/clubStyled";
+import * as LS from "../../components/_styled/libraryStyled";
 import ClubCard from "@/components/club/ClubCard";
 import { useEffect, useState } from "react";
 import ClubSearch from "@/components/club/ClubSearch";
 import { API } from "../api";
+import Error from "@/components/club/Error";
 
 export default function Club() {
   const [clubs, setClubs] = useState([]);
@@ -69,15 +71,32 @@ export default function Club() {
     }
   };
 
+  const [joinError, setJoinError] = useState(false);
+  const [errorMessages, setErrorMessages] = useState("");
+  const handleErrorModal = (e) => {
+    setErrorMessages(e);
+    setJoinError(!joinError);
+  };
+
   return (
     <MS.MainWrapper>
+      {joinError && (
+        <>
+          <LS.LibraryRecordModalOverlay />
+          <Error message={errorMessages} setJoinError={setJoinError} />
+        </>
+      )}
       <Header path="Reading Club" />
       <CS.ClubContainer>
         <CS.ClubPopularContainer>
           <CS.ClubPopularTitle>인기 리딩클럽</CS.ClubPopularTitle>
           <CS.ClubPopularCardSection>
             {popularClubs.map((club, index) => (
-              <ClubCard key={index} club={club} />
+              <ClubCard
+                key={index}
+                club={club}
+                handleErrorModal={handleErrorModal}
+              />
             ))}
           </CS.ClubPopularCardSection>
         </CS.ClubPopularContainer>
@@ -92,13 +111,21 @@ export default function Club() {
             {searchClub ? (
               <>
                 {searchClubList.map((club, index) => (
-                  <ClubCard key={index} club={club} />
+                  <ClubCard
+                    key={index}
+                    club={club}
+                    handleErrorModal={handleErrorModal}
+                  />
                 ))}
               </>
             ) : (
               <>
                 {clubs.map((club, index) => (
-                  <ClubCard key={index} club={club} />
+                  <ClubCard
+                    key={index}
+                    club={club}
+                    handleErrorModal={handleErrorModal}
+                  />
                 ))}
               </>
             )}
