@@ -23,25 +23,20 @@ const nextConfig = {
     return [
       //sign
       //sign in (post)
-      {
-        source: "/sign/in",
+      { 
+        source: "/signin",
         destination: `http://${APIURL}/api/user/login/`,
-      },
+      }
       //sign up (post)
       {
-        source: "/sign/up",
+        source: "/signup",
         destination: `http://${APIURL}/api/user/signup/`,
-      },
+      }
       //routine
       //routinelist (get)
       {
         source: "/routinelist",
         destination: `http://${APIURL}/api/routinelist/`,
-      },
-      //main
-      {
-        source: "/main",
-        destination: `http://${APIURL}/api/mainpage/`,
       },
       // user
       // user profile (GET)
@@ -75,7 +70,6 @@ const nextConfig = {
         source: "/mylibrary/books/record/:id",
         destination: `http://${APIURL}/api/mylibrary/books/:id/routines/`,
       },
-
       // club
       // club list (GET)
       {
@@ -107,7 +101,6 @@ const nextConfig = {
         source: "/create/clublist",
         destination: `http://${APIURL}/api/clublist/create/`,
       },
-
       // record
       // routine recordlist (GET)
       {
@@ -123,6 +116,11 @@ const nextConfig = {
       {
         source: "/record/delete/:id",
         destination: `http://${APIURL}/api/mylibrary/books/routines/:id/`,
+      },
+      //main
+      {
+        source: "/mainpage",
+        destination: `http://${APIURL}/api/mainpage/`,
       },
     ];
   },
