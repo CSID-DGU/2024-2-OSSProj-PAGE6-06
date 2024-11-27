@@ -1,5 +1,4 @@
 import Header from "@/components/layout/Header";
-import Book from "@/components/library/Book";
 import RecordModal from "@/components/library/RecordModal";
 
 import * as MS from "../../components/_styled/mainStyled";
@@ -10,6 +9,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import BookDelete from "@/components/library/BookDelete";
 import { API } from "../api";
+import BookCard from "@/components/library/BookCard";
 
 export default function Library() {
   const router = useRouter();
@@ -86,7 +86,7 @@ export default function Library() {
         {/* Library List Section */}
         <LS.LibraryList>
           {books.map((book, idx) => (
-            <Book
+            <BookCard
               onClick={() => {
                 handleRecordClick(book);
               }}

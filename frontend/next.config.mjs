@@ -23,15 +23,15 @@ const nextConfig = {
     return [
       //sign
       //sign in (post)
-      { 
+      {
         source: "/signin",
         destination: `http://${APIURL}/api/user/login/`,
-      }
+      },
       //sign up (post)
       {
         source: "/signup",
         destination: `http://${APIURL}/api/user/signup/`,
-      }
+      },
       //routine
       //routinelist (get)
       {

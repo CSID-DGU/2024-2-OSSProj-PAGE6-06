@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as S from "./Styled.jsx";
 import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 
-export default function Book({
+export default function BookCard({
   book,
   onClick,
   deleteModal,
@@ -22,14 +22,14 @@ export default function Book({
         width={100}
         height={150}
       />
-      <S.BookInfomaion>
+      <S.BookInformation>
         <S.BookTitle>
           {book.title}
           <S.BookMore icon={faDeleteLeft} onClick={handleDelete} />
         </S.BookTitle>
 
         <S.BookWriter>{book.author}</S.BookWriter>
-      </S.BookInfomaion>
+      </S.BookInformation>
     </S.BookContainer>
   );
 }
