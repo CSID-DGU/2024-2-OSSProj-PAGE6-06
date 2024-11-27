@@ -24,12 +24,11 @@ export default function RecordCard({ record, routine }) {
   const date_ = date?.split("T")[0];
   const formmatedDate = date_?.replace(/-/g, ".");
 
-  console.log(record);
   return (
     <S.RecordCardWrapper ref={editModalRef}>
       <S.RecordCardContainer>
         <S.RecordCardRoutine>
-          {routine?.title}
+          {routine?.title || record.routine.title}
           <S.RecordCardMore
             icon={faEllipsisVertical}
             onClick={() => setEditModal(!editModal)}
@@ -43,7 +42,7 @@ export default function RecordCard({ record, routine }) {
             {formmatedDate}
           </S.RecordCardRoutineInfoText>
           <S.RecordCardRoutineInfoText>
-            {routine?.time}분
+            {routine?.time || record.routine.time}분
           </S.RecordCardRoutineInfoText>
           <S.RecordCardRoutineInfoText>
             # {record.location}

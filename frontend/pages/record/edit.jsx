@@ -1,10 +1,10 @@
 import * as RTS from "@/components/_styled/routineStyled";
-import Book from "@/components/routine/routineFinish/Book";
 import * as CRTS from "@/components/routine/Styled";
-import { useEffect, useState } from "react";
-import { API } from "../api";
-import { useRouter } from "next/router";
+import Book from "@/components/routine/routineFinish/Book";
 import Memo from "@/components/routine/routineFinish/Memo";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { API } from "../api";
 
 export default function Edit() {
   const router = useRouter();
@@ -41,8 +41,8 @@ export default function Edit() {
       const response = await API.put(
         `/record/delete/${router.query.id}`,
         {
-          title: book,
           memo: memo,
+          title: book,
         },
         {
           headers: {
@@ -69,7 +69,7 @@ export default function Edit() {
           <RTS.Date>
             {year}년 {month}월 {day}일
           </RTS.Date>
-          <RTS.Title>{routine.title}</RTS.Title>
+          <RTS.Title>{routine?.title || record.routine.title}</RTS.Title>
         </RTS.RoutineInfo>
 
         <Book setBook={setBook} initial={book} />
