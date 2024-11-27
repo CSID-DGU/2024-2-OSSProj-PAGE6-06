@@ -13,8 +13,6 @@ export default function ClubCard({ club }) {
   const fetchClubJoin = async () => {
     try {
       const token = localStorage.getItem("token");
-      console.log(token, club.id);
-
       const response = await API.post(
         `/join/clublist/${club.id}`,
         {},
@@ -24,14 +22,12 @@ export default function ClubCard({ club }) {
           },
         }
       );
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleJoin = () => {
-    // console.log(club);
     fetchClubJoin();
   };
 
