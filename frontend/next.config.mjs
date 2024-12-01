@@ -51,7 +51,7 @@ const nextConfig = {
       //routine delete (delete)
       {
         source: "/routine/delete/:id",
-        destination: `http://${APIURL}/api/routinelist/create/:id/`
+        destination: `http://${APIURL}/api/routinelist/delete/:id/`
       },
       // user
       // user profile (GET)

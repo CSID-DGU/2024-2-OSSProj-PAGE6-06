@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const RoutineContainer = styled.div`
   width: 100%;
   display: flex;
@@ -12,14 +12,35 @@ export const RoutineContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap:20px;
 `;
 export const Line = styled.hr`
   width: 345px;
   height: 1px;
   background: #94a3b8;
-  margin-top: 25px;
 `;
 
+export const DeleteIconWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`;
+export const DeleteIcon = styled(FontAwesomeIcon)`
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: #334155;
+`;
+
+export const RoutineModalOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: #9fa2a6b3;
+  z-index: 200;
+`;
 //routineIng
 export const RoutineIngPage = styled.div`
   width: 100%;

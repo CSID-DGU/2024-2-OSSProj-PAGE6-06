@@ -49,8 +49,7 @@ export const RoutineListWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
+  align-items: center; 
   gap:10px;
 
 `;
@@ -510,4 +509,76 @@ export const Textarea = styled.textarea`
     border: 1px solid #94a3b8;
     outline: none;
   }
+`;
+
+//RoutineDelete
+export const DeleteDropboxContainer = styled.div`
+  background-color: #fff;
+  color: #0f172a;
+  top: 30vh;
+  z-index: 400;
+  width: 90%;
+  margin: 5%;
+  padding-top: 7%;
+  position: absolute;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+`;
+
+export const DeleteDropboxButtonSection = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 7%;
+  border-top: 1px solid #64748b;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const DeleteDropboxButtonLine = styled.div`
+  width: 0.5px;
+  background-color: #64748b;
+  align-self: stretch;
+  display: flex;
+  height: auto;
+`;
+
+export const DeleteDropboxButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 60px;
+  cursor: pointer;
+`;
+
+// Record Delete Dropbox
+export const RoutineDeleteDropboxContainer = styled.div`
+  background-color: #fff;
+  color: #0f172a;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 90%;
+  margin: 3% 5%;
+  padding-top: 7%;
+  position: fixed;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+`;
+
+export const ModalText = styled.div`
 `;
