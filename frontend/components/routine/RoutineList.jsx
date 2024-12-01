@@ -42,11 +42,31 @@ export default function RoutineList() {
         }
     };
 
+    const handleDeleteButtonClick = async () => {
+        if (selectedRoutine) {
+            try {
+                const token = localStorage.getItem("token");
+                await API.delete(`/routine/delete/${selectedRoutine.id}`, {
+                    headers: {
+                        Authorization: `Token ${token}`,
+                    },
+                });
+            
+                setRoutines((prevRoutines) =>
+                    prevRoutines.filter((routine) => routine.id !== selectedRoutine.id)
+                );
+                setSelectedRoutine(null); 
+            } catch (error) {
+                console.error("루틴 삭제 실패:", error);
+            }
+        } 
+    };
+
     return (
         <S.RoutineListContainer>
             <S.RoutineListWrapper>
                 <S.SettingIconWrapper>
-                    <S.SettingIcon icon={faTrash} />
+                    <S.SettingIcon icon={faTrash} onClick={handleDeleteButtonClick} />
                 </S.SettingIconWrapper>
                 <S.RoutineListScrollWrapper>
                 {routines.map((routine) => (

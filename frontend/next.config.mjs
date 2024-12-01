@@ -48,6 +48,11 @@ const nextConfig = {
         source: "/makeroutine",
         destination: `http://${APIURL}/api/routinelist/create/`
       },
+      //routine delete (delete)
+      {
+        source: "/routine/delete/:id",
+        destination: `http://${APIURL}/api/routinelist/create/:id/`
+      },
       // user
       // user profile (GET)
       {
