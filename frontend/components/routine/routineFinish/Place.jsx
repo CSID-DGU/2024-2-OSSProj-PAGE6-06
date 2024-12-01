@@ -17,6 +17,9 @@ export default function Place({ setPlace }) {
         localStorage.removeItem('selectedPlaceAddress');
     };
 
+    const selectPlace = (selectedPlaceName) => {
+        setPlace(selectedPlaceName); 
+      };
     const closeModal = () => {
         setIsModalOpen(false);
         const storedPlaceName = localStorage.getItem('selectedPlaceName');
@@ -30,9 +33,11 @@ export default function Place({ setPlace }) {
         const script = document.createElement('script');
         script.src = KAKAO_SDK_URL;
         document.body.appendChild(script);
-    
         return () => document.body.removeChild(script);
     }, []);
+    useEffect(() => {
+        selectPlace(selectedPlaceName);
+    },[selectedPlaceName])
 
     return (
         <S.PlaceContainer>

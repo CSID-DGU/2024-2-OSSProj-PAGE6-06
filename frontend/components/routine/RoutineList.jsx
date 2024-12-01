@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import * as S from './Styled';
-import { faGear, faCirclePlay, faUserGroup } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faCirclePlay, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from "next/router";
 import { API } from "@/pages/api";
 
@@ -46,8 +46,9 @@ export default function RoutineList() {
         <S.RoutineListContainer>
             <S.RoutineListWrapper>
                 <S.SettingIconWrapper>
-                    <S.SettingIcon icon={faGear} />
+                    <S.SettingIcon icon={faTrash} />
                 </S.SettingIconWrapper>
+                <S.RoutineListScrollWrapper>
                 {routines.map((routine) => (
                     <S.RoutineContainer
                         key={routine.id}
@@ -65,6 +66,7 @@ export default function RoutineList() {
                         </S.MinuteTextContainer>
                     </S.RoutineContainer>
                 ))}
+                </S.RoutineListScrollWrapper>
             </S.RoutineListWrapper>
             <S.StartButton onClick={handleStartButtonClick}>
                 <S.StartIcon icon={faCirclePlay} />

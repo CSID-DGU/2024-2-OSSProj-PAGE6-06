@@ -33,10 +33,20 @@ const nextConfig = {
         destination: `http://${APIURL}/api/user/signup/`,
       },
       //routine
-      //routinelist (get)
+      //routine list (get)
       {
         source: "/routinelist",
         destination: `http://${APIURL}/api/routinelist/`,
+      },
+      //routine finish (post)
+      {
+        source: "/routinefinish",
+        destination: `http://${APIURL}/api/routinelist/complete/`,
+      },
+      //routine add (post)
+      {
+        source: "/makeroutine",
+        destination: `http://${APIURL}/api/routinelist/create/`
       },
       // user
       // user profile (GET)

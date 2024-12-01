@@ -19,6 +19,7 @@ export const InputContainer = styled.div`
     display:flex;
     gap:8px;
     flex-direction: column;
+    
 `;
 export const Input = styled.input`
     width:100%;
@@ -28,7 +29,11 @@ export const Input = styled.input`
     border:none;
     display:flex;
     align-items:center;
-    padding:3%
+    padding:3%;
+    &:focus {
+        border: 1px solid #94A3B8;
+        outline:none; 
+    }
 
 `;
 

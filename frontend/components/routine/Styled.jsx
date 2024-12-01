@@ -27,11 +27,12 @@ export const PlusIcon = styled(FontAwesomeIcon)`
 //RoutineList
 export const RoutineListContainer = styled.div`
   width: 346px;
-  height: 546px;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  justify-content: space-between ;
 `;
 export const SettingIconWrapper = styled.div`
   width: 100%;
@@ -39,19 +40,19 @@ export const SettingIconWrapper = styled.div`
   justify-content: flex-end;
 `;
 export const SettingIcon = styled(FontAwesomeIcon)`
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
-  color: #cbd5e1;
+  color: #334155;
 `;
 export const RoutineListWrapper = styled.div`
   width: 100%;
-  height: 463px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
-  gap: 20px;
+  gap:10px;
+
 `;
 export const RoutineContainer = styled.button`
   width: 100%;
@@ -65,6 +66,15 @@ export const RoutineContainer = styled.button`
   &:focus {
     border: 1px solid #94a3b8;
   }
+`;
+export const RoutineListScrollWrapper = styled.div`
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  overflow: auto; 
 `;
 export const RoutineText = styled.div`
   color: #0f172a;
@@ -101,10 +111,7 @@ export const StartButton = styled.button`
 export const StartIcon = styled(FontAwesomeIcon)`
   width: 70px;
   height: 70px;
-  color: #e2e8f0;
-  &:hover {
-    color: #334155;
-  }
+  color: #334155;
 `;
 export const ClubIcon = styled(FontAwesomeIcon)`
   color: #475569;

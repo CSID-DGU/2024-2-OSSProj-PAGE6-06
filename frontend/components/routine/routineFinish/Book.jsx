@@ -33,7 +33,7 @@ export default function Book({ initial, setBook }) {
   };
 
   const selectBook = (book) => {
-    setSelectedBook(truncateText(book.title));
+    setBook(book.title); 
     setIsOpen(false);
   };
 
@@ -41,7 +41,7 @@ export default function Book({ initial, setBook }) {
     <S.InputContainer>
       <S.Label>What</S.Label>
       <S.DropdownContainer onClick={toggleDropdown}>
-        <S.BookText>{truncateText(selectedBook)}</S.BookText> {/* 말줄임표 적용 */}
+        <S.BookText>{truncateText(selectedBook)}</S.BookText>
         <S.DownIcon icon={faChevronDown} />
       </S.DropdownContainer>
 
@@ -52,7 +52,7 @@ export default function Book({ initial, setBook }) {
               key={index}
               onClick={() => selectBook(book)}
             >
-              {truncateText(book.title)} 
+              {truncateText(book.title)}
             </S.DropdownListItem>
           ))}
         </S.DropdownListContainer>
