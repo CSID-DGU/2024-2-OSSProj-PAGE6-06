@@ -4,8 +4,10 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { API } from "@/pages/api";
 
 export default function Book({ initial, setBook }) {
+  const [selectedBook, setSelectedBook] = useState(initial || "책을 선택하세요");
   const [isOpen, setIsOpen] = useState(false);
   const [bookList, setBookList] = useState([]);
+
   const fetchBookList = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -14,10 +16,9 @@ export default function Book({ initial, setBook }) {
           Authorization: `Token ${token}`,
         },
       });
-      const data = response.data;
-      setBookList(data);
+      setBookList(response.data);
     } catch (e) {
-      console.log(e);
+      console.error("책 목록을 불러오는 중 오류 발생:", e);
     }
   };
 
@@ -25,10 +26,14 @@ export default function Book({ initial, setBook }) {
     fetchBookList();
   }, []);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => setIsOpen((prev) => !prev);
+
+  const truncateText = (text, maxLength = 20) => {
+    return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+  };
 
   const selectBook = (book) => {
-    setBook(book);
+    setSelectedBook(truncateText(book.title));
     setIsOpen(false);
   };
 
@@ -36,8 +41,8 @@ export default function Book({ initial, setBook }) {
     <S.InputContainer>
       <S.Label>What</S.Label>
       <S.DropdownContainer onClick={toggleDropdown}>
-        <S.BookText>{initial || "책을 선택하세요"}</S.BookText>
-        <S.DownIcon icon={faChevronDown} onClick={toggleDropdown} />
+        <S.BookText>{truncateText(selectedBook)}</S.BookText> {/* 말줄임표 적용 */}
+        <S.DownIcon icon={faChevronDown} />
       </S.DropdownContainer>
 
       {isOpen && (
@@ -45,9 +50,9 @@ export default function Book({ initial, setBook }) {
           {bookList.map((book, index) => (
             <S.DropdownListItem
               key={index}
-              onClick={() => selectBook(book.title)}
+              onClick={() => selectBook(book)}
             >
-              {book.title}
+              {truncateText(book.title)} 
             </S.DropdownListItem>
           ))}
         </S.DropdownListContainer>

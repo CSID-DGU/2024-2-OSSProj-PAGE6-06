@@ -4,8 +4,9 @@ import PlaceModal from './PlaceModal';
 import * as S from '../Styled';
 import { useKakaoLoader } from 'react-kakao-maps-sdk'; 
 
-export default function Place() {
+export default function Place({ setPlace }) {
     useKakaoLoader();
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPlaceName, setSelectedPlaceName] = useState('');
     const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_JS_KEY}&libraries=services&autoload=false`;
@@ -22,6 +23,7 @@ export default function Place() {
         if (storedPlaceName) {
             setSelectedPlaceName(storedPlaceName);
         }
+        console.log(selectedPlaceName, storedPlaceName);
     };
 
     useEffect(() => {

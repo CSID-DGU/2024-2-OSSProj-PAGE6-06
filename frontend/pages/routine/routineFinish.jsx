@@ -7,6 +7,9 @@ import Memo from '@/components/routine/routineFinish/Memo';
 export default function RoutineFinish() {
     const [date, setDate] = useState('');
     const [routineTitle, setRoutineTitle] = useState('');
+    const [book, setBook] = useState('');
+    const [memo, setMemo] = useState('');
+    const [place, setPlace] = useState('');
     const [record, setRecord] = useState({
         routine: null,
         title: '',
@@ -34,9 +37,7 @@ export default function RoutineFinish() {
 
     const handleClick = () => {
         const routineId = localStorage.getItem('routineId');
-        const book = localStorage.getItem('book');
-        const place = localStorage.getItem('selectedPlaceName');
-        const memo = localStorage.getItem('memoText');
+
         setRecord({
             routine: routineId,
             title: book,
@@ -49,12 +50,6 @@ export default function RoutineFinish() {
             location: place,
             memo: memo
         });
-
-   
-        localStorage.removeItem('routineId');
-        localStorage.removeItem('book');
-        localStorage.removeItem('selectedPlaceName');
-        localStorage.removeItem('memoText');
     };
 
     return (
@@ -64,9 +59,9 @@ export default function RoutineFinish() {
                     <RS.Date>{date}</RS.Date>
                     <RS.Title>{routineTitle}</RS.Title>
                 </RS.RoutineInfo>
-                <Book />
-                <Place />
-                <Memo />
+                <Book setBook={setBook}/>
+                <Place setPlace={setPlace}/>
+                <Memo setMemo={setMemo}/>
                 <RS.SubmitButton onClick={handleClick}>확인</RS.SubmitButton>
             </RS.RoutineFinishContentContainer>
         </RS.RoutineFinishPage>
