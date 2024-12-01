@@ -34,6 +34,9 @@ export const Input = styled.input`
         border: 1px solid #94A3B8;
         outline:none; 
     }
+    &::placeholder {
+        color: #94A3B8;
+    }
 
 `;
 
@@ -56,6 +59,9 @@ export const MemoInput = styled.textarea`
         border: 1px solid #94A3B8;
         outline:none; 
     }
+    &::placeholder {
+        color:#94A3B8;
+    }
 `;
 
 export const SelectedTime = styled.div`
@@ -73,6 +79,7 @@ export const SelectedTime = styled.div`
 
     display:flex;
     align-items:center;
+    color: #94A3B8;
 
 `;
 

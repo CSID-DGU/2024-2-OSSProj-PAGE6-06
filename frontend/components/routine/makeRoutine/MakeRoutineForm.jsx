@@ -1,8 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import * as S from './Styled';
 import { API } from "@/pages/api";  
+import { useRouter } from 'next/router';
 
 export default function MakeRoutineForm() {
+    const router = useRouter();
     const [title, setTitle] = useState('');
     const [time, setTime] = useState(''); 
     const [memo, setMemo] = useState('');
@@ -49,6 +51,7 @@ export default function MakeRoutineForm() {
                     },
                 }
             );
+            router.push('/routine')
             console.log("루틴 생성 완료", response.data);
         } catch (error) {
             console.error("루틴 생성 에러:", error);
@@ -85,7 +88,9 @@ export default function MakeRoutineForm() {
             <S.InputContainer>
                 <S.Label>Time</S.Label>
                 <S.DropdownContainer>
-                    <S.SelectedTime onClick={toggleDropdown}>
+                    <S.SelectedTime 
+                        onClick={toggleDropdown}
+                        style={{ color: time === '' ? '#94A3B8' : '#0F172A' }}>
                         {time === '' ? "시간을 선택하세요" : convertToTimeString(time)}
                     </S.SelectedTime>
                     {isOpen && (
