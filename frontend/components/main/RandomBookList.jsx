@@ -17,7 +17,6 @@ function RandomBookList() {
           setBooks(response.data.topbooks);
         } catch (error) {
           console.error("요청 중 오류 발생:", error);
-          setErrorMessage("데이터를 불러오는 데 실패했습니다.");
         }
       };
       useEffect(() => {

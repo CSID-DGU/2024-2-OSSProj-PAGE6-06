@@ -40,7 +40,7 @@ export default function JoinClub() {
         }
         return `${remainingMinutes}분 전`;
     };
-    useEffect(() => console.log(userClubs))
+
     return (
         <S.JoinClubContainer>
             <S.Title>참여중인 리딩클럽</S.Title>

@@ -33,10 +33,25 @@ const nextConfig = {
         destination: `http://${APIURL}/api/user/signup/`,
       },
       //routine
-      //routinelist (get)
+      //routine list (get)
       {
         source: "/routinelist",
         destination: `http://${APIURL}/api/routinelist/`,
+      },
+      //routine finish (post)
+      {
+        source: "/routinefinish",
+        destination: `http://${APIURL}/api/routinelist/complete/`,
+      },
+      //routine add (post)
+      {
+        source: "/makeroutine",
+        destination: `http://${APIURL}/api/routinelist/create/`
+      },
+      //routine delete (delete)
+      {
+        source: "/routine/delete/:id",
+        destination: `http://${APIURL}/api/routinelist/create/:id/`
       },
       // user
       // user profile (GET)
@@ -58,7 +73,7 @@ const nextConfig = {
       // book delete (DELETE)
       {
         source: "/mylibrary/books/delete/:id",
-        destination: `http://${APIURL}/api/mylibrary/books/delete/:id/`,
+        destination: `http://${APIURL}/api/mylibrary/books/create/:id/`,
       },
       // book list (GET)
       {

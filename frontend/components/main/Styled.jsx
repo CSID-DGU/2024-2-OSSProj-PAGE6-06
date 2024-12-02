@@ -8,7 +8,7 @@ export const JoinClubContainer = styled.div`
     display:flex;
     flex-direction:column;
     gap:20px;
-    margin-bottom:200px;
+    margin-bottom:100px;
 `;
 export const Title = styled.div`
     color: #0F172A;

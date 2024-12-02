@@ -27,11 +27,12 @@ export const PlusIcon = styled(FontAwesomeIcon)`
 //RoutineList
 export const RoutineListContainer = styled.div`
   width: 346px;
-  height: 546px;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  justify-content: space-between ;
 `;
 export const SettingIconWrapper = styled.div`
   width: 100%;
@@ -39,19 +40,18 @@ export const SettingIconWrapper = styled.div`
   justify-content: flex-end;
 `;
 export const SettingIcon = styled(FontAwesomeIcon)`
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
-  color: #cbd5e1;
+  color: #334155;
 `;
 export const RoutineListWrapper = styled.div`
   width: 100%;
-  height: 463px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  gap: 20px;
+  align-items: center; 
+  gap:10px;
+
 `;
 export const RoutineContainer = styled.button`
   width: 100%;
@@ -65,6 +65,15 @@ export const RoutineContainer = styled.button`
   &:focus {
     border: 1px solid #94a3b8;
   }
+`;
+export const RoutineListScrollWrapper = styled.div`
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  overflow: auto; 
 `;
 export const RoutineText = styled.div`
   color: #0f172a;
@@ -101,10 +110,7 @@ export const StartButton = styled.button`
 export const StartIcon = styled(FontAwesomeIcon)`
   width: 70px;
   height: 70px;
-  color: #e2e8f0;
-  &:hover {
-    color: #334155;
-  }
+  color: #334155;
 `;
 export const ClubIcon = styled(FontAwesomeIcon)`
   color: #475569;
@@ -503,4 +509,76 @@ export const Textarea = styled.textarea`
     border: 1px solid #94a3b8;
     outline: none;
   }
+`;
+
+//RoutineDelete
+export const DeleteDropboxContainer = styled.div`
+  background-color: #fff;
+  color: #0f172a;
+  top: 30vh;
+  z-index: 400;
+  width: 90%;
+  margin: 5%;
+  padding-top: 7%;
+  position: absolute;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+`;
+
+export const DeleteDropboxButtonSection = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 7%;
+  border-top: 1px solid #64748b;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const DeleteDropboxButtonLine = styled.div`
+  width: 0.5px;
+  background-color: #64748b;
+  align-self: stretch;
+  display: flex;
+  height: auto;
+`;
+
+export const DeleteDropboxButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 60px;
+  cursor: pointer;
+`;
+
+// Record Delete Dropbox
+export const RoutineDeleteDropboxContainer = styled.div`
+  background-color: #fff;
+  color: #0f172a;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 90%;
+  margin: 3% 5%;
+  padding-top: 7%;
+  position: fixed;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+`;
+
+export const ModalText = styled.div`
 `;

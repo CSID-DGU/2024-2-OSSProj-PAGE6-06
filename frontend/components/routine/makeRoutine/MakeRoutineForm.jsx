@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import * as S from './Styled';
+import { API } from "@/pages/api";  
+import { useRouter } from 'next/router';
 
 export default function MakeRoutineForm() {
+    const router = useRouter();
     const [title, setTitle] = useState('');
-    const [time, setTime] = useState('');
+    const [time, setTime] = useState(''); 
     const [memo, setMemo] = useState('');
     const [isOpen, setIsOpen] = useState(false); 
 
@@ -14,26 +17,60 @@ export default function MakeRoutineForm() {
     const generateTimeOptions = () => {
         const times = [];
         for (let hour = 0; hour < 24; hour++) {
-            for (let minute = 0; minute < 60; minute += 5) {
-                const formattedHour = String(hour).padStart(2, '0');
-                const formattedMinute = String(minute).padStart(2, '0');
-                times.push(`${formattedHour}:${formattedMinute}`);
+            for (let minute = 5; minute < 60; minute += 5) { 
+                times.push(hour * 60 + minute); 
             }
         }
         return times;
     };
 
-    const selectTime = (timeOption) => {
-        setTime(timeOption);
+    const convertToTimeString = (minutes) => {
+        const hour = Math.floor(minutes / 60);
+        const minute = minutes % 60;
+        if (minutes < 60) {
+            return `${minute}분`;
+        } 
+        return `${hour}시간 ${minute}분`;
+    };
+
+
+    const selectTime = (timeInMinutes) => {
+        setTime(timeInMinutes); 
         setIsOpen(false);
     };
 
+    const postRoutine = useCallback(async (routineData) => {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await API.post(
+                `/makeroutine`, 
+                routineData,
+                {
+                    headers: {
+                        Authorization: `Token ${token}`,
+                    },
+                }
+            );
+            router.push('/routine')
+            console.log("루틴 생성 완료", response.data);
+        } catch (error) {
+            console.error("루틴 생성 에러:", error);
+        }
+    }, []);
+
     const handleSubmit = () => {
-        if (!title || !time || !memo) {
+        if (!title || time === '' || !memo) {
             alert("모든 값을 입력해주세요.");
             return;
         }
-        console.log("제출된 루틴 정보:", { title, time, memo });
+        const routineData = {
+            title: title,
+            time: time, 
+            content: memo,
+        };
+
+        postRoutine(routineData);
+        console.log("Submitted routine:", routineData);
     };
 
     return (
@@ -51,19 +88,23 @@ export default function MakeRoutineForm() {
             <S.InputContainer>
                 <S.Label>Time</S.Label>
                 <S.DropdownContainer>
-                    <S.SelectedTime onClick={toggleDropdown}>
-                        {time || "시간을 선택하세요"}
+                    <S.SelectedTime 
+                        onClick={toggleDropdown}
+                        style={{ color: time === '' ? '#94A3B8' : '#0F172A' }}>
+                        {time === '' ? "시간을 선택하세요" : convertToTimeString(time)}
                     </S.SelectedTime>
                     {isOpen && (
                         <S.DropdownList>
-                            {generateTimeOptions().map((timeOption) => (
-                                <S.DropdownItem
-                                    key={timeOption}
-                                    onClick={() => selectTime(timeOption)}
-                                >
-                                    {timeOption}
-                                </S.DropdownItem>
-                            ))}
+                            {generateTimeOptions().map((timeInMinutes) => {
+                                return (
+                                    <S.DropdownItem
+                                        key={timeInMinutes}
+                                        onClick={() => selectTime(timeInMinutes)}
+                                    >
+                                        {convertToTimeString(timeInMinutes)} 
+                                    </S.DropdownItem>
+                                );
+                            })}
                         </S.DropdownList>
                     )}
                 </S.DropdownContainer>

@@ -33,7 +33,7 @@ export default function Timer() {
 
     useEffect(() => {
         if (zeroCount === 3) {
-            router.push('/routine/routineFinish');
+            router.replace('/routine/routineFinish');
         }
     }, [zeroCount]);
 
