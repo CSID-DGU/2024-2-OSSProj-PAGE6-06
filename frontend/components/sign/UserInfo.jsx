@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/router";
 import * as S from "./Styled";
 import Image from "next/image";
 import { API } from "@/pages/api";
@@ -9,6 +10,8 @@ import profile4 from "../common/image/profile4.png";
 
 export default function UserInfo() {
   const [userInfo, setUserInfo] = useState(null);
+  const router = useRouter();
+
   const getProfileImage = (profileImage) => {
     const images = {
       image1: profile1,
@@ -22,6 +25,7 @@ export default function UserInfo() {
   const fetchUserInfo = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
+      
       const response = await API.get("/profile/", {
         headers: {
           Authorization: `Token ${token}`,
@@ -33,12 +37,32 @@ export default function UserInfo() {
     }
   }, []);
 
-  // 컴포넌트 마운트 시 데이터 불러오기
+  const handleLogout = async () => {
+      localStorage.removeItem("token");
+      router.push("/sign/in"); 
+  };
+
+  const handleQuit = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      console.log(token)
+      await API.delete("/userquit/", {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      localStorage.removeItem("token");
+      router.push("/sign/up"); 
+    } catch (err) {
+      console.error("Failed to quit:", err);
+    }
+  };
+
+
   useEffect(() => {
     fetchUserInfo();
   }, [fetchUserInfo]);
 
-  // 렌더링
   return (
     <S.UserInfoContainer>
       {userInfo ? (
@@ -67,17 +91,22 @@ export default function UserInfo() {
                 <S.InfoText>{userInfo.username}</S.InfoText>
               </S.DetailTextWrapper>
             </S.UserInfoTextWrapper>
-            <S.LogoutTextWrapper>
-              <S.LogoutText>리딩 루틴 로그아웃</S.LogoutText>
+
+            <S.LogoutTextWrapper onClick={handleLogout}>
+              <S.LogoutText>
+                리딩 루틴 로그아웃
+              </S.LogoutText>
             </S.LogoutTextWrapper>
-            <S.LogoutTextWrapper>
+
+            <S.LogoutTextWrapper onClick={handleQuit}>
               <S.QuitText>리딩 루틴 회원 탈퇴</S.QuitText>
             </S.LogoutTextWrapper>
           </S.UserInfoTextContainer>
         </>
       ) : (
-        <p>Loading...</p> 
+        <p>Loading...</p>
       )}
+    
     </S.UserInfoContainer>
   );
 }

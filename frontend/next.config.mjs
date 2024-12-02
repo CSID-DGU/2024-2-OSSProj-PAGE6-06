@@ -59,6 +59,11 @@ const nextConfig = {
         source: "/profile",
         destination: `http://${APIURL}/api/user/profile/`,
       },
+      // quit (DELETE)
+      {
+        source: "/userquit",
+        destination: `http://${APIURL}/api/user/delete/`,
+      },
       // library
       // book search (GET)
       {
