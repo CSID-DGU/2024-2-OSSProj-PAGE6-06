@@ -6,19 +6,36 @@ import { useEffect, useState } from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
 
+import localFont from "next/font/local";
+
+const pretendard = localFont({
+  src: "../../public/fonts/PretendardVariable.woff2",
+  display: "swap",
+  variable: "--font-pretendard",
+});
 export default function Layout({ children }) {
   const router = useRouter();
   const [footerNav, setFooterNav] = useState(false);
 
   useEffect(() => {
-    const path = router.pathname.split("/");
-    if (path.length <= 2) {
-      setFooterNav(true);
-    }
-  }, [router.pathname, router.isReady]);
+    const handleRouteChange = (url) => {
+      const path = url.split("/");
+      setFooterNav(path.length <= 2); // URL의 경로 길이에 따라 Footer 상태 설정
+    };
+
+    // 경로 변경 이벤트 감지
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    // 현재 경로 초기 상태 반영
+    handleRouteChange(router.pathname);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
-    <LS.LayoutWrapper>
+    <LS.LayoutWrapper className={pretendard.className}>
       <AnimatePresence mode="wait">
         <motion.div
           key={router.route} // 경로를 key로 사용하여 페이지 전환 시 애니메이션 적용

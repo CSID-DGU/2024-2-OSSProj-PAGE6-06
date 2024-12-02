@@ -1,5 +1,15 @@
-import * as SS from "../../components/_styled/SignStyled";
+import * as SS from "../../components/_styled/signStyled.jsx";
+import Title from "@/components/sign/Title";
+import SignupInput from "@/components/sign/SignupInput";
 
-export default function SignUp() {
-  return <SS.SignContainer>SignUp</SS.SignContainer>;
+export default function Signup() {
+  
+  return (
+    <SS.SignContainer>
+      <SS.SignContentContainer>
+        <Title />
+        <SignupInput />
+      </SS.SignContentContainer>
+    </SS.SignContainer>
+  );
 }

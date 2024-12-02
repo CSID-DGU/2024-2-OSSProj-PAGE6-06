@@ -1,11 +1,15 @@
-import Header from "@/components/layout/Header";
-import * as MS from "../components/_styled/mainStyled";
+import React, { useEffect, useState } from "react";
+import Signin from "./sign/in";
+import MainPage from "./main/index";
 
 export default function Main() {
-  return (
-    <MS.MainWrapper>
-      <Header path="Reading Routine" />
-      <MS.MainContainer>Main</MS.MainContainer>
-    </MS.MainWrapper>
-  );
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      setIsAuthenticated(!!token);
+    }
+  }, [isAuthenticated]);
+
+  return isAuthenticated ? <MainPage /> : <Signin />;
 }

@@ -1,5 +1,4 @@
 import Header from "@/components/layout/Header";
-import Book from "@/components/library/Book";
 import RecordModal from "@/components/library/RecordModal";
 
 import * as MS from "../../components/_styled/mainStyled";
@@ -8,49 +7,26 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import BookDelete from "@/components/library/BookDelete";
+import { API } from "../api";
+import BookCard from "@/components/library/BookCard";
 
 export default function Library() {
   const router = useRouter();
 
-  // const [books, setBooks] = useState([]);
-  // dummy
-  const books = [
-    {
-      id: 1,
-      title: "채식주의자",
-      writer: "한강",
-      image:
-        "https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788936434595.jpg",
-    },
-    {
-      id: 2,
-      title: "그대의 차가운 손",
-      writer: "한강",
-      image:
-        "https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788932013046.jpg",
-    },
-    {
-      id: 3,
-      title: "채식주의자",
-      writer: "한강",
-      image:
-        "https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788936434595.jpg",
-    },
-    {
-      id: 4,
-      title: "그대의 차가운 손",
-      writer: "한강",
-      image:
-        "https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788932013046.jpg",
-    },
-  ];
+  const [books, setBooks] = useState([]);
 
   const fetchBooks = async () => {
+    const token = localStorage.getItem("token");
+
     try {
-      // const response = await API.get(``);
-      // const data = response.data;
-      // setBooks(data);
-      console.log(books);
+      const response = await API.get(`/mylibrary/booklist`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      const data = response.data;
+      setBooks(data);
     } catch (e) {
       console.log(e);
     }
@@ -58,7 +34,7 @@ export default function Library() {
 
   useEffect(() => {
     fetchBooks();
-  }, [books]);
+  }, []);
 
   // Book Record Modal
   const [currentBook, setCurrentBook] = useState({});
@@ -75,6 +51,9 @@ export default function Library() {
     handleRecordOpen();
   };
 
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [selectedDeleteBook, setSelectedDeleteBook] = useState(null);
+
   return (
     <LS.LibraryWrapper>
       {isRecordOpen && (
@@ -82,6 +61,14 @@ export default function Library() {
           <RecordModal
             book={currentBook}
             handleRecordClose={handleRecordClose}
+          />
+        </LS.LibraryRecordModalOverlay>
+      )}
+      {deleteModal && (
+        <LS.LibraryRecordModalOverlay>
+          <BookDelete
+            selectedDeleteBook={selectedDeleteBook}
+            setDeleteModal={setDeleteModal}
           />
         </LS.LibraryRecordModalOverlay>
       )}
@@ -99,12 +86,15 @@ export default function Library() {
         {/* Library List Section */}
         <LS.LibraryList>
           {books.map((book, idx) => (
-            <Book
+            <BookCard
               onClick={() => {
                 handleRecordClick(book);
               }}
               key={idx}
               book={book}
+              deleteModal={deleteModal}
+              setDeleteModal={setDeleteModal}
+              setSelectedDeleteBook={setSelectedDeleteBook}
             />
           ))}
         </LS.LibraryList>
