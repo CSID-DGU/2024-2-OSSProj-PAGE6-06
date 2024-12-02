@@ -8,9 +8,7 @@ import { API } from "../api";
 
 export default function Edit() {
   const router = useRouter();
-  const [record, setRecord] = useState(
-    JSON.parse(localStorage.getItem("record"))
-  );
+  const [record, setRecord] = useState({});
 
   const [routine, setRoutine] = useState({});
   const fetchRoutine = async () => {
@@ -29,6 +27,7 @@ export default function Edit() {
   };
 
   useEffect(() => {
+    setRecord(JSON.parse(localStorage.getItem("record")));
     fetchRoutine();
   }, []);
 
