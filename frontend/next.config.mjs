@@ -32,11 +32,6 @@ const nextConfig = {
         source: "/signup",
         destination: `http://${APIURL}/api/user/signup/`,
       },
-      // user info
-      {
-        source: "/userprofile",
-        destination: `http://${APIURL}/api/user/profile/`,
-      },
       //routine
       //routine list (get)
       {
