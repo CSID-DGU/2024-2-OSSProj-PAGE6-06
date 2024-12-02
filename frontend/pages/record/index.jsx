@@ -53,7 +53,7 @@ export default function Record() {
 
   useEffect(() => {
     fetchCalendarData();
-  });
+  }, []);
 
   const [routineList, setRoutineList] = useState([]);
   const [currentRoutine, setCurrentRoutine] = useState(0);
@@ -102,7 +102,7 @@ export default function Record() {
   useEffect(() => {
     fetchRoutineList();
     fetchRoutineData();
-  });
+  }, []);
 
   useEffect(() => {
     if (currentRoutine === 0) {

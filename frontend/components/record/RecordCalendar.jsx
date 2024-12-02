@@ -13,7 +13,7 @@ export default function RecordCalendar({ data, isSelect, setIsSelect }) {
       const newDate = new Date(prev);
       newDate.setMonth(prev.getMonth() - 1);
       setCurrentDate(newDate);
-      setIsSelect(newDate);
+      // setIsSelect(newDate);
       return newDate;
     });
   };
@@ -24,7 +24,7 @@ export default function RecordCalendar({ data, isSelect, setIsSelect }) {
       const newDate = new Date(next);
       newDate.setMonth(next.getMonth() + 1);
       setCurrentDate(newDate);
-      setIsSelect(newDate);
+      // setIsSelect(newDate);
       return newDate;
     });
   };
@@ -35,7 +35,7 @@ export default function RecordCalendar({ data, isSelect, setIsSelect }) {
 
   useEffect(() => {
     handleDateClick(currentDate);
-  });
+  }, [currentDate]);
 
   const getCalendarData = () => {
     const year = currentDate.getFullYear();
