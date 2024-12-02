@@ -8,8 +8,7 @@ export default function userInfo(props) {
             <US.UserInfoContentContainer>
                 <Title />
                 <UserInfo />
-            </US.UserInfoContentContainer>
-            
+            </US.UserInfoContentContainer>    
         </US.UserInfoContainer>
     );
 }
