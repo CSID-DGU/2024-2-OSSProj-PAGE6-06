@@ -17,6 +17,9 @@ export default function Record() {
   ];
   const handleCurrentTap = (type) => {
     setCurrentTap(type);
+    if (type === "month") {
+      setIsSelect(new Date());
+    }
   };
 
   const [calendarData, setCalendarData] = useState([]);
@@ -50,7 +53,7 @@ export default function Record() {
 
   useEffect(() => {
     fetchCalendarData();
-  }, []);
+  }, [isSelect]);
 
   const [routineList, setRoutineList] = useState([]);
   const [currentRoutine, setCurrentRoutine] = useState(0);
@@ -99,7 +102,7 @@ export default function Record() {
   useEffect(() => {
     fetchRoutineList();
     fetchRoutineData();
-  }, []);
+  }, [currentTap]);
 
   useEffect(() => {
     if (currentRoutine === 0) {
