@@ -17,13 +17,19 @@ class ClubCreateAPIView(APIView):
         if serializer.is_valid():
             club = serializer.save(user=request.user)
             
-            # 본인의 Routine 리스트에 클럽 루틴 추가
-            Routine.objects.create(
+            personal_routine=Routine.objects.create(
                 user=request.user,
                 title=club.title,
                 time=club.time,
                 content=club.content,
-                is_club=True  
+                is_club=True,
+                club=club 
+            )
+            
+            UserJoinedRoutine.objects.create(
+                user=request.user,
+                club=club,
+                personalRoutine=personal_routine
             )
             
             return Response(serializer.data, status=status.HTTP_201_CREATED)
