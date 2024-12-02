@@ -16,7 +16,7 @@ export const ClubCardContainer = styled.div`
   margin: 15px 0;
 `;
 
-export const ClubCardImage = styled.img`
+export const ClubCardImage = styled(Image)`
   object-fit: cover;
   width: 160px;
   border-radius: 10px 10px 0 0;
