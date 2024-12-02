@@ -8,7 +8,7 @@ export default function RecordDelete({ selectedDeleteRecord, setDeleteModel }) {
     try {
       const token = localStorage.getItem("token");
       const response = await API.delete(
-        `/record/delete/${selectedDeleteRecord.id}`,
+        `/delete/record/${selectedDeleteRecord.id}`,
         {
           headers: {
             Authorization: `Token ${token}`,

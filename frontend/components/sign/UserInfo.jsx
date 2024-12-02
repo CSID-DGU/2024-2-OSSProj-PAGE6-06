@@ -25,7 +25,7 @@ export default function UserInfo() {
   const fetchUserInfo = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
-      
+
       const response = await API.get("/profile/", {
         headers: {
           Authorization: `Token ${token}`,
@@ -38,26 +38,25 @@ export default function UserInfo() {
   }, []);
 
   const handleLogout = async () => {
-      localStorage.removeItem("token");
-      router.push("/sign/in"); 
+    localStorage.removeItem("token");
+    router.push("/sign/in");
   };
 
   const handleQuit = async () => {
     try {
       const token = localStorage.getItem("token");
-      console.log(token)
+      // console.log(token)
       await API.delete("/userquit/", {
         headers: {
           Authorization: `Token ${token}`,
         },
       });
       localStorage.removeItem("token");
-      router.push("/sign/up"); 
+      router.push("/sign/up");
     } catch (err) {
       console.error("Failed to quit:", err);
     }
   };
-
 
   useEffect(() => {
     fetchUserInfo();
@@ -93,9 +92,7 @@ export default function UserInfo() {
             </S.UserInfoTextWrapper>
 
             <S.LogoutTextWrapper onClick={handleLogout}>
-              <S.LogoutText>
-                리딩 루틴 로그아웃
-              </S.LogoutText>
+              <S.LogoutText>리딩 루틴 로그아웃</S.LogoutText>
             </S.LogoutTextWrapper>
 
             <S.LogoutTextWrapper onClick={handleQuit}>
@@ -106,7 +103,6 @@ export default function UserInfo() {
       ) : (
         <p>Loading...</p>
       )}
-    
     </S.UserInfoContainer>
   );
 }

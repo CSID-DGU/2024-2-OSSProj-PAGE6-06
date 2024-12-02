@@ -13,13 +13,13 @@ export default function Routine() {
   const [selectedDeleteRoutine, setSelectedDeleteRoutine] = useState(null);
 
   const openModal = (routine) => {
-    setSelectedDeleteRoutine(routine); 
+    setSelectedDeleteRoutine(routine);
     setDeleteModal(true);
   };
 
   const handleSelectRoutine = (routine) => {
     setSelectedRoutine(routine);
-    console.log(selectedRoutine);
+    // console.log(selectedRoutine);
   };
 
   return (
@@ -28,14 +28,17 @@ export default function Routine() {
       <RS.RoutineContentContainer>
         <MakeRoutineButton />
         <RS.Line />
-        
+
         <RS.DeleteIconWrapper>
-          <RS.DeleteIcon icon={faTrash} onClick={() => openModal(selectedRoutine)} />
+          <RS.DeleteIcon
+            icon={faTrash}
+            onClick={() => openModal(selectedRoutine)}
+          />
         </RS.DeleteIconWrapper>
-        
-        <RoutineList 
-          onSelectRoutine={handleSelectRoutine} 
-          routines={routines} 
+
+        <RoutineList
+          onSelectRoutine={handleSelectRoutine}
+          routines={routines}
         />
       </RS.RoutineContentContainer>
 

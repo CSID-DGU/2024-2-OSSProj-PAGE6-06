@@ -32,7 +32,7 @@ export const RoutineListContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  justify-content: space-between ;
+  justify-content: space-between;
 `;
 export const SettingIconWrapper = styled.div`
   width: 100%;
@@ -49,9 +49,8 @@ export const RoutineListWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  gap:10px;
-
+  align-items: center;
+  gap: 10px;
 `;
 export const RoutineContainer = styled.button`
   width: 100%;
@@ -73,7 +72,7 @@ export const RoutineListScrollWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  overflow: auto; 
+  overflow: auto;
 `;
 export const RoutineText = styled.div`
   color: #0f172a;
@@ -115,6 +114,7 @@ export const StartIcon = styled(FontAwesomeIcon)`
 export const ClubIcon = styled(FontAwesomeIcon)`
   color: #475569;
   font-size: 12px;
+  width: 12px;
 `;
 export const RoutineTextContainer = styled.div`
   display: flex;
@@ -467,8 +467,10 @@ export const ModalContent = styled.div`
 
 export const CloseButton = styled(FontAwesomeIcon)`
   position: relative;
-  left: 47%;
+  left: 95%;
   color: #334155;
+  /* font-size: 14px; */
+  width: 14px;
 `;
 export const PlaceSubmitButton = styled.button`
   width: 100%;
@@ -580,5 +582,4 @@ export const RoutineDeleteDropboxContainer = styled.div`
   font-weight: 500;
 `;
 
-export const ModalText = styled.div`
-`;
+export const ModalText = styled.div``;

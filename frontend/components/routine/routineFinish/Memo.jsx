@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "../Styled";
 
 export default function Memo({ setMemo, initial }) {
-  const [memoText, setMemoText] = useState(initial || "");
+  const [memoText, setMemoText] = useState(initial?.memo || "");
 
   const handleChange = (e) => {
     setMemoText(e.target.value);
     setMemo(memoText);
   };
+
+  useEffect(() => {
+    // console.log(initial);
+    if (initial?.memo) {
+      setMemoText(initial.memo);
+    }
+  }, []);
 
   return (
     <S.InputContainer>

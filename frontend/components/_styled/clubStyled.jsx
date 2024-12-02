@@ -108,6 +108,7 @@ export const ClubDetailInfoEach = styled.div`
 
 export const ClubDetailInfoIcon = styled(FontAwesomeIcon)`
   margin-right: 5px;
+  width: 12px;
 `;
 
 export const ClubDetailDescription = styled.div`
@@ -146,6 +147,7 @@ export const ClubCreateImageButton = styled.label`
 
 export const ClubCreateImageButtonIcon = styled(FontAwesomeIcon)`
   font-size: 45px;
+  width: 45px;
   margin: 3%;
 `;
 

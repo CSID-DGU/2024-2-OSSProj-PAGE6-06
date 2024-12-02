@@ -25,7 +25,8 @@ export const RecordCardRoutine = styled.div`
 `;
 
 export const RecordCardMore = styled(FontAwesomeIcon)`
-  font-size: 14px;
+  font-size: 4px;
+  width: 4px;
 `;
 
 export const RecordDescription = styled.div`
@@ -58,7 +59,8 @@ export const RecordCalendarMonth = styled.div`
 `;
 
 export const RecordCalendarButton = styled(FontAwesomeIcon)`
-  font-size: 15px;
+  font-size: 10px;
+  width: 10px;
   color: #8a8a8a;
 `;
 
@@ -145,7 +147,8 @@ export const RecordMonthListSearch = styled.div`
 `;
 
 export const RecordMonthListIcon = styled(FontAwesomeIcon)`
-  font-size: 20px;
+  font-size: 18px;
+  width: 18px;
   color: #64748b;
 `;
 
@@ -211,4 +214,5 @@ export const DropboxText = styled.div`
 export const DropboxIcon = styled(FontAwesomeIcon)`
   margin: 0 5%;
   font-size: 12px;
+  width: 12px;
 `;
