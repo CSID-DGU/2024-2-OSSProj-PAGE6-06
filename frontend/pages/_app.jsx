@@ -18,6 +18,12 @@ export default function App({ Component, pageProps }) {
       </Layout>
       <style jsx global>
         {`
+          @font-face {
+            font-family: "Pretendard";
+            src: url("/fonts/PretendardVariable.woff2") format("woff2");
+            font-weight: normal;
+            font-style: normal;
+          }
           html,
           body,
           div,
@@ -107,7 +113,7 @@ export default function App({ Component, pageProps }) {
             font-size: 100%;
             font: inherit;
             vertical-align: baseline;
-            font-family: Helvetica;
+            font-family: Pretendard;
           }
           /* HTML5 display-role reset for older browsers */
           article,
@@ -129,7 +135,7 @@ export default function App({ Component, pageProps }) {
             display: none;
           }
           html {
-            font-family: 'Pretendard';
+            font-family: "Pretendard";
           }
           body {
             line-height: 1;
@@ -163,7 +169,6 @@ export default function App({ Component, pageProps }) {
             text-decoration: none;
             color: inherit;
           }
-          
         `}
       </style>
     </Body>
