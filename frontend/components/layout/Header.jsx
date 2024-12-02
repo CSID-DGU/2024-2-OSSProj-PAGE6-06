@@ -31,7 +31,7 @@ export default function Header({ path }) {
   }, []);
 
   const handleProfileClick = () => {
-    router.push("/sign/userInfo"); 
+    router.push("/sign/userInfo");
   };
 
   const getProfileImage = (profileImage) => {
@@ -44,17 +44,19 @@ export default function Header({ path }) {
         return profile3;
       case "image4":
         return profile4;
+      default:
+        return profile1;
     }
   };
 
   return (
     <HS.HeaderContainer>
       <HS.HeaderPath>{path}</HS.HeaderPath>
-        <HS.HeaderMypage
-          src={getProfileImage(user.profileImage)}
-          alt="profile_image"
-          onClick={handleProfileClick}
-        />
+      <HS.HeaderMypage
+        src={getProfileImage(user.profileImage)}
+        alt="profile_image"
+        onClick={handleProfileClick}
+      />
     </HS.HeaderContainer>
   );
 }
