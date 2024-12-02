@@ -1,7 +1,6 @@
 import React from 'react';
 import * as S from './Styled';
 import Link from 'next/link';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 export default function MakeRoutine(props) {
     return (

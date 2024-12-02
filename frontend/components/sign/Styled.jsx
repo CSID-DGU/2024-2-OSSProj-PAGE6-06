@@ -206,7 +206,7 @@ export const QuitText = styled(InfoTag)`
     align-items: flex-start;    
     color: #FF4830;
 `;
-export const LogoutTextWrapper = styled.div`
+export const LogoutTextWrapper = styled.button`
     width:100%;
     border-radius: 10px;
     background: #F1F5F9;
@@ -214,6 +214,5 @@ export const LogoutTextWrapper = styled.div`
     flex-direction:column;
     gap: 12px;
     padding:5%;
+    border: none;
 `;
-
-//
