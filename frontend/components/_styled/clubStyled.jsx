@@ -78,7 +78,7 @@ export const ClubDetailTitle = styled.div`
   padding: 5%;
 `;
 
-export const ClubDetailImage = styled.img`
+export const ClubDetailImage = styled(Image)`
   width: 90%;
   margin: 0 5%;
   height: 200px;
