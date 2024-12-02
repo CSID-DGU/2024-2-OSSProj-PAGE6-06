@@ -2,20 +2,24 @@ import { useRouter } from "next/router";
 import * as S from "./Styled";
 import { API } from "@/pages/api";
 
-export default function RoutineDelete({ selectedDeleteRoutine, setDeleteModal, setRoutines }) {
+export default function RoutineDelete({
+  selectedDeleteRoutine,
+  setDeleteModal,
+  setRoutines,
+}) {
   const router = useRouter();
 
   const fetchDeleteRoutine = async () => {
     try {
-      console.log(selectedDeleteRoutine.id);
+      // console.log(selectedDeleteRoutine.id);
       const token = localStorage.getItem("token");
       await API.delete(`/routine/delete/${selectedDeleteRoutine.id}`, {
         headers: {
           Authorization: `Token ${token}`,
         },
       });
-      console.log(selectedDeleteRoutine.id);
-      setDeleteModal(false); 
+      // console.log(selectedDeleteRoutine.id);
+      setDeleteModal(false);
     } catch (error) {
       console.error("루틴 삭제 실패:", error);
     }

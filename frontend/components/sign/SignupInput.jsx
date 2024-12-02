@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import * as S from "./Styled.jsx";
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import profile1 from '../common/image/profile1.png';
-import profile2 from '../common/image/profile2.png';
-import profile3 from '../common/image/profile3.png';
-import profile4 from '../common/image/profile4.png';
-import { API } from "@/pages/api"; 
+import Image from "next/image";
+import { useRouter } from "next/router";
+import profile1 from "../common/image/profile1.png";
+import profile2 from "../common/image/profile2.png";
+import profile3 from "../common/image/profile3.png";
+import profile4 from "../common/image/profile4.png";
+import { API } from "@/pages/api";
 
 export default function SignupInput() {
   const router = useRouter();
@@ -14,14 +14,14 @@ export default function SignupInput() {
   const [isValid, setIsValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [isPasswordMatch, setIsPasswordMatch] = useState(true);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const [values, setValues] = useState({
-    image: '',
-    email: '',
-    nickname: '',
-    name: '',
-    password: '',
-    passwordConfirm: ''
+    image: "",
+    email: "",
+    nickname: "",
+    name: "",
+    password: "",
+    passwordConfirm: "",
   });
 
   const fetchSignup = async () => {
@@ -34,21 +34,21 @@ export default function SignupInput() {
         nickname: values.nickname,
         profileImage: values.image,
       });
-      console.log("회원가입 성공:", response);
-      console.log(values);
-      router.push('/sign/in'); 
+      // console.log("회원가입 성공:", response);
+      // console.log(values);
+      router.push("/sign/in");
     } catch (error) {
-      console.error('회원가입 요청 중 오류 발생:', error);
-      setErrorMessage('회원가입 요청 중 오류가 발생했습니다.');
+      console.error("회원가입 요청 중 오류 발생:", error);
+      setErrorMessage("회원가입 요청 중 오류가 발생했습니다.");
     }
   };
 
   const isFormValid = () => {
     return (
-      values.email.trim() !== '' &&
-      values.password.trim() !== '' &&
-      values.nickname.trim() !== '' &&
-      values.name.trim() !== ''
+      values.email.trim() !== "" &&
+      values.password.trim() !== "" &&
+      values.nickname.trim() !== "" &&
+      values.name.trim() !== ""
     );
   };
 
@@ -59,9 +59,9 @@ export default function SignupInput() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(values)
+    // console.log(values);
     if (isValid) {
-      fetchSignup(); 
+      fetchSignup();
     }
   };
 
@@ -76,12 +76,12 @@ export default function SignupInput() {
   const handleImageSelect = (imageNumber) => {
     setValues((prevValues) => ({
       ...prevValues,
-      image: `image${imageNumber + 1}`, 
+      image: `image${imageNumber + 1}`,
     }));
   };
 
   useEffect(() => {
-    if (values.email.trim() !== '') {
+    if (values.email.trim() !== "") {
       setIsEmailValid(validateEmail(values.email));
     }
     setIsPasswordMatch(values.password === values.passwordConfirm);
