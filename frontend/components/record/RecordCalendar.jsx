@@ -34,7 +34,7 @@ export default function RecordCalendar({ data, isSelect, setIsSelect }) {
   };
 
   useEffect(() => {
-    setIsSelect(currentDate);
+    handleDateClick(currentDate);
   }, [currentDate]);
 
   const getCalendarData = () => {

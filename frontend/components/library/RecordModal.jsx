@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import * as S from "./Styled";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
@@ -10,7 +10,7 @@ export default function RecordModal({ book, handleRecordClose }) {
   const [records, setRecords] = useState([]);
   const [isVisible, setIsVisible] = useState(true);
 
-  const fetchRecords = async () => {
+  const fetchRecords = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await API.get(`/mylibrary/books/record/${book.id}`, {
@@ -23,10 +23,10 @@ export default function RecordModal({ book, handleRecordClose }) {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, [book.id]);
 
   const [routineList, setRoutineList] = useState([]);
-  const fetchRoutineList = async () => {
+  const fetchRoutineList = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await API.get(`/routinelist`, {
@@ -39,7 +39,7 @@ export default function RecordModal({ book, handleRecordClose }) {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchRecords();

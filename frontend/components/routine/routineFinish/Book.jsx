@@ -30,7 +30,7 @@ export default function Book({ initial, setBook }) {
     if (initial?.book) {
       setSelectedBook(initial.book.title);
     }
-  }, []);
+  }, [initial?.book]);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 

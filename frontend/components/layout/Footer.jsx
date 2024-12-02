@@ -31,7 +31,7 @@ export default function Footer() {
       <HS.FooterButton
         icon={faHome}
         onClick={() => handlePageChange("main")}
-        $isActive={currentPage === "main"}
+        $isActive={currentPage === "main" || currentPage === ""}
       />
       <HS.FooterButton
         icon={faChartSimple}

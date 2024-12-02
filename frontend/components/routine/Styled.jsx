@@ -351,7 +351,8 @@ export const MarkerBg = styled.div`
   height: 36px;
   background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
     no-repeat;
-  background-position: ${({ markerIndex }) => `0 ${-10 - 46 * markerIndex}px`};
+  background-position: ${({ $markerIndex }) =>
+    `0 ${-10 - 46 * $markerIndex}px`};
 `;
 export const Info = styled.div`
   display: flex;

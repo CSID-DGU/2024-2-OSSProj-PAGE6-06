@@ -32,7 +32,7 @@ export default function Layout({ children }) {
     return () => {
       router.events.off("routeChangeStart", handleRouteChange);
     };
-  }, [router.events]);
+  }, [router.events, router.pathname]);
 
   return (
     <LS.LayoutWrapper className={pretendard.className}>

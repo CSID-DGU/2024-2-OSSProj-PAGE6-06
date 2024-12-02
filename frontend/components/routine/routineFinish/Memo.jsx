@@ -14,7 +14,7 @@ export default function Memo({ setMemo, initial }) {
     if (initial?.memo) {
       setMemoText(initial.memo);
     }
-  }, []);
+  }, [initial?.memo]);
 
   return (
     <S.InputContainer>
