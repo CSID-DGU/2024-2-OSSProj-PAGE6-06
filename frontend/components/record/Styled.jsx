@@ -1,12 +1,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
+export const RecordCardWrapper = styled.div`
+  width: 100%;
+`;
+
 export const RecordCardContainer = styled.div`
   margin: 0 0 5% 0;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   border-radius: 10px;
   padding: 5%;
+  text-align: left;
 `;
 
 export const RecordCardRoutine = styled.div`
@@ -20,7 +25,8 @@ export const RecordCardRoutine = styled.div`
 `;
 
 export const RecordCardMore = styled(FontAwesomeIcon)`
-  font-size: 14px;
+  font-size: 4px;
+  width: 4px;
 `;
 
 export const RecordDescription = styled.div`
@@ -53,7 +59,8 @@ export const RecordCalendarMonth = styled.div`
 `;
 
 export const RecordCalendarButton = styled(FontAwesomeIcon)`
-  font-size: 15px;
+  font-size: 10px;
+  width: 10px;
   color: #8a8a8a;
 `;
 
@@ -140,12 +147,13 @@ export const RecordMonthListSearch = styled.div`
 `;
 
 export const RecordMonthListIcon = styled(FontAwesomeIcon)`
-  font-size: 20px;
+  font-size: 18px;
+  width: 18px;
   color: #64748b;
 `;
 
 export const RecordMonthListModalContainer = styled.div`
-  width: 100%;
+  width: 90%;
   margin: 5% 0;
   border-radius: 10px;
   border: #64748b 1px solid;
@@ -153,11 +161,13 @@ export const RecordMonthListModalContainer = styled.div`
   font-size: 14px;
   font-weight: 500;
   color: #64748b;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* position: absolute; */
+  position: absolute;
+  z-index: 300;
 `;
 
 export const RecordMonthListModalText = styled.div`
@@ -171,4 +181,38 @@ export const RecordMonthListModalText = styled.div`
   justify-content: start;
 
   border-bottom: ${(props) => (props.$isBorder ? `none` : `1px solid #64748b`)};
+`;
+
+// Record Edit Dropbox
+export const DropboxContainer = styled.div`
+  background-color: #f8fafc;
+  color: #0f172a;
+  border: 1px solid #cfcfcf;
+  z-index: 400;
+  width: 25%;
+  padding: 3% 0;
+  right: 10px;
+  top: 50px;
+  position: absolute;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 12px;
+  font-weight: 400;
+`;
+
+export const DropboxText = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 7%;
+`;
+
+export const DropboxIcon = styled(FontAwesomeIcon)`
+  margin: 0 5%;
+  font-size: 12px;
+  width: 12px;
 `;

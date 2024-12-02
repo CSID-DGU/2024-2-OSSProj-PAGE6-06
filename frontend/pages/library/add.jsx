@@ -2,8 +2,11 @@ import BookSearch from "@/components/library/BookSearch";
 import * as LS from "../../components/_styled/libraryStyled";
 import * as HCS from "../../components/layout/Styled";
 import { useEffect, useState } from "react";
+import { API } from "../api";
+import { useRouter } from "next/router";
 
 export default function AddLibrary() {
+  const router = useRouter();
   const [isSearchOpen, setSearchOpen] = useState(false);
   const handleSearchOpen = () => {
     setSearchOpen(true);
@@ -12,13 +15,40 @@ export default function AddLibrary() {
     setSearchOpen(false);
   };
 
-  const [selectedBook, setSelectedBook] = useState();
+  const [selectedBook, setSelectedBook] = useState(null);
   const handleBookClick = (book) => {
     setSelectedBook(book);
     handleSearchClose();
   };
 
-  useEffect(() => {}, [selectedBook]);
+  const handleSubmit = async () => {
+    if (!selectedBook) return;
+
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await API.post(
+        `/mylibrary/books/add`,
+        {
+          title: selectedBook.title,
+          author: selectedBook.author,
+          publisher: selectedBook.publisher,
+          coverImage: selectedBook.coverImage,
+          summary: selectedBook.summary,
+        },
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+      router.push(`/library`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // useEffect(() => {}, [selectedBook]);
 
   return (
     <LS.LibraryWrapper>
@@ -48,7 +78,7 @@ export default function AddLibrary() {
         <LS.AddBookInputSection>
           <LS.AddBookInputText>Writer</LS.AddBookInputText>
           <LS.AddBookInput
-            placeholder={selectedBook ? selectedBook.writer : "작가"}
+            placeholder={selectedBook ? selectedBook.author : "작가"}
             type="text"
           />
         </LS.AddBookInputSection>
@@ -69,7 +99,12 @@ export default function AddLibrary() {
           />
         </LS.AddBookInputSection>
 
-        <LS.AddBookSubmitButton>완료</LS.AddBookSubmitButton>
+        <LS.AddBookSubmitButton
+          onClick={handleSubmit}
+          $isActive={!selectedBook}
+        >
+          완료
+        </LS.AddBookSubmitButton>
       </LS.AddBookContainer>
     </LS.LibraryWrapper>
   );

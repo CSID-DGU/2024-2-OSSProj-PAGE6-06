@@ -53,7 +53,7 @@ export const ClubAllCardSection = styled.div`
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
   align-items: start;
-  padding: 0 5% 5% 5%;
+  padding: 0 5% 15% 5%;
 `;
 
 // Club Detail Page
@@ -78,7 +78,7 @@ export const ClubDetailTitle = styled.div`
   padding: 5%;
 `;
 
-export const ClubDetailImage = styled(Image)`
+export const ClubDetailImage = styled.img`
   width: 90%;
   margin: 0 5%;
   height: 200px;
@@ -108,6 +108,7 @@ export const ClubDetailInfoEach = styled.div`
 
 export const ClubDetailInfoIcon = styled(FontAwesomeIcon)`
   margin-right: 5px;
+  width: 12px;
 `;
 
 export const ClubDetailDescription = styled.div`
@@ -122,6 +123,9 @@ export const ClubDetailDescription = styled.div`
 export const ClubDetailRoutineSection = styled.div`
   width: 100%;
   padding: 5%;
+  text-align: center;
+  font-size: 14px;
+  color: #334155;
 `;
 
 // club create
@@ -143,6 +147,7 @@ export const ClubCreateImageButton = styled.label`
 
 export const ClubCreateImageButtonIcon = styled(FontAwesomeIcon)`
   font-size: 45px;
+  width: 45px;
   margin: 3%;
 `;
 

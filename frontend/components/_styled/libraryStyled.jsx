@@ -36,8 +36,9 @@ export const LibraryAdd = styled.div`
 `;
 
 export const LibraryButtonBox = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  font-size: 20px;
+  height: 30px;
   background-color: #cbd5e1;
   display: flex;
   align-items: center;
@@ -46,15 +47,15 @@ export const LibraryButtonBox = styled.div`
 `;
 
 export const LibraryAddButton = styled(FontAwesomeIcon)`
-  font-size: 24px;
+  font-size: 20px;
+  width: 20px;
 `;
 
 export const LibraryList = styled.div`
   width: 90%;
   margin: 0 5%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: flex-start;
 `;
 
@@ -137,4 +138,8 @@ export const AddBookSubmitButton = styled.div`
   align-items: center;
   font-size: 20px;
   font-weight: 500;
+
+  background-color: ${(props) => (props.$isActive ? "#cbd5e1" : "#64748B")};
+  color: ${(props) => (props.$isActive ? "#0f172a" : "#F8FAFC")};
+  ${(props) => props.$isActive && "pointer-events: none;"}
 `;
