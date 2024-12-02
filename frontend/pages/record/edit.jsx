@@ -26,19 +26,19 @@ export default function Edit() {
     }
   };
 
+  const [book, setBook] = useState("");
+  const [memo, setMemo] = useState("");
+
   useEffect(() => {
     setRecord(JSON.parse(localStorage.getItem("record")));
     fetchRoutine();
   }, []);
 
-  const [book, setBook] = useState(record.book.title);
-  const [memo, setMemo] = useState(record.memo);
-
   const fetchRecordEdit = async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await API.put(
-        `/record/delete/${router.query.id}`,
+        `/delete/record/${router.query.id}`,
         {
           memo: memo,
           title: book,
@@ -57,7 +57,7 @@ export default function Edit() {
   };
 
   const date = record.date;
-  const formatedDate = date.split("T")?.[0];
+  const formatedDate = date?.split("T")?.[0];
   const year = formatedDate?.split("-")[0];
   const month = formatedDate?.split("-")[1];
   const day = formatedDate?.split("-")[2];
@@ -69,10 +69,10 @@ export default function Edit() {
           <RTS.Date>
             {year}년 {month}월 {day}일
           </RTS.Date>
-          <RTS.Title>{routine?.title || record.routine.title}</RTS.Title>
+          <RTS.Title>{routine?.title || record.routine?.title}</RTS.Title>
         </RTS.RoutineInfo>
 
-        <Book setBook={setBook} initial={book} />
+        <Book setBook={setBook} initial={record} />
 
         <CRTS.InputContainer>
           <CRTS.Label>Where</CRTS.Label>
@@ -81,7 +81,7 @@ export default function Edit() {
           </CRTS.DropdownContainer>
         </CRTS.InputContainer>
 
-        <Memo setMemo={setMemo} initial={memo} />
+        <Memo setMemo={setMemo} initial={record} />
 
         <RTS.SubmitButton onClick={fetchRecordEdit} $isActive={!memo}>
           완료
