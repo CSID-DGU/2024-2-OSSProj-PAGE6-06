@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as S from "../Styled";
 
 export default function Memo({ setMemo, initial }) {
-  const [memoText, setMemoText] = useState(initial.memo || "");
+  const [memoText, setMemoText] = useState(initial?.memo || "");
 
   const handleChange = (e) => {
     setMemoText(e.target.value);
@@ -11,7 +11,7 @@ export default function Memo({ setMemo, initial }) {
 
   useEffect(() => {
     // console.log(initial);
-    if (initial.memo) {
+    if (initial?.memo) {
       setMemoText(initial.memo);
     }
   }, []);

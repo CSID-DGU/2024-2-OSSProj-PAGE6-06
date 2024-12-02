@@ -37,6 +37,7 @@ export const LibraryAdd = styled.div`
 
 export const LibraryButtonBox = styled.div`
   width: 30px;
+  font-size: 20px;
   height: 30px;
   background-color: #cbd5e1;
   display: flex;
@@ -47,6 +48,7 @@ export const LibraryButtonBox = styled.div`
 
 export const LibraryAddButton = styled(FontAwesomeIcon)`
   font-size: 20px;
+  width: 20px;
 `;
 
 export const LibraryList = styled.div`

@@ -62,7 +62,7 @@ export default function RecordModal({ book, handleRecordClose }) {
           exit={{ y: "100%", opacity: 0 }} // 모달이 아래로 사라짐
           transition={{ duration: 0.5 }} // 애니메이션 지속 시간
           style={{
-            position: "fixed",
+            position: "absolute",
             top: 0,
             left: 0,
             right: 0,

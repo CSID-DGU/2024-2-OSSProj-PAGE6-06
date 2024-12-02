@@ -24,7 +24,7 @@ export default function BookCard({
       />
       <S.BookInformation>
         <S.BookTitle>
-          {book.title}
+          <S.BookTitleText>{book.title}</S.BookTitleText>
           <S.BookMore icon={faDeleteLeft} onClick={handleDelete} />
         </S.BookTitle>
 

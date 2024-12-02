@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import KakaoMap from './KakaoMap';
-import * as S from '../Styled';
-import { faClose } from '@fortawesome/free-solid-svg-icons';
-import { useKakaoLoader } from 'react-kakao-maps-sdk'; 
+import React, { useState, useEffect } from "react";
+import KakaoMap from "./KakaoMap";
+import * as S from "../Styled";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { useKakaoLoader } from "react-kakao-maps-sdk";
 
 export default function PlaceModal({ onClose }) {
-  const [inputValue, setInputValue] = useState('');
-  const [searchKeyword, setSearchKeyword] = useState('');
+  const [inputValue, setInputValue] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   useKakaoLoader();
 
   useEffect(() => {
     const checkLocalStorage = () => {
-      const selectedPlaceName = localStorage.getItem('selectedPlaceName');
+      const selectedPlaceName = localStorage.getItem("selectedPlaceName");
       if (selectedPlaceName) {
         onClose();
       }
     };
 
     checkLocalStorage();
-    window.addEventListener('storage', checkLocalStorage);
+    window.addEventListener("storage", checkLocalStorage);
 
     return () => {
-      window.removeEventListener('storage', checkLocalStorage);
+      window.removeEventListener("storage", checkLocalStorage);
     };
   }, [onClose]);
 
@@ -33,9 +33,9 @@ export default function PlaceModal({ onClose }) {
   const handleSearch = () => {
     setSearchKeyword(inputValue);
   };
-  
+
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
       handleSearch();
     }

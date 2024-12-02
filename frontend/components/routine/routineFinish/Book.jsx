@@ -5,7 +5,7 @@ import { API } from "@/pages/api";
 
 export default function Book({ initial, setBook }) {
   const [selectedBook, setSelectedBook] = useState(
-    initial.book?.title || "책을 선택하세요"
+    initial?.book?.title || "책을 선택하세요"
   );
   const [isOpen, setIsOpen] = useState(false);
   const [bookList, setBookList] = useState([]);
@@ -27,7 +27,7 @@ export default function Book({ initial, setBook }) {
   useEffect(() => {
     fetchBookList();
     // console.log(initial);
-    if (initial.book) {
+    if (initial?.book) {
       setSelectedBook(initial.book.title);
     }
   }, []);

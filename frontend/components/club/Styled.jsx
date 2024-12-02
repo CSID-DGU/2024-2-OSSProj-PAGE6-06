@@ -39,7 +39,9 @@ export const ClubCardInfoText = styled.div`
   white-space: nowrap;
 `;
 
-export const ClubCardInfoIcon = styled(FontAwesomeIcon)``;
+export const ClubCardInfoIcon = styled(FontAwesomeIcon)`
+  width: 10px;
+`;
 
 export const ClubCardTitle = styled.div`
   font-size: 12px;
@@ -108,6 +110,7 @@ export const ClubSearchSection = styled.form`
 
 export const ClubSearchIcon = styled(FontAwesomeIcon)`
   font-size: 12px;
+  width: 12px;
 `;
 
 export const ClubSearchInput = styled.input`

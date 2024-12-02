@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import * as S from "./Styled";
-import { useRouter } from "next/router"; 
+import { useRouter } from "next/router";
 import { faCirclePlay, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import { API } from "@/pages/api";
 
 export default function RoutineList({ onSelectRoutine }) {
   const [routines, setRoutines] = useState([]);
-  const [selectedRoutine, setSelectedRoutine] = useState(null); 
+  const [selectedRoutine, setSelectedRoutine] = useState(null);
   const router = useRouter();
 
   const fetchRoutine = useCallback(async () => {
@@ -25,7 +25,7 @@ export default function RoutineList({ onSelectRoutine }) {
 
   const handleRoutineClick = (routine) => {
     setSelectedRoutine(routine);
-    onSelectRoutine && onSelectRoutine(routine); 
+    onSelectRoutine && onSelectRoutine(routine);
   };
 
   const handleStartButtonClick = () => {
@@ -38,7 +38,7 @@ export default function RoutineList({ onSelectRoutine }) {
         window.location.reload();
       });
     } else {
-      alert("루틴을 선택해주세요."); 
+      alert("루틴을 선택해주세요.");
     }
   };
 
