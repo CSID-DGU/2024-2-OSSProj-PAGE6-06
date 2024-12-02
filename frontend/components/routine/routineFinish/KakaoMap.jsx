@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import * as S from "../Styled";
 import { Map, MapMarker, useMap } from "react-kakao-maps-sdk";
 
-// const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_JS_KEY}&libraries=services&autoload=false`;
+const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_JS_KEY}&libraries=services&autoload=false`;
 
 const KakaoMap = ({ searchKeyword, onClose }) => {
   const [map, setMap] = useState(null);
@@ -14,14 +14,14 @@ const KakaoMap = ({ searchKeyword, onClose }) => {
   const [selectedPlaceName, setSelectedPlaceName] = useState(null);
   const [selectedPlaceAddress, setSelectedPlaceAddress] = useState(null);
 
-  // useEffect(() => {
-  //   const script = document.createElement("script");
-  //   script.src = KAKAO_SDK_URL;
-  //   script.onload = () => setIsScriptLoaded(true);
-  //   document.body.appendChild(script);
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = KAKAO_SDK_URL;
+    script.onload = () => setIsScriptLoaded(true);
+    document.body.appendChild(script);
 
-  //   return () => document.body.removeChild(script);
-  // }, []);
+    return () => document.body.removeChild(script);
+  }, []);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -141,7 +141,7 @@ const KakaoMap = ({ searchKeyword, onClose }) => {
                 setSelectedPlaceAddress(item.road_address_name);
               }}
             >
-              <S.MarkerBg markerIndex={i} />
+              <S.MarkerBg $markerIndex={i} />
               <S.Info>
                 <S.Title>{item.place_name}</S.Title>
                 <S.RoadAddress>{item.road_address_name}</S.RoadAddress>
