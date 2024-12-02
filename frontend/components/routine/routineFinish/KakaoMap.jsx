@@ -109,7 +109,7 @@ const KakaoMap = ({ searchKeyword, onClose }) => {
 
   return (
     <S.MapContainer>
-      <Script src={KAKAO_SDK_URL} strategy="beforeInteractive" />
+      {/* <Script src={KAKAO_SDK_URL} strategy="beforeInteractive" /> */}
       <Map
         center={userLocation || { lat: 33.450701, lng: 126.570667 }}
         style={{ width: "100%", height: "300px", zIndex: 10000 }}
@@ -141,7 +141,7 @@ const KakaoMap = ({ searchKeyword, onClose }) => {
                 setSelectedPlaceAddress(item.road_address_name);
               }}
             >
-              <S.MarkerBg markerIndex={i} />
+              <S.MarkerBg $markerIndex={i} />
               <S.Info>
                 <S.Title>{item.place_name}</S.Title>
                 <S.RoadAddress>{item.road_address_name}</S.RoadAddress>

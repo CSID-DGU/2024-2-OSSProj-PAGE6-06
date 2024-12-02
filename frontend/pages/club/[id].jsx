@@ -7,7 +7,7 @@ import {
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { API } from "../api";
 import { motion } from "framer-motion";
 
@@ -17,7 +17,7 @@ export default function ClubDetail({}) {
   const [club, setClub] = useState([]);
   const [routines, setRoutines] = useState([]);
 
-  const fetchClubDetail = async () => {
+  const fetchClubDetail = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
 
@@ -31,13 +31,13 @@ export default function ClubDetail({}) {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, [router.query.id]);
 
   useEffect(() => {
     if (router.query.id) {
       fetchClubDetail();
     }
-  }, []);
+  }, [router.query.id]);
 
   const formattedContent = club.content
     ?.split("\n")

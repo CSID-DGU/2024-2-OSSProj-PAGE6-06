@@ -2,7 +2,7 @@ import * as RTS from "@/components/_styled/routineStyled";
 import * as CRTS from "@/components/routine/Styled";
 import Book from "@/components/routine/routineFinish/Book";
 import Memo from "@/components/routine/routineFinish/Memo";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { API } from "../api";
 
@@ -11,7 +11,7 @@ export default function Edit() {
   const [record, setRecord] = useState({});
 
   const [routine, setRoutine] = useState({});
-  const fetchRoutine = async () => {
+  const fetchRoutine = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await API.get(`/routinelist`, {
@@ -24,7 +24,7 @@ export default function Edit() {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, [record.routine]);
 
   const [book, setBook] = useState("");
   const [memo, setMemo] = useState("");
@@ -34,7 +34,7 @@ export default function Edit() {
     fetchRoutine();
   }, []);
 
-  const fetchRecordEdit = async () => {
+  const fetchRecordEdit = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await API.put(
@@ -54,7 +54,7 @@ export default function Edit() {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, [memo, book, router]);
 
   const date = record.date;
   const formatedDate = date?.split("T")?.[0];

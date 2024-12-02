@@ -10,7 +10,9 @@ export const LayoutWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  border: 1px solid black;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 5px;
+  /* border: 1px solid black; */
   overflow: hidden;
   font-family: Pretendard;
 `;
