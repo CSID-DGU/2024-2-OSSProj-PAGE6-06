@@ -3,7 +3,6 @@ import * as RS from "@/components/_styled/routineStyled";
 import MakeRoutineButton from "@/components/routine/MakeRoutineButton";
 import RoutineList from "@/components/routine/RoutineList";
 import { useState } from "react";
-import { API } from "@/pages/api";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import RoutineDelete from "@/components/routine/routineDelete";
 

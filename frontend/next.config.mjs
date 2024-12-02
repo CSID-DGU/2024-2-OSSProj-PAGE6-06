@@ -51,7 +51,7 @@ const nextConfig = {
       //routine delete (delete)
       {
         source: "/routine/delete/:id",
-        destination: `http://${APIURL}/api/routinelist/delete/:id/`
+        destination: `http://${APIURL}/api/routinelist/create/:id/`
       },
       // user
       // user profile (GET)
@@ -73,7 +73,7 @@ const nextConfig = {
       // book delete (DELETE)
       {
         source: "/mylibrary/books/delete/:id",
-        destination: `http://${APIURL}/api/mylibrary/books/delete/:id/`,
+        destination: `http://${APIURL}/api/mylibrary/books/create/:id/`,
       },
       // book list (GET)
       {
