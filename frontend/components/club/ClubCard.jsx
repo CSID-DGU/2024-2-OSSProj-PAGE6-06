@@ -38,12 +38,17 @@ export default function ClubCard({ club, handleErrorModal }) {
 
   return (
     <S.ClubCardContainer>
-      <S.ClubCardImage
-        src={club.image}
-        width={160}
-        height={100}
-        alt="club_image"
-      />
+      {club.image ? (
+        <S.ClubCardImage
+          src={club.image}
+          width={160}
+          height={100}
+          alt="club_image"
+        />
+      ) : (
+        <>Loading...</>
+      )}
+
       <S.ClubCardInfo>
         <S.ClubCardInfoText>
           <S.ClubCardInfoIcon icon={faUserGroup} />

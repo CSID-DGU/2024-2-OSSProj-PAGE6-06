@@ -77,6 +77,7 @@ export const RecordBookTitle = styled.div`
   padding: 5%;
   width: 100%;
   line-height: 25px;
+  background-color: transparent;
 `;
 
 export const RecordModalCloseButton = styled(FontAwesomeIcon)`
@@ -139,6 +140,7 @@ export const SearchBookInput = styled.input`
   outline: none;
   border: none;
   background-color: transparent;
+  color: #64748b;
   font-weight: 500;
 `;
 

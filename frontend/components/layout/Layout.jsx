@@ -19,6 +19,10 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
+      if (url === "/") {
+        setFooterNav(false);
+        return;
+      }
       const path = url.split("/");
       setFooterNav(path.length <= 2); // URL의 경로 길이에 따라 Footer 상태 설정
     };
