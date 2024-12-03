@@ -32,7 +32,8 @@ export default function Timer() {
     }, [timeLeft, isPaused]);
 
     useEffect(() => {
-        if (zeroCount === 3) {
+        console.log(zeroCount);
+        if (zeroCount === 3 ) {
             router.replace('/routine/routineFinish');
         }
     }, [zeroCount]);
@@ -43,7 +44,6 @@ export default function Timer() {
         setIsPaused(!isPaused);
     };
 
-    // 남은 시간을 시, 분, 초로 변환
     const hours = String(Math.floor((timeLeft / (1000 * 60 * 60)) % 24)).padStart(2, '0');
     const minutes = String(Math.floor((timeLeft / 1000 / 60) % 60)).padStart(2, '0');
     const seconds = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, '0');

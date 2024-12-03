@@ -14,8 +14,12 @@ export default function RoutineDelete({ selectedDeleteRoutine, setDeleteModal, s
           Authorization: `Token ${token}`,
         },
       });
-      console.log(selectedDeleteRoutine.id);
+
+      setRoutines((prevRoutines) =>
+        prevRoutines.filter((routine) => routine.id !== selectedDeleteRoutine.id)
+      );
       setDeleteModal(false); 
+      window.location.reload();
     } catch (error) {
       console.error("루틴 삭제 실패:", error);
     }
