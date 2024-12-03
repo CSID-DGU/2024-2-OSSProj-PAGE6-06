@@ -15,11 +15,14 @@ export const LayoutWrapper = styled.div`
   /* border: 1px solid black; */
   overflow: hidden;
   font-family: Pretendard;
+  background-color: #fff;
+  color: #0f172a;
 `;
 
 export const LayoutContent = styled.div`
   flex: 1 0 auto;
   width: 100%;
+  background-color: #fff;
   /* margin: 5%; */
 `;
 

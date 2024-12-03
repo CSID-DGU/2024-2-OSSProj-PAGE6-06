@@ -30,43 +30,52 @@ export const ClubCardContent = styled.div`
   width: 300px;
   align-items: center;
   gap: 10px;
+  background-color: transparent;
 `;
 export const ClubImage = styled(Image)`
   width: 82px;
   height: 82px;
+  background-color: transparent;
 `;
 export const ClubInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  background-color: transparent;
 `;
 export const ClubName = styled.div`
   color: #0f172a;
   font-size: 14px;
   font-weight: 600;
+  background-color: transparent;
 `;
 export const ClubContent = styled.div`
   color: var(--gray500, #64748b);
   font-size: 12px;
   font-weight: 500;
+  background-color: transparent;
 `;
 export const ClubSubWrapper = styled.div`
   display: flex;
   gap: 23px;
+  background-color: transparent;
 `;
 export const ClubIconTextWrapper = styled.div`
   display: flex;
   gap: 6px;
+  background-color: transparent;
 `;
 export const ClubSubInfoText = styled.div`
   color: #64748b;
   font-size: 12px;
   font-weight: 500;
+  background-color: transparent;
 `;
 export const ClubIcon = styled(FontAwesomeIcon)`
   width: 12px;
   height: 12px;
   color: #475569;
+  background-color: transparent;
 `;
 export const GoClubIcon = styled(FontAwesomeIcon)`
   width: 14px;
@@ -143,6 +152,7 @@ export const BookCard = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
 `;
 export const BookInfoWrapper = styled.div`
   width: 100%;
@@ -205,10 +215,13 @@ export const Indicator = styled.div`
 export const SliderWrapper = styled.div`
   width: 100%;
   overflow: hidden;
+  background-color: transparent;
 `;
 
 export const Slider = styled.div`
   display: flex;
+  background-color: transparent;
+
   width: 105%;
   transition: transform 0.5s ease-in-out;
   transform: ${({ $currentIndex }) => `translateX(-${$currentIndex * 100}%)`};
@@ -222,4 +235,5 @@ export const BookContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
 `;
