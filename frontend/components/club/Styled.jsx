@@ -65,6 +65,7 @@ export const ClubCardButtonSection = styled.div`
   padding: 0 8% 8% 8%;
   font-size: 10px;
   font-weight: 500;
+  background-color: transparent;
 `;
 
 export const ClubCardButtonShow = styled.div`

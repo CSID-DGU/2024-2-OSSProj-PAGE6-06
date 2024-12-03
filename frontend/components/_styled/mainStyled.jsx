@@ -6,6 +6,7 @@ export const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+  background-color: #fff;
 `;
 export const MainContainer = styled.div`
   width: 100%;
@@ -17,6 +18,7 @@ export const MainContainer = styled.div`
   align-items: center;
   gap: 10px;
   padding-bottom: 80px;
+  background-color: #fff;
 
   /* Custom scrollbar styles */
   &::-webkit-scrollbar {

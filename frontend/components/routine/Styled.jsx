@@ -19,10 +19,12 @@ export const MakeRoutineButtonText = styled.div`
   font-weight: 600;
   line-height: 132%;
   letter-spacing: -0.4px;
+  background-color: transparent;
 `;
 export const PlusIcon = styled(FontAwesomeIcon)`
   width: 24px;
   height: 24px;
+  color: #334155;
 `;
 //RoutineList
 export const RoutineListContainer = styled.div`
@@ -80,12 +82,14 @@ export const RoutineText = styled.div`
   font-weight: 500;
   line-height: 132%;
   letter-spacing: -0.32px;
+  background-color: transparent;
 `;
 export const MinuteTextContainer = styled.div`
   width: 58px;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  background-color: transparent;
 `;
 export const VerticalLine = styled.div`
   width: 1px;
@@ -99,6 +103,7 @@ export const MinuteText = styled.div`
   font-weight: 500;
   line-height: 132%;
   letter-spacing: -0.32px;
+  background-color: transparent;
 `;
 
 export const StartButton = styled.button`
@@ -115,11 +120,13 @@ export const ClubIcon = styled(FontAwesomeIcon)`
   color: #475569;
   font-size: 12px;
   width: 12px;
+  background-color: transparent;
 `;
 export const RoutineTextContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  background-color: transparent;
 `;
 //Timer
 export const TimerContainer = styled.div`
@@ -226,6 +233,7 @@ export const BookText = styled.div`
   font-weight: 500;
   line-height: 132%;
   letter-spacing: -0.32px;
+  background-color: transparent;
 `;
 export const DownIcon = styled(FontAwesomeIcon)`
   width: 20px;

@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import styled from "styled-components";
 import Layout from "@/components/layout/Layout";
 import Head from "next/head";
+import { useEffect } from "react";
 
 const Body = styled.div`
   width: 100vw;
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="title" content="Reading Routine" />
         <meta name="description" content="오픈소스프로젝트-PAGE6" />
+        <meta name="color-scheme" content="light" />
       </Head>
       <Body>
         <Layout>
@@ -122,6 +124,7 @@ export default function App({ Component, pageProps }) {
               font: inherit;
               vertical-align: baseline;
               font-family: Pretendard;
+              background-color: #fff;
             }
             /* HTML5 display-role reset for older browsers */
             article,

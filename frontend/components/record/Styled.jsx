@@ -124,6 +124,7 @@ export const RecordCardRoutineInfoText = styled.div``;
 
 export const RecordCardBookTitle = styled.div`
   color: #475569;
+  background-color: transparent;
   font-size: 12px;
   padding-bottom: 2%;
 `;
@@ -155,8 +156,8 @@ export const RecordMonthListIcon = styled(FontAwesomeIcon)`
 export const RecordMonthListModalContainer = styled.div`
   width: 90%;
   margin: 5% 0;
+  border: 1px solid #64748b;
   border-radius: 10px;
-  border: #64748b 1px solid;
   /* padding: 3% 0; */
   font-size: 14px;
   font-weight: 500;
@@ -174,8 +175,9 @@ export const RecordMonthListModalText = styled.div`
   font-size: 14px;
   font-weight: 500;
   color: #0f172a;
-  width: 100%;
-  padding: 5%;
+  width: 90%;
+  margin: 0 10%;
+  padding: 5% 0;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -209,6 +211,7 @@ export const DropboxText = styled.div`
   align-items: center;
   justify-content: space-evenly;
   padding: 7%;
+  background-color: transparent;
 `;
 
 export const DropboxIcon = styled(FontAwesomeIcon)`
