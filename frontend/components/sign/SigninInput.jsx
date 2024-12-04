@@ -21,6 +21,7 @@ export default function SigninInput() {
       });
       const token = response.data.token;
       localStorage.setItem("token", token);
+      document.cookie = `token=${token}; path=/`;
       // console.log('로그인 성공', token);
       router.push("/main");
     } catch (error) {

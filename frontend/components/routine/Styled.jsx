@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 //MakeRoutineButton
 export const MakeRoutineButton = styled.button`
-  width: 345px;
+  width: 90%;
   height: 60px;
   border-radius: 10px;
   border: none;
@@ -28,12 +28,13 @@ export const PlusIcon = styled(FontAwesomeIcon)`
 `;
 //RoutineList
 export const RoutineListContainer = styled.div`
-  width: 346px;
+  width: 90%;
   height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  margin-top: 5%;
   justify-content: space-between;
 `;
 export const SettingIconWrapper = styled.div`
@@ -135,6 +136,7 @@ export const TimerContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: transparent;
 `;
 export const TimerText = styled.p`
   color: #0f172a;
@@ -145,6 +147,7 @@ export const TimerText = styled.p`
   letter-spacing: -0.96px;
   position: relative;
   bottom: 200px;
+  background: transparent;
 `;
 
 //TimerInfo
@@ -153,6 +156,7 @@ export const TimerInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  background: transparent;
 `;
 export const TitleText = styled.div`
   color: #0f172a;
@@ -161,6 +165,7 @@ export const TitleText = styled.div`
   font-weight: 600;
   line-height: 132%;
   letter-spacing: -0.4px;
+  background: transparent;
 `;
 export const ContentText = styled.div`
   color: var(--gray600, #475569);
@@ -169,12 +174,14 @@ export const ContentText = styled.div`
   font-weight: 500;
   line-height: 132%;
   letter-spacing: -0.3px;
+  background: transparent;
 `;
 //ProgressBar
 export const ProgressBarContainer = styled.div`
   width: 100%;
   position: relative;
   bottom: 50px;
+  background: transparent;
 `;
 export const PauseButton = styled.button`
   width: 70px;
@@ -248,6 +255,7 @@ export const DropdownListItem = styled.div`
   font-weight: 500;
   line-height: 132%;
   letter-spacing: -0.32px;
+  background: transparent;
 
   &:hover {
     background-color: #cbd5e1;
@@ -333,6 +341,7 @@ export const MapContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  background: transparent;
 `;
 
 export const PlacesList = styled.ul`
