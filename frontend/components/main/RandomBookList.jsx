@@ -42,16 +42,16 @@ function RandomBookList() {
                 <S.BookInfoWrapper>
                   <S.BookInfo>
                     <S.BookImage
-                      src={item.book.coverImage}
+                      src={item.coverImage}
                       width={114}
                       height={163}
-                      alt={`${item.book.title} 커버 이미지`}
+                      alt={`${item.title} 커버 이미지`}
                     />
-                    <S.BookTitle>{item.book.title}</S.BookTitle>
-                    <S.Author>{item.book.author}</S.Author>
+                    <S.BookTitle>{item.title}</S.BookTitle>
+                    <S.Author>{item.author}</S.Author>
                   </S.BookInfo>
                 </S.BookInfoWrapper>
-                <S.Story>{item.book.summary}</S.Story>
+                <S.Story>{item.summary}</S.Story>
               </S.BookContent>
             ))}
           </S.Slider>
