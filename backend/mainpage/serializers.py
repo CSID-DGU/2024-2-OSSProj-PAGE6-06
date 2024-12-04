@@ -2,6 +2,7 @@ from rest_framework import serializers
 from mylibrary.models import UserBook, Book
 from clublist.models import Club, UserJoinedRoutine
 from routinelist.models import RoutineComplete
+from django.db.models import Count 
 
 # Book 모델을 위한 시리얼라이저
 class BookDetailSerializer(serializers.ModelSerializer):
@@ -9,18 +10,16 @@ class BookDetailSerializer(serializers.ModelSerializer):
         model = Book
         fields = ['title', 'author', 'coverImage', 'summary']
 
-# UserBook 모델을 위한 시리얼라이저
-class BookSerializer(serializers.ModelSerializer):
-    book = BookDetailSerializer(read_only=True)
-    read_count = serializers.SerializerMethodField()
+# # UserBook 모델을 위한 시리얼라이저
+top_books = UserBook.objects.select_related('book').annotate(read_count=Count('book')).order_by('-read_count')[:5]
 
-    class Meta:
-        model = UserBook
-        fields = ['book', 'read_count']
+class BookSerializer(serializers.Serializer):
+    title = serializers.CharField(source='book__title')
+    author = serializers.CharField(source='book__author')
+    coverImage = serializers.URLField(source='book__coverImage')
+    summary = serializers.CharField(source='book__summary')
+    read_count = serializers.IntegerField()
 
-    def get_read_count(self, obj):
-        # 임의로 read_count 값을 반환, 필요에 따라 적절한 로직으로 변경
-        return obj.book.read_count if hasattr(obj.book, 'read_count') else 0
 
 # Club 모델을 위한 시리얼라이저
 class ClubSerializer(serializers.ModelSerializer):
