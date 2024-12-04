@@ -124,7 +124,7 @@ export default function App({ Component, pageProps }) {
               font: inherit;
               vertical-align: baseline;
               font-family: Pretendard;
-              background-color: #fff;
+              // background-color: #fff;
             }
             /* HTML5 display-role reset for older browsers */
             article,

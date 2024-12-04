@@ -112,7 +112,12 @@ const KakaoMap = ({ searchKeyword, onClose }) => {
       {/* <Script src={KAKAO_SDK_URL} strategy="beforeInteractive" /> */}
       <Map
         center={userLocation || { lat: 33.450701, lng: 126.570667 }}
-        style={{ width: "100%", height: "300px", zIndex: 10000 }}
+        style={{
+          width: "100%",
+          height: "300px",
+          zIndex: 10000,
+          background: "transparent",
+        }}
         onCreate={setMap}
       >
         {markers.map((marker, i) => (

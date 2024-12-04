@@ -39,6 +39,7 @@ export default function UserInfo() {
 
   const handleLogout = async () => {
     localStorage.removeItem("token");
+    document.cookie = "token=; path=/;";
     router.push("/sign/in");
   };
 
