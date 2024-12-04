@@ -63,7 +63,11 @@ export default function JoinClub() {
               />
               <S.ClubInfoContainer>
                 <S.ClubName>{club.title}</S.ClubName>
-                <S.ClubContent>{club.content}</S.ClubContent>
+                <S.ClubContent>
+                  {club.content.length > 20
+                    ? club.content.slice(0, 20) + "..."
+                    : club.content}
+                </S.ClubContent>
                 <S.ClubSubWrapper>
                   <S.ClubIconTextWrapper>
                     <S.ClubIcon icon={faUserGroup} />
