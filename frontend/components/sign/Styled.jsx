@@ -64,7 +64,7 @@ export const SigninInputBox = styled.input`
         color: var(--gray500, #64748B);
         font-size: 14px;
         font-weight: 500;
-        line-height: 132%; /* 21.12px */
+        line-height: 132%; 
         letter-spacing: -0.32px;
     }
     &:focus {
@@ -72,15 +72,18 @@ export const SigninInputBox = styled.input`
         outline-width:0.6ßpx;
     }  
 `;
-
+export const SubmitButtonWrapper = styled.div`
+    width:100%;
+`;
 export const SubmitButton = styled.button`
-    width: 100%;
+    width: 90%;
     height:61px;
-    margin-top:27px;
+    position: absolute;
+    bottom:2vh;
     border:none;
     border-radius: 10px;
     background: var(--gray300, #64748B);
-
+    
     color: #FFF;
     text-align: center;
     font-size: 18px;
@@ -91,7 +94,6 @@ export const SubmitButton = styled.button`
     &:disabled {
         background-color: #CBD5E1;
     }   
-    
 `;
 
 export const SingupLink = styled.div`
@@ -117,7 +119,9 @@ export const SignupForm = styled.form`
     flex-direction:column;
     align-items:flex-start;
     width:100%;
-    gap: 14px;
+    gap: 14px; 
+    max-height: 60vh; 
+    overflow-y: auto; 
 `;
 
 export const SignupInputLabel = styled(SigninInputLabel)`

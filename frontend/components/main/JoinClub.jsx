@@ -27,18 +27,14 @@ export default function JoinClub() {
         fetchClubs(); 
       }, []);
 
-    const formatTime = (createdAt) => {
-        const createdDate = new Date(createdAt);
-        const now = new Date();
-        const diffInMinutes = Math.floor((now - createdDate) / (1000 * 60)); 
-
-        const hours = Math.floor(diffInMinutes / 60);
-        const remainingMinutes = diffInMinutes % 60;
-
+    const formatTime = (time) => {
+        const hours = Math.floor(time / 60); 
+        const remainingMinutes = time % 60;  
+    
         if (hours > 0) {
-            return `${hours}시간 ${remainingMinutes > 0 ? `${remainingMinutes}분` : ''} 전`;
+            return `${hours}시간 ${remainingMinutes > 0 ? `${remainingMinutes}분` : ''} `;
         }
-        return `${remainingMinutes}분 전`;
+        return `${remainingMinutes}분`;
     };
 
     return (
@@ -66,7 +62,7 @@ export default function JoinClub() {
                                     </S.ClubIconTextWrapper>
                                     <S.ClubIconTextWrapper>
                                         <S.ClubIcon icon={faClock} />
-                                        <S.ClubSubInfoText>{formatTime(club.createdAt)}</S.ClubSubInfoText> {/*시간 받아오는값 수정필요*/}
+                                        <S.ClubSubInfoText>{formatTime(club.time)}</S.ClubSubInfoText> 
                                     </S.ClubIconTextWrapper>
                                 </S.ClubSubWrapper>
                             </S.ClubInfoContainer>
