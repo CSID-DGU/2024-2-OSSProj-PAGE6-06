@@ -25,7 +25,8 @@ export default function RoutineList({ onSelectRoutine }) {
 
   const handleRoutineClick = (routine) => {
     setSelectedRoutine(routine);
-    onSelectRoutine && onSelectRoutine(routine); 
+    onSelectRoutine(routine); 
+    console.log(routine);
   };
 
   const handleStartButtonClick = () => {

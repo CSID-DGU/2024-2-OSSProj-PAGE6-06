@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
 import * as S from "./Styled";
 import { API } from "@/pages/api";
+import { useCallback } from "react";
 
 export default function BookDelete({ selectedDeleteBook, setDeleteModal }) {
   const router = useRouter();
-  const fetchDeleteBook = async () => {
+  const fetchDeleteBook = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await API.delete(
@@ -15,16 +16,16 @@ export default function BookDelete({ selectedDeleteBook, setDeleteModal }) {
           },
         }
       );
-      setDeleteModal(false);
+      setDeleteModal();
       router.reload();
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [selectedDeleteBook.id, router]);
 
   return (
     <S.DeleteDropboxContainer>
-      "{selectedDeleteBook.title}"을/를 삭제하시겠습니까?
+      &quot;{selectedDeleteBook.title}&quot;을/를 삭제하시겠습니까?
       <S.DeleteDropboxButtonSection>
         <S.DeleteDropboxButton
           onClick={fetchDeleteBook}

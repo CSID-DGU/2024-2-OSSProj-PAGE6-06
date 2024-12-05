@@ -1,29 +1,26 @@
-import { useRouter } from "next/router";
+import { useCallback } from "react";
 import * as S from "./Styled";
+import { useRouter } from "next/router";
 import { API } from "@/pages/api";
 
 export default function RoutineDelete({ selectedDeleteRoutine, setDeleteModal, setRoutines }) {
   const router = useRouter();
-
-  const fetchDeleteRoutine = async () => {
+  const fetchDeleteRoutine = useCallback(async () => {
     try {
-      console.log(selectedDeleteRoutine.id);
       const token = localStorage.getItem("token");
-      await API.delete(`/routine/delete/${selectedDeleteRoutine.id}`, {
+      console.log(selectedDeleteRoutine);
+      const response = await API.delete(`routinelist/routine/delete/${selectedDeleteRoutine.id}`, {
         headers: {
           Authorization: `Token ${token}`,
         },
       });
-
-      setRoutines((prevRoutines) =>
-        prevRoutines.filter((routine) => routine.id !== selectedDeleteRoutine.id)
-      );
-      setDeleteModal(false); 
-      window.location.reload();
+        setDeleteModal(false);
+        router.reload();
+        console.log("삭제 성공:", response.data);
     } catch (error) {
       console.error("루틴 삭제 실패:", error);
     }
-  };
+  }, [setRoutines]);
 
   return (
     <S.DeleteDropboxContainer>
@@ -32,16 +29,18 @@ export default function RoutineDelete({ selectedDeleteRoutine, setDeleteModal, s
       </S.ModalText>
       <S.DeleteDropboxButtonSection>
         <S.DeleteDropboxButton
-          onClick={fetchDeleteRoutine}
+          onClick={fetchDeleteRoutine} 
           style={{ color: "red" }}
         >
           삭제
         </S.DeleteDropboxButton>
         <S.DeleteDropboxButtonLine />
-        <S.DeleteDropboxButton onClick={() => setDeleteModal(false)}>
+        <S.DeleteDropboxButton
+          onClick={() => setDeleteModal(false)} 
+        >
           취소
         </S.DeleteDropboxButton>
       </S.DeleteDropboxButtonSection>
     </S.DeleteDropboxContainer>
   );
-}
+};

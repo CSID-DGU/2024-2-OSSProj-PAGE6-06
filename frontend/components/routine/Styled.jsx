@@ -103,9 +103,12 @@ export const MinuteText = styled.div`
 `;
 
 export const StartButton = styled.button`
+  position: absolute;
+  background: none;
+  bottom:115px;
   width: 70px;
   height: 70px;
-  all: unset;
+  border:none;
 `;
 export const StartIcon = styled(FontAwesomeIcon)`
   width: 70px;
