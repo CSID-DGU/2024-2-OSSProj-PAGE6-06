@@ -42,7 +42,15 @@ export default function RoutineList({ onSelectRoutine }) {
       alert("루틴을 선택해주세요."); 
     }
   };
+  const formatTime = (time) => {
+    const hours = Math.floor(time / 60); 
+    const remainingMinutes = time % 60;  
 
+    if (hours > 0) {
+        return `${hours}시간 ${remainingMinutes > 0 ? `${remainingMinutes}분` : ''} `;
+    }
+    return `${remainingMinutes}분`;
+};
   useEffect(() => {
     fetchRoutine();
   }, [fetchRoutine]);
@@ -62,7 +70,7 @@ export default function RoutineList({ onSelectRoutine }) {
               </S.RoutineTextContainer>
               <S.MinuteTextContainer>
                 <S.VerticalLine />
-                <S.MinuteText>{routine.time}분</S.MinuteText>
+                <S.MinuteText>{formatTime(routine.time)}</S.MinuteText>
               </S.MinuteTextContainer>
             </S.RoutineContainer>
           ))}
