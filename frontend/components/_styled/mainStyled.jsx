@@ -15,7 +15,7 @@ export const MainContainer = styled.div`
   height: 100%;
   height: calc(100vh);
   align-items: center;
-  gap: 10px;
+  gap: 40px;
   padding-bottom: 80px;
 
   /* Custom scrollbar styles */

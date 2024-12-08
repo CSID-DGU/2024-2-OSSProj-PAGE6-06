@@ -82,32 +82,39 @@ export const PopularPlaceContainer = styled.div`
     gap:20px;
 `;
 export const PlaceCardContainer = styled.div`
-    width: 355px;
-    height:155px;
+    width: 100%;
     display:flex;
     gap:20px;
-    overflow-x: auto;
+    flex-direction: column;
 `;
 
 export const PlaceCard = styled.div`
-    width:131px;
-    height:146px;
-    display:flex;
+    width: 100%;
+    display: flex;
     flex-direction: column;
-    gap:13px;
+    gap: 13px;
     align-items: center;
     border-radius: 10px;
-    background:  #FFF;
-    margin-left:5px;
-    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+    background: #FFF;
+    margin-left: 5px;
+    box-shadow: 0px 3px 4px 1px rgba(0, 0, 0, 0.25);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 1;
+    &.fade-out {
+        opacity: 0;
+        transform: translateY(30%);
+    }
+    &.fade-in {
+        opacity: 5;
+        transform: translateX(0);
+    }
 `;
 export const PlaceTextContainer = styled.div`
     display:flex;
-    width:113px;
-    text-align: left;
-    flex-direction: column;
+    width:100%;
     gap:5px;
     padding: 5%;
+    justify-content: space-between;
 `;
 export const PlaceNameText = styled.div`
     color: #1E293B;
