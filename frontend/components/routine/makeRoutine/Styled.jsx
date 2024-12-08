@@ -35,7 +35,7 @@ export const Input = styled.input`
         outline:none; 
     }
     &::placeholder {
-        color: #94A3B8;
+        color:#94A3B8;
     }
 
 `;
