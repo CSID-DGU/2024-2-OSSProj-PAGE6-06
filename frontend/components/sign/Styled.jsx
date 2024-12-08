@@ -16,6 +16,9 @@ export const MainTitle = styled.div`
     font-size: 24px;
     font-weight: 700;
     letter-spacing: -0.48px;
+    @media (max-height: 667px) {
+        font-size: 20px;
+    }
 `;
 
 export const SubTitle = styled.div`
@@ -25,6 +28,9 @@ export const SubTitle = styled.div`
     font-weight: 400;
     line-height: 132%; /* 19.8px */
     letter-spacing: -0.3px;
+    @media (max-height: 667px) {
+        font-size: 15px;
+    }
 `;
 
 //SigninInput
@@ -94,6 +100,9 @@ export const SubmitButton = styled.button`
     &:disabled {
         background-color: #CBD5E1;
     }   
+    @media (max-height: 667px) {
+        height:50px;
+    }
 `;
 
 export const SingupLink = styled.div`
@@ -120,8 +129,12 @@ export const SignupForm = styled.form`
     align-items:flex-start;
     width:100%;
     gap: 14px; 
-    max-height: 60vh; 
+    max-height: 80vh; 
     overflow-y: auto; 
+    @media (max-height: 667px) {
+        max-height: 72vh;
+        gap:10px;
+    }
 `;
 
 export const SignupInputLabel = styled(SigninInputLabel)`
@@ -149,6 +162,7 @@ export const ImageOption = styled.div`
     border-radius:95px;
     border: ${props => (props.selected ? '1px solid #64748B' : 'none')};
     background: var(--gray100, );
+    
 `;
 
 //UserInfo

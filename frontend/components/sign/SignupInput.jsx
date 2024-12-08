@@ -69,17 +69,16 @@ export default function SignupInput() {
     e.preventDefault();
     if (isFormValid() && isEmailValid && isPasswordMatch) {
       fetchSignup();
+    } else {
+      console.log('Form is invalid');
     }
-    console.log(values);
   };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((prevValues) => {
       const updatedValues = { ...prevValues, [name]: value };
       setIsEmailValid(validateEmail(updatedValues.email));
       setIsPasswordMatch(updatedValues.password === updatedValues.passwordConfirm);
-
       return updatedValues;
     });
   };
@@ -89,6 +88,7 @@ export default function SignupInput() {
       ...prevValues,
       image: `image${imageNumber + 1}`,
     }));
+    console.log(imageNumber)
   };
 
   return (
@@ -169,16 +169,17 @@ export default function SignupInput() {
         {errorMessage.username && (
           <S.ErrorMessage>{errorMessage.username}</S.ErrorMessage>
         )}
-      </S.SignupForm>
-      <S.SubmitButtonWrapper>
-          <S.SubmitButton
-            type="submit"
-            disabled={!(isFormValid() && isEmailValid && isPasswordMatch)}
-          >
-            회원가입
-          </S.SubmitButton>
-          {errorMessage.general && <S.ErrorMessage>{errorMessage.general}</S.ErrorMessage>}
+      
+        <S.SubmitButtonWrapper>
+            <S.SubmitButton
+              type="submit"
+              disabled={!(isFormValid() && isEmailValid && isPasswordMatch)}
+            >
+              회원가입
+            </S.SubmitButton>
+            {errorMessage.general && <S.ErrorMessage>{errorMessage.general}</S.ErrorMessage>}
         </S.SubmitButtonWrapper>
+      </S.SignupForm>
     </S.InputFormContainer>
   );
 }

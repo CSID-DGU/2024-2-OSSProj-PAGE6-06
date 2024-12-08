@@ -68,10 +68,37 @@ export const ClubIcon = styled(FontAwesomeIcon)`
     height:12px;
     color:#475569;
 `;
+export const EmptyState = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+`;
+
+export const EmptyIcon = styled(FontAwesomeIcon)`
+    font-size: 24px;
+    color: #94A3B8;
+`;
+
+export const EmptyText = styled.div`
+    color: #475569;
+    font-size: 14px;
+    font-weight: 500;
+`;
+
 export const GoClubIcon = styled(FontAwesomeIcon)`
-    width:14px;
-    height:14px;
-    color:#475569;
+    width: 14px;
+    height: 14px;
+    color: #475569;
+    cursor: pointer;
+
+    &:hover {
+        color: #1E293B; 
+    }
 `;
 
 //PopularClub
