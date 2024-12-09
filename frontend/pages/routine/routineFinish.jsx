@@ -40,6 +40,7 @@ export default function RoutineFinish() {
             localStorage.removeItem("routineTitle");
             localStorage.removeItem("selectedPlaceName");
             localStorage.removeItem("selectedPlaceAddress");
+            localStorage.removeItem("isRoutineFinished"); 
             router.push('/record')
 
         } catch (err) {
@@ -48,6 +49,12 @@ export default function RoutineFinish() {
     }, []);
 
     useEffect(() => {
+        const isRoutineFinished = localStorage.getItem('isRoutineFinished');
+        if (!isRoutineFinished || isRoutineFinished !== 'true') {
+            alert('루틴이 종료되어야 완료 기록을 작성 할 수 있습니다');
+            router.push('/routine'); 
+            return;
+        }
         const today = new Date();
         const formattedDate = today.toLocaleDateString('ko-KR', {
             year: 'numeric',
