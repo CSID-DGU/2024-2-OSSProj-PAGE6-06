@@ -140,6 +140,8 @@ export const MakeRoutineContentContainer = styled(RoutineContentContainer)`
   flex-direction: column;
   gap: 21px;
   margin-top: 22px;
+  width: 100%;
+  padding: 0 5%;
 `;
 export const PageTitle = styled.div`
   width: 100%;

@@ -5,6 +5,7 @@ export const FormContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
 `;
 export const Label = styled.div`
@@ -105,7 +106,7 @@ export const DropdownItem = styled.div`
   letter-spacing: -0.32px;
 `;
 export const SubmitButton = styled.div`
-  width: 346px;
+  width: 90%;
   height: 61px;
   border-radius: 10px;
   background: #cbd5e1;
