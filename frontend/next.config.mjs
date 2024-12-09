@@ -78,7 +78,7 @@ const nextConfig = {
       // book delete (DELETE)
       {
         source: "/mylibrary/books/delete/:id",
-        destination: `http://${APIURL}/api/mylibrary/books/create/:id/`,
+        destination: `http://${APIURL}/api/mylibrary/books/delete/:id/`,
       },
       // book list (GET)
       {
