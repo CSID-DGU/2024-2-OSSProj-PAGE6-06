@@ -3,7 +3,12 @@ import * as S from "./Styled";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import RecordEditDropbox from "./RecordEditDropbox";
 
-export default function RecordCard({ record, routine }) {
+export default function RecordCard({
+  record,
+  routine,
+  deleteModal,
+  setDeleteModal,
+}) {
   const [editModal, setEditModal] = useState(false);
   const editModalRef = useRef();
 
@@ -34,7 +39,12 @@ export default function RecordCard({ record, routine }) {
             onClick={() => setEditModal(!editModal)}
           />
           {editModal && (
-            <RecordEditDropbox record={record} editModalRef={editModalRef} />
+            <RecordEditDropbox
+              record={record}
+              editModalRef={editModalRef}
+              deleteModal={deleteModal}
+              setDeleteModal={setDeleteModal}
+            />
           )}
         </S.RecordCardRoutine>
         <S.RecordCardRoutineInfo>
