@@ -59,6 +59,12 @@ export const LibraryList = styled.div`
   align-items: flex-start;
 `;
 
+export const LibraryListEmpty = styled.div`
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+`;
+
 // add book
 export const AddBookContainer = styled.div`
   width: 100%;

@@ -55,6 +55,7 @@ export const ClubAllCardSection = styled.div`
   justify-items: center;
   align-items: start;
   padding: 0 5% 120px 5%;
+  margin-bottom: 80px;
 `;
 
 // Club Detail Page

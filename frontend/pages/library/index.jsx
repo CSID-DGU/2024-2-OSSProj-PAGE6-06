@@ -87,20 +87,24 @@ export default function Library() {
           </LS.LibraryButtonBox>
         </LS.LibraryAdd>
         {/* Library List Section */}
-        <LS.LibraryList>
-          {books.map((book, idx) => (
-            <BookCard
-              onClick={() => {
-                handleRecordClick(book);
-              }}
-              key={idx}
-              book={book}
-              deleteModal={deleteModal}
-              setDeleteModal={setDeleteModal}
-              setSelectedDeleteBook={setSelectedDeleteBook}
-            />
-          ))}
-        </LS.LibraryList>
+        {books.length === 0 ? (
+          <LS.LibraryListEmpty>등록된 책 정보가 없습니다.</LS.LibraryListEmpty>
+        ) : (
+          <LS.LibraryList>
+            {books.map((book, idx) => (
+              <BookCard
+                onClick={() => {
+                  handleRecordClick(book);
+                }}
+                key={idx}
+                book={book}
+                deleteModal={deleteModal}
+                setDeleteModal={setDeleteModal}
+                setSelectedDeleteBook={setSelectedDeleteBook}
+              />
+            ))}
+          </LS.LibraryList>
+        )}
       </LS.LibraryContainer>
     </LS.LibraryWrapper>
   );
