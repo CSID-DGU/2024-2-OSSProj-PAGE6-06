@@ -25,7 +25,9 @@ export default function BookDelete({ selectedDeleteBook, setDeleteModal }) {
 
   return (
     <S.DeleteDropboxContainer>
-      &quot;{selectedDeleteBook.title}&quot;을/를 삭제하시겠습니까?
+      &quot;{selectedDeleteBook.title}&quot;을/를
+      <br />
+      삭제하시겠습니까?
       <S.DeleteDropboxButtonSection>
         <S.DeleteDropboxButton
           onClick={fetchDeleteBook}

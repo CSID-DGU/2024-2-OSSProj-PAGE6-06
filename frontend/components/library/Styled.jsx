@@ -223,6 +223,8 @@ export const DeleteDropboxContainer = styled.div`
   justify-content: center;
   font-size: 14px;
   font-weight: 500;
+  text-align: center;
+  line-height: 20px;
 `;
 
 export const DeleteDropboxButtonSection = styled.div`
