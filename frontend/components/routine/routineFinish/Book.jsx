@@ -33,6 +33,7 @@ export default function Book({ initial, setBook }) {
   };
 
   const selectBook = (book) => {
+    setSelectedBook(book.title);
     setBook(book.title); 
     setIsOpen(false);
   };

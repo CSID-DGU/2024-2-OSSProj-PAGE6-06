@@ -12,6 +12,7 @@ export default function Timer() {
 
     useEffect(() => {
         if (typeof window !== "undefined") {
+            localStorage.setItem('isRoutineInProgress', 'false');
             const storedTime = localStorage.getItem('routineTime');
             const timeInMs = storedTime ? parseInt(storedTime, 10) * 60 * 1000 : 90 * 60 * 1000;
             setTimeLeft(timeInMs);
