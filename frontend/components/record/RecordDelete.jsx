@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import * as S from "../library/Styled";
 import { API } from "@/pages/api";
 
-export default function RecordDelete({ selectedDeleteRecord, setDeleteModel }) {
+export default function RecordDelete({ selectedDeleteRecord, setDeleteModal }) {
   const router = useRouter();
   const fetchDeleteRecord = async () => {
     try {
@@ -15,7 +15,7 @@ export default function RecordDelete({ selectedDeleteRecord, setDeleteModel }) {
           },
         }
       );
-      setDeleteModel(false);
+      setDeleteModal(false);
       router.reload();
     } catch (error) {
       console.log(error);
@@ -33,7 +33,7 @@ export default function RecordDelete({ selectedDeleteRecord, setDeleteModel }) {
           삭제
         </S.DeleteDropboxButton>
         <S.DeleteDropboxButtonLine />
-        <S.DeleteDropboxButton onClick={() => setDeleteModel(false)}>
+        <S.DeleteDropboxButton onClick={() => setDeleteModal(false)}>
           취소
         </S.DeleteDropboxButton>
       </S.DeleteDropboxButtonSection>

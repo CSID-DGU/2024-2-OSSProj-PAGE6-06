@@ -257,13 +257,13 @@ export const DeleteDropboxButton = styled.div`
 export const RecordDeleteDropboxContainer = styled.div`
   background-color: #fff;
   color: #0f172a;
-  top: 0;
+  top: 40vh;
   left: 0;
   z-index: 1000;
   width: 90%;
   margin: 3% 5%;
   padding-top: 7%;
-  position: fixed;
+  position: absolute;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   overflow: hidden;

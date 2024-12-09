@@ -2,7 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
 export const RecordCardWrapper = styled.div`
-  width: 100%;
+  width: 90%;
+  margin: 3% 5%;
 `;
 
 export const RecordCardContainer = styled.div`

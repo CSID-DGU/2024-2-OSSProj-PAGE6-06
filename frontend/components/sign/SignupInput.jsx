@@ -1,28 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from 'react';
 import * as S from "./Styled.jsx";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import profile1 from "../common/image/profile1.png";
-import profile2 from "../common/image/profile2.png";
-import profile3 from "../common/image/profile3.png";
-import profile4 from "../common/image/profile4.png";
-import { API } from "@/pages/api";
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import profile1 from '../common/image/profile1.png';
+import profile2 from '../common/image/profile2.png';
+import profile3 from '../common/image/profile3.png';
+import profile4 from '../common/image/profile4.png';
+import { API } from "@/pages/api"; 
 
 export default function SignupInput() {
   const router = useRouter();
   const profileImgList = [profile1, profile2, profile3, profile4];
-  const [isValid, setIsValid] = useState(false);
-  const [isEmailValid, setIsEmailValid] = useState(true);
-  const [isPasswordMatch, setIsPasswordMatch] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  const [isPasswordMatch, setIsPasswordMatch] = useState(false);
+  const [errorMessage, setErrorMessage] = useState({});
   const [values, setValues] = useState({
-    image: "",
-    email: "",
-    nickname: "",
-    name: "",
-    password: "",
-    passwordConfirm: "",
+    image: '',
+    email: '',
+    nickname: '',
+    name: '',
+    password: '',
+    passwordConfirm: ''
   });
+
+  const isFormValid = useCallback(() => {
+    return (
+      values.image.trim() !== '' &&
+      values.email.trim() !== '' &&
+      values.password.trim() !== '' &&
+      values.nickname.trim() !== '' &&
+      values.name.trim() !== ''
+    );
+  }, [values]);
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const fetchSignup = async () => {
     try {
@@ -34,43 +48,39 @@ export default function SignupInput() {
         nickname: values.nickname,
         profileImage: values.image,
       });
-      // console.log("회원가입 성공:", response);
-      // console.log(values);
-      router.push("/sign/in");
+      console.log("회원가입 성공:", response);
+      router.push('/sign/in');
     } catch (error) {
-      console.error("회원가입 요청 중 오류 발생:", error);
-      setErrorMessage("회원가입 요청 중 오류가 발생했습니다.");
+      if (error.response && error.response.status === 400) {
+        setErrorMessage({
+          username: error.response.data.username ? error.response.data.username[0] : '',
+          nickname: error.response.data.nickname ? error.response.data.nickname[0] : '',
+          password: error.response.data.password ? error.response.data.password[0] : '',
+        });
+      } else if (error.response && error.response.status === 500) {
+        setErrorMessage({ general: '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.' });
+      } else {
+        setErrorMessage({ general: '알 수 없는 오류가 발생했습니다.' });
+      }
     }
-  };
-
-  const isFormValid = () => {
-    return (
-      values.email.trim() !== "" &&
-      values.password.trim() !== "" &&
-      values.nickname.trim() !== "" &&
-      values.name.trim() !== ""
-    );
-  };
-
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(values);
-    if (isValid) {
+    if (isFormValid() && isEmailValid && isPasswordMatch) {
       fetchSignup();
+    } else {
+      console.log('Form is invalid');
     }
   };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
+    setValues((prevValues) => {
+      const updatedValues = { ...prevValues, [name]: value };
+      setIsEmailValid(validateEmail(updatedValues.email));
+      setIsPasswordMatch(updatedValues.password === updatedValues.passwordConfirm);
+      return updatedValues;
+    });
   };
 
   const handleImageSelect = (imageNumber) => {
@@ -78,15 +88,8 @@ export default function SignupInput() {
       ...prevValues,
       image: `image${imageNumber + 1}`,
     }));
+    console.log(imageNumber)
   };
-
-  useEffect(() => {
-    if (values.email.trim() !== "") {
-      setIsEmailValid(validateEmail(values.email));
-    }
-    setIsPasswordMatch(values.password === values.passwordConfirm);
-    setIsValid(isFormValid() && isEmailValid && isPasswordMatch);
-  }, [values]);
 
   return (
     <S.InputFormContainer>
@@ -126,6 +129,9 @@ export default function SignupInput() {
           placeholder="닉네임을 입력해주세요"
           required
         />
+        {errorMessage.nickname && (
+          <S.ErrorMessage>{errorMessage.nickname}</S.ErrorMessage>
+        )}
         <S.SignupInputLabel>이메일</S.SignupInputLabel>
         <S.SignupInputBox
           name="email"
@@ -135,9 +141,10 @@ export default function SignupInput() {
           placeholder="이메일을 입력해주세요"
           required
         />
-        {!isEmailValid && (
+        {!isEmailValid && values.email.trim() && (
           <S.ErrorMessage>올바른 이메일 형식을 입력해주세요.</S.ErrorMessage>
         )}
+
         <S.SignupInputLabel>비밀번호</S.SignupInputLabel>
         <S.SignupInputBox
           name="password"
@@ -156,13 +163,22 @@ export default function SignupInput() {
           placeholder="비밀번호를 다시 입력해주세요"
           required
         />
-        {!isPasswordMatch && (
+        {!isPasswordMatch && values.passwordConfirm.trim() && (
           <S.ErrorMessage>비밀번호가 일치하지 않습니다.</S.ErrorMessage>
         )}
-        <S.SubmitButton type="submit" disabled={!isValid}>
-          회원가입
-        </S.SubmitButton>
-        {errorMessage && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
+        {errorMessage.username && (
+          <S.ErrorMessage>{errorMessage.username}</S.ErrorMessage>
+        )}
+      
+        <S.SubmitButtonWrapper>
+            <S.SubmitButton
+              type="submit"
+              disabled={!(isFormValid() && isEmailValid && isPasswordMatch)}
+            >
+              회원가입
+            </S.SubmitButton>
+            {errorMessage.general && <S.ErrorMessage>{errorMessage.general}</S.ErrorMessage>}
+        </S.SubmitButtonWrapper>
       </S.SignupForm>
     </S.InputFormContainer>
   );

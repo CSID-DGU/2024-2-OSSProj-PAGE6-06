@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import * as S from "./Styled";
-import { useRouter } from "next/router";
-import { faCirclePlay, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router"; 
+import { faCirclePlay, faUserGroup, faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { API } from "@/pages/api";
 
 export default function RoutineList({ onSelectRoutine }) {
@@ -25,7 +25,8 @@ export default function RoutineList({ onSelectRoutine }) {
 
   const handleRoutineClick = (routine) => {
     setSelectedRoutine(routine);
-    onSelectRoutine && onSelectRoutine(routine);
+    onSelectRoutine(routine); 
+    console.log(routine);
   };
 
   const handleStartButtonClick = () => {
@@ -42,6 +43,16 @@ export default function RoutineList({ onSelectRoutine }) {
     }
   };
 
+  const formatTime = (time) => {
+    const hours = Math.floor(time / 60); 
+    const remainingMinutes = time % 60;  
+
+    if (hours > 0) {
+        return `${hours}시간 ${remainingMinutes > 0 ? `${remainingMinutes}분` : ''} `;
+    }
+    return `${remainingMinutes}분`;
+  };
+
   useEffect(() => {
     fetchRoutine();
   }, [fetchRoutine]);
@@ -50,21 +61,30 @@ export default function RoutineList({ onSelectRoutine }) {
     <S.RoutineListContainer>
       <S.RoutineListWrapper>
         <S.RoutineListScrollWrapper>
-          {routines.map((routine) => (
-            <S.RoutineContainer
-              key={routine.id}
-              onClick={() => handleRoutineClick(routine)}
-            >
-              <S.RoutineTextContainer>
-                {routine.is_club && <S.ClubIcon icon={faUserGroup} />}
-                <S.RoutineText>{routine.title}</S.RoutineText>
-              </S.RoutineTextContainer>
-              <S.MinuteTextContainer>
-                <S.VerticalLine />
-                <S.MinuteText>{routine.time}분</S.MinuteText>
-              </S.MinuteTextContainer>
-            </S.RoutineContainer>
-          ))}
+          {routines.length > 0 ? (
+            routines.map((routine) => (
+              <S.RoutineContainer
+                key={routine.id}
+                onClick={() => handleRoutineClick(routine)}
+              >
+                <S.RoutineTextContainer>
+                  {routine.is_club && <S.ClubIcon icon={faUserGroup} />}
+                  <S.RoutineText>{routine.title.slice(0, 18)}{routine.title.length > 18 ? "..." : ""}</S.RoutineText>
+                </S.RoutineTextContainer>
+                <S.MinuteTextContainer>
+                  <S.VerticalLine />
+                  <S.MinuteText>{formatTime(routine.time)}</S.MinuteText>
+                </S.MinuteTextContainer>
+              </S.RoutineContainer>
+            ))
+          ) : (
+            <S.EmptyState>
+              <S.EmptyIcon icon={faBookOpen} />
+              <S.EmptyText> 
+              진행 중인 루틴이 없습니다.<br/>
+              새로운 루틴에 참여하거나 만들어보세요!</S.EmptyText>
+            </S.EmptyState>
+          )}
         </S.RoutineListScrollWrapper>
       </S.RoutineListWrapper>
       <S.StartButton onClick={handleStartButtonClick}>
@@ -72,4 +92,4 @@ export default function RoutineList({ onSelectRoutine }) {
       </S.StartButton>
     </S.RoutineListContainer>
   );
-}
+} 

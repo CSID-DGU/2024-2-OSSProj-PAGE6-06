@@ -33,7 +33,7 @@ export const RecordList = styled.div`
   width: 100%;
   margin-bottom: 80px;
   flex-direction: column;
-  padding: 5%;
+  /* padding: 5%; */
   overflow-y: auto;
 
   /* Custom scrollbar styles */

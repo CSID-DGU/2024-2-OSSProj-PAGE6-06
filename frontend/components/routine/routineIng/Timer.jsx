@@ -33,11 +33,12 @@ export default function Timer() {
     }
   }, [timeLeft, isPaused]);
 
-  useEffect(() => {
-    if (zeroCount === 3) {
-      router.replace("/routine/routineFinish");
-    }
-  }, [zeroCount]);
+    useEffect(() => {
+        console.log(zeroCount);
+        if (zeroCount === 3 ) {
+            router.replace('/routine/routineFinish');
+        }
+    }, [zeroCount]);
 
   const progress = ((totalTime - timeLeft) / totalTime) * 100;
 
