@@ -2,7 +2,7 @@ import Header from "@/components/layout/Header";
 import * as RS from "@/components/_styled/routineStyled";
 import MakeRoutineButton from "@/components/routine/MakeRoutineButton";
 import RoutineList from "@/components/routine/RoutineList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import RoutineDelete from "@/components/routine/routineDelete";
 
@@ -11,15 +11,16 @@ export default function Routine() {
   const [routines, setRoutines] = useState([]);
   const [deleteModal, setDeleteModal] = useState(false);
   const [selectedDeleteRoutine, setSelectedDeleteRoutine] = useState(null);
+  
 
   const openModal = (routine) => {
-    setSelectedDeleteRoutine(routine);
+    if (!routine) return; 
+    setSelectedDeleteRoutine(routine); 
     setDeleteModal(true);
   };
 
   const handleSelectRoutine = (routine) => {
     setSelectedRoutine(routine);
-    // console.log(selectedRoutine);
   };
 
   return (
@@ -30,15 +31,15 @@ export default function Routine() {
         <RS.Line />
 
         <RS.DeleteIconWrapper>
-          <RS.DeleteIcon
-            icon={faTrash}
-            onClick={() => openModal(selectedRoutine)}
+          <RS.DeleteIcon 
+            icon={faTrash} 
+            onClick={() => openModal(selectedRoutine)} 
           />
         </RS.DeleteIconWrapper>
-
-        <RoutineList
+        
+        <RoutineList 
           onSelectRoutine={handleSelectRoutine}
-          routines={routines}
+          setRoutines={setRoutines} 
         />
       </RS.RoutineContentContainer>
 
