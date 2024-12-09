@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 import * as S from "./Styled";
-import { useRouter } from "next/router"; 
-import { faCirclePlay, faUserGroup, faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
+import {
+  faCirclePlay,
+  faUserGroup,
+  faBookOpen,
+} from "@fortawesome/free-solid-svg-icons";
 import { API } from "@/pages/api";
 
-export default function RoutineList({ onSelectRoutine }) {
+export default function RoutineList({ onSelectRoutine, onDeleteSuccess }) {
   const [routines, setRoutines] = useState([]);
   const [selectedRoutine, setSelectedRoutine] = useState(null);
   const router = useRouter();
@@ -24,9 +28,14 @@ export default function RoutineList({ onSelectRoutine }) {
   }, []);
 
   const handleRoutineClick = (routine) => {
-    setSelectedRoutine(routine);
-    onSelectRoutine(routine); 
-    console.log(routine);
+    if (selectedRoutine?.id === routine.id) {
+      setSelectedRoutine(null);
+      onSelectRoutine(null);
+    } else {
+      setSelectedRoutine(routine);
+      onSelectRoutine(routine);
+    }
+    // console.log(routine);
   };
 
   const handleStartButtonClick = () => {
@@ -44,11 +53,13 @@ export default function RoutineList({ onSelectRoutine }) {
   };
 
   const formatTime = (time) => {
-    const hours = Math.floor(time / 60); 
-    const remainingMinutes = time % 60;  
+    const hours = Math.floor(time / 60);
+    const remainingMinutes = time % 60;
 
     if (hours > 0) {
-        return `${hours}시간 ${remainingMinutes > 0 ? `${remainingMinutes}분` : ''} `;
+      return `${hours}시간 ${
+        remainingMinutes > 0 ? `${remainingMinutes}분` : ""
+      } `;
     }
     return `${remainingMinutes}분`;
   };
@@ -66,10 +77,14 @@ export default function RoutineList({ onSelectRoutine }) {
               <S.RoutineContainer
                 key={routine.id}
                 onClick={() => handleRoutineClick(routine)}
+                isSelected={selectedRoutine?.id === routine.id}
               >
                 <S.RoutineTextContainer>
                   {routine.is_club && <S.ClubIcon icon={faUserGroup} />}
-                  <S.RoutineText>{routine.title.slice(0, 18)}{routine.title.length > 18 ? "..." : ""}</S.RoutineText>
+                  <S.RoutineText>
+                    {routine.title.slice(0, 18)}
+                    {routine.title.length > 18 ? "..." : ""}
+                  </S.RoutineText>
                 </S.RoutineTextContainer>
                 <S.MinuteTextContainer>
                   <S.VerticalLine />
@@ -80,9 +95,11 @@ export default function RoutineList({ onSelectRoutine }) {
           ) : (
             <S.EmptyState>
               <S.EmptyIcon icon={faBookOpen} />
-              <S.EmptyText> 
-              진행 중인 루틴이 없습니다.<br/>
-              새로운 루틴에 참여하거나 만들어보세요!</S.EmptyText>
+              <S.EmptyText>
+                진행 중인 루틴이 없습니다.
+                <br />
+                새로운 루틴에 참여하거나 만들어보세요!
+              </S.EmptyText>
             </S.EmptyState>
           )}
         </S.RoutineListScrollWrapper>
@@ -92,4 +109,4 @@ export default function RoutineList({ onSelectRoutine }) {
       </S.StartButton>
     </S.RoutineListContainer>
   );
-} 
+}

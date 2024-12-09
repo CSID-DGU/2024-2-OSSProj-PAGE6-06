@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from "react";
 import * as S from "./Styled.jsx";
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import profile1 from '../common/image/profile1.png';
-import profile2 from '../common/image/profile2.png';
-import profile3 from '../common/image/profile3.png';
-import profile4 from '../common/image/profile4.png';
-import { API } from "@/pages/api"; 
+import Image from "next/image";
+import { useRouter } from "next/router";
+import profile1 from "../common/image/profile1.png";
+import profile2 from "../common/image/profile2.png";
+import profile3 from "../common/image/profile3.png";
+import profile4 from "../common/image/profile4.png";
+import { API } from "@/pages/api";
 
 export default function SignupInput() {
   const router = useRouter();
@@ -15,21 +15,21 @@ export default function SignupInput() {
   const [isPasswordMatch, setIsPasswordMatch] = useState(false);
   const [errorMessage, setErrorMessage] = useState({});
   const [values, setValues] = useState({
-    image: '',
-    email: '',
-    nickname: '',
-    name: '',
-    password: '',
-    passwordConfirm: ''
+    image: "",
+    email: "",
+    nickname: "",
+    name: "",
+    password: "",
+    passwordConfirm: "",
   });
 
   const isFormValid = useCallback(() => {
     return (
-      values.image.trim() !== '' &&
-      values.email.trim() !== '' &&
-      values.password.trim() !== '' &&
-      values.nickname.trim() !== '' &&
-      values.name.trim() !== ''
+      values.image.trim() !== "" &&
+      values.email.trim() !== "" &&
+      values.password.trim() !== "" &&
+      values.nickname.trim() !== "" &&
+      values.name.trim() !== ""
     );
   }, [values]);
 
@@ -48,19 +48,27 @@ export default function SignupInput() {
         nickname: values.nickname,
         profileImage: values.image,
       });
-      console.log("회원가입 성공:", response);
-      router.push('/sign/in');
+      // console.log("회원가입 성공:", response);
+      router.push("/sign/in");
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrorMessage({
-          username: error.response.data.username ? error.response.data.username[0] : '',
-          nickname: error.response.data.nickname ? error.response.data.nickname[0] : '',
-          password: error.response.data.password ? error.response.data.password[0] : '',
+          username: error.response.data.username
+            ? error.response.data.username[0]
+            : "",
+          nickname: error.response.data.nickname
+            ? error.response.data.nickname[0]
+            : "",
+          password: error.response.data.password
+            ? error.response.data.password[0]
+            : "",
         });
       } else if (error.response && error.response.status === 500) {
-        setErrorMessage({ general: '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.' });
+        setErrorMessage({
+          general: "서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
+        });
       } else {
-        setErrorMessage({ general: '알 수 없는 오류가 발생했습니다.' });
+        setErrorMessage({ general: "알 수 없는 오류가 발생했습니다." });
       }
     }
   };
@@ -70,7 +78,7 @@ export default function SignupInput() {
     if (isFormValid() && isEmailValid && isPasswordMatch) {
       fetchSignup();
     } else {
-      console.log('Form is invalid');
+      console.log("Form is invalid");
     }
   };
   const handleChange = (e) => {
@@ -78,7 +86,9 @@ export default function SignupInput() {
     setValues((prevValues) => {
       const updatedValues = { ...prevValues, [name]: value };
       setIsEmailValid(validateEmail(updatedValues.email));
-      setIsPasswordMatch(updatedValues.password === updatedValues.passwordConfirm);
+      setIsPasswordMatch(
+        updatedValues.password === updatedValues.passwordConfirm
+      );
       return updatedValues;
     });
   };
@@ -88,7 +98,7 @@ export default function SignupInput() {
       ...prevValues,
       image: `image${imageNumber + 1}`,
     }));
-    console.log(imageNumber)
+    // console.log(imageNumber);
   };
 
   return (
@@ -169,15 +179,17 @@ export default function SignupInput() {
         {errorMessage.username && (
           <S.ErrorMessage>{errorMessage.username}</S.ErrorMessage>
         )}
-      
+
         <S.SubmitButtonWrapper>
-            <S.SubmitButton
-              type="submit"
-              disabled={!(isFormValid() && isEmailValid && isPasswordMatch)}
-            >
-              회원가입
-            </S.SubmitButton>
-            {errorMessage.general && <S.ErrorMessage>{errorMessage.general}</S.ErrorMessage>}
+          <S.SubmitButton
+            type="submit"
+            disabled={!(isFormValid() && isEmailValid && isPasswordMatch)}
+          >
+            회원가입
+          </S.SubmitButton>
+          {errorMessage.general && (
+            <S.ErrorMessage>{errorMessage.general}</S.ErrorMessage>
+          )}
         </S.SubmitButtonWrapper>
       </S.SignupForm>
     </S.InputFormContainer>

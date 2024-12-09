@@ -1,8 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as RS from "@/components/_styled/routineStyled";
 import Timer from '@/components/routine/routineIng/Timer';
 import TimerInfo from '@/components/routine/routineIng/TimerInfo';
-export default function routineIng() {
+
+export default function RoutineIng() {
+
+    useEffect(() => {
+        const handlePopState = () => {
+            localStorage.removeItem("routineContent");
+            localStorage.removeItem("routineId");
+            localStorage.removeItem("routineTime");
+            localStorage.removeItem("routineTitle");
+            localStorage.removeItem("isRoutineFinished"); 
+        };
+
+        window.addEventListener("popstate", handlePopState);
+        return () => {
+            window.removeEventListener("popstate", handlePopState);
+        };
+    }, []);
 
     return (
         <RS.RoutineIngPage>
@@ -10,8 +26,6 @@ export default function routineIng() {
             <TimerInfo />
             <Timer />
           </RS.RoutineIngContainer>
-          
         </RS.RoutineIngPage>
     );
 }
-
