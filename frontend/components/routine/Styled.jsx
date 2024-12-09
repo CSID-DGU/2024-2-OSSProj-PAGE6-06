@@ -87,6 +87,7 @@ export const MinuteTextContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: 20%;
 `;
 export const VerticalLine = styled.div`
   width: 1px;
@@ -608,4 +609,5 @@ export const RoutineDeleteDropboxContainer = styled.div`
 `;
 
 export const ModalText = styled.div`
+  padding: 5%;
 `;

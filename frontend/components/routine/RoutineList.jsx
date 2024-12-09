@@ -42,6 +42,7 @@ export default function RoutineList({ onSelectRoutine }) {
       alert("루틴을 선택해주세요."); 
     }
   };
+
   const formatTime = (time) => {
     const hours = Math.floor(time / 60); 
     const remainingMinutes = time % 60;  
@@ -50,44 +51,45 @@ export default function RoutineList({ onSelectRoutine }) {
         return `${hours}시간 ${remainingMinutes > 0 ? `${remainingMinutes}분` : ''} `;
     }
     return `${remainingMinutes}분`;
-};
+  };
+
   useEffect(() => {
     fetchRoutine();
   }, [fetchRoutine]);
 
   return (
-      <S.RoutineListContainer>
-        <S.RoutineListWrapper>
-          <S.RoutineListScrollWrapper>
-            {routines.length > 0 ? (
-              routines.map((routine) => (
-                <S.RoutineContainer
-                  key={routine.id}
-                  onClick={() => handleRoutineClick(routine)}
-                >
-                  <S.RoutineTextContainer>
-                    {routine.is_club && <S.ClubIcon icon={faUserGroup} />}
-                    <S.RoutineText>{routine.title}</S.RoutineText>
-                  </S.RoutineTextContainer>
-                  <S.MinuteTextContainer>
-                    <S.VerticalLine />
-                    <S.MinuteText>{formatTime(routine.time)}</S.MinuteText>
-                  </S.MinuteTextContainer>
-                </S.RoutineContainer>
-              ))
-            ) : (
-              <S.EmptyState>
-                <S.EmptyIcon icon={faBookOpen} />
-                <S.EmptyText> 
-                진행 중인 루틴이 없습니다.<br/>
-                새로운 루틴에 참여하거나 만들어보세요!</S.EmptyText>
-              </S.EmptyState>
-            )}
-          </S.RoutineListScrollWrapper>
-        </S.RoutineListWrapper>
-        <S.StartButton onClick={handleStartButtonClick}>
-          <S.StartIcon icon={faCirclePlay} />
-        </S.StartButton>
-      </S.RoutineListContainer>
-    );
-  }
+    <S.RoutineListContainer>
+      <S.RoutineListWrapper>
+        <S.RoutineListScrollWrapper>
+          {routines.length > 0 ? (
+            routines.map((routine) => (
+              <S.RoutineContainer
+                key={routine.id}
+                onClick={() => handleRoutineClick(routine)}
+              >
+                <S.RoutineTextContainer>
+                  {routine.is_club && <S.ClubIcon icon={faUserGroup} />}
+                  <S.RoutineText>{routine.title.slice(0, 18)}{routine.title.length > 18 ? "..." : ""}</S.RoutineText>
+                </S.RoutineTextContainer>
+                <S.MinuteTextContainer>
+                  <S.VerticalLine />
+                  <S.MinuteText>{formatTime(routine.time)}</S.MinuteText>
+                </S.MinuteTextContainer>
+              </S.RoutineContainer>
+            ))
+          ) : (
+            <S.EmptyState>
+              <S.EmptyIcon icon={faBookOpen} />
+              <S.EmptyText> 
+              진행 중인 루틴이 없습니다.<br/>
+              새로운 루틴에 참여하거나 만들어보세요!</S.EmptyText>
+            </S.EmptyState>
+          )}
+        </S.RoutineListScrollWrapper>
+      </S.RoutineListWrapper>
+      <S.StartButton onClick={handleStartButtonClick}>
+        <S.StartIcon icon={faCirclePlay} />
+      </S.StartButton>
+    </S.RoutineListContainer>
+  );
+} 

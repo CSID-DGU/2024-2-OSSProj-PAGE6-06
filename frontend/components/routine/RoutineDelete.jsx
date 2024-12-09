@@ -3,40 +3,40 @@ import * as S from "./Styled";
 import { useRouter } from "next/router";
 import { API } from "@/pages/api";
 
-export default function RoutineDelete({ selectedDeleteRoutine, setDeleteModal, setRoutines }) {
+export default function RoutineDelete({ selectedDeleteRoutine, setDeleteModal }) {
   const router = useRouter();
-  const fetchDeleteRoutine = useCallback(async () => {
+
+  const fetchDeleteRoutine = useCallback(async (selectedDeleteRoutine) => {
     try {
       const token = localStorage.getItem("token");
-      console.log(selectedDeleteRoutine);
-      const response = await API.delete(`routinelist/routine/delete/${selectedDeleteRoutine.id}`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
-        setDeleteModal(false);
-        router.reload();
-        console.log("삭제 성공:", response.data);
+      if (!token) {
+        console.error("토큰이 존재하지 않습니다.");
+        return;
+      }
+      const response = await API.delete(`/routinedelete/${selectedDeleteRoutine.id}`, {});
+      console.log("삭제 성공", response.data);
+      setDeleteModal(false);
+      router.reload();
     } catch (error) {
-      console.error("루틴 삭제 실패:", error);
+      console.error("루틴 삭제 중 오류 발생:", error);
     }
-  }, [setRoutines]);
+  }, [router, setDeleteModal]);
 
   return (
     <S.DeleteDropboxContainer>
       <S.ModalText>
-        "{selectedDeleteRoutine?.title}" 루틴을/를 삭제하시겠습니까?
+        "{selectedDeleteRoutine?.title?.slice(0, 10)}" 루틴을/를 삭제하시겠습니까?
       </S.ModalText>
       <S.DeleteDropboxButtonSection>
         <S.DeleteDropboxButton
-          onClick={fetchDeleteRoutine} 
+          onClick={() => fetchDeleteRoutine(selectedDeleteRoutine)}
           style={{ color: "red" }}
         >
           삭제
         </S.DeleteDropboxButton>
         <S.DeleteDropboxButtonLine />
         <S.DeleteDropboxButton
-          onClick={() => setDeleteModal(false)} 
+          onClick={() => setDeleteModal(false)}
         >
           취소
         </S.DeleteDropboxButton>
