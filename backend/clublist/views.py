@@ -44,7 +44,7 @@ class ClubDetailAPIView(APIView):
         serializer = ClubSerializer(club, context={'request': request})  # context 추가
         
         club_routines = Routine.objects.filter(club=club)
-        routine_complete_records = RoutineComplete.objects.filter(routine__in=club_routines)
+        routine_complete_records = RoutineComplete.objects.filter(routine__in=club_routines).order_by('-date') 
         routine_complete_serializer = RoutineCompleteSerializer(routine_complete_records, many=True)
 
         return Response({

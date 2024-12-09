@@ -18,6 +18,9 @@ class Club(models.Model):
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        ordering = ['-createdAt']
 
 class UserJoinedRoutine(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="joined_routines")
