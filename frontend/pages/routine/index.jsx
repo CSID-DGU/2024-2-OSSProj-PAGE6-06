@@ -29,7 +29,7 @@ export default function Routine() {
       <RS.RoutineContentContainer>
         <MakeRoutineButton />
         <RS.Line />
-        
+
         <RS.DeleteIconWrapper>
           <RS.DeleteIcon 
             icon={faTrash} 

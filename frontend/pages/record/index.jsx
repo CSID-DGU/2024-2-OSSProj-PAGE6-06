@@ -1,7 +1,7 @@
 import Header from "@/components/layout/Header";
 import * as MS from "../../components/_styled/mainStyled";
 import * as RS from "../../components/_styled/recordStyled";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import RecordCalendar from "@/components/record/RecordCalendar";
 import RecordCard from "@/components/record/RecordCard";
 
@@ -17,12 +17,15 @@ export default function Record() {
   ];
   const handleCurrentTap = (type) => {
     setCurrentTap(type);
+    if (type === "month") {
+      setIsSelect(new Date());
+    }
   };
 
   const [calendarData, setCalendarData] = useState([]);
   const [isSelect, setIsSelect] = useState(new Date());
 
-  const fetchCalendarData = async () => {
+  const fetchCalendarData = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
       const year = new Date(isSelect).getFullYear();
@@ -38,7 +41,7 @@ export default function Record() {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, [isSelect]);
 
   const handleDateClick = (date) => {
     setIsSelect(date);
@@ -55,7 +58,7 @@ export default function Record() {
   const [routineList, setRoutineList] = useState([]);
   const [currentRoutine, setCurrentRoutine] = useState(0);
 
-  const fetchRoutineList = async () => {
+  const fetchRoutineList = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await API.get(`/routinelist`, {
@@ -68,7 +71,7 @@ export default function Record() {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, []);
 
   const handleCurrentRoutine = (id) => {
     setCurrentRoutine(id);
@@ -77,7 +80,7 @@ export default function Record() {
   const [routineData, setRoutineData] = useState([]);
   const [filteredRoutineData, setFilteredRoutineData] = useState([]);
 
-  const fetchRoutineData = async () => {
+  const fetchRoutineData = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await API.get(`/record/all`, {
@@ -94,7 +97,7 @@ export default function Record() {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchRoutineList();
@@ -110,7 +113,7 @@ export default function Record() {
       );
       setFilteredRoutineData(filterdData);
     }
-  }, [currentRoutine]);
+  }, [currentRoutine, routineData]);
 
   return (
     <MS.MainWrapper>

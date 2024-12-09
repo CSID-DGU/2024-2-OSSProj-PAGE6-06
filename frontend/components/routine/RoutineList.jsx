@@ -6,7 +6,7 @@ import { API } from "@/pages/api";
 
 export default function RoutineList({ onSelectRoutine }) {
   const [routines, setRoutines] = useState([]);
-  const [selectedRoutine, setSelectedRoutine] = useState(null); 
+  const [selectedRoutine, setSelectedRoutine] = useState(null);
   const router = useRouter();
 
   const fetchRoutine = useCallback(async () => {
@@ -39,7 +39,7 @@ export default function RoutineList({ onSelectRoutine }) {
         window.location.reload();
       });
     } else {
-      alert("루틴을 선택해주세요."); 
+      alert("루틴을 선택해주세요.");
     }
   };
 

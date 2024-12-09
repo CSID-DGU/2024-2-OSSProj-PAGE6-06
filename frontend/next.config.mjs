@@ -46,7 +46,7 @@ const nextConfig = {
       //routine add (post)
       {
         source: "/makeroutine",
-        destination: `http://${APIURL}/api/routinelist/create/`
+        destination: `http://${APIURL}/api/routinelist/create/`,
       },
       //routine delete (delete)
       {
@@ -78,7 +78,7 @@ const nextConfig = {
       // book delete (DELETE)
       {
         source: "/mylibrary/books/delete/:id",
-        destination: `http://${APIURL}/api/mylibrary/books/create/:id/`,
+        destination: `http://${APIURL}/api/mylibrary/books/delete/:id/`,
       },
       // book list (GET)
       {
@@ -134,7 +134,7 @@ const nextConfig = {
       },
       // record delete (DELETE), Edit (PUT)
       {
-        source: "/record/delete/:id",
+        source: "/delete/record/:id",
         destination: `http://${APIURL}/api/mylibrary/books/routines/:id/`,
       },
       //main

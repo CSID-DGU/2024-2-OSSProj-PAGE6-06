@@ -4,7 +4,9 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { API } from "@/pages/api";
 
 export default function Book({ initial, setBook }) {
-  const [selectedBook, setSelectedBook] = useState(initial || "책을 선택하세요");
+  const [selectedBook, setSelectedBook] = useState(
+    initial?.book?.title || "책을 선택하세요"
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [bookList, setBookList] = useState([]);
 
@@ -24,16 +26,23 @@ export default function Book({ initial, setBook }) {
 
   useEffect(() => {
     fetchBookList();
-  }, []);
+    // console.log(initial);
+    if (initial?.book) {
+      setSelectedBook(initial.book.title);
+    }
+  }, [initial?.book]);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
   const truncateText = (text, maxLength = 20) => {
-    return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+    return text.length > maxLength
+      ? `${text.substring(0, maxLength)}...`
+      : text;
   };
 
   const selectBook = (book) => {
-    setBook(book.title); 
+    setBook(book.title);
+    setSelectedBook(book.title);
     setIsOpen(false);
   };
 
@@ -48,10 +57,7 @@ export default function Book({ initial, setBook }) {
       {isOpen && (
         <S.DropdownListContainer>
           {bookList.map((book, index) => (
-            <S.DropdownListItem
-              key={index}
-              onClick={() => selectBook(book)}
-            >
+            <S.DropdownListItem key={index} onClick={() => selectBook(book)}>
               {truncateText(book.title)}
             </S.DropdownListItem>
           ))}

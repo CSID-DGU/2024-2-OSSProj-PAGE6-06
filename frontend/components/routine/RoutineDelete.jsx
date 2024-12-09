@@ -25,7 +25,7 @@ export default function RoutineDelete({ selectedDeleteRoutine, setDeleteModal })
   return (
     <S.DeleteDropboxContainer>
       <S.ModalText>
-        "{selectedDeleteRoutine?.title?.slice(0, 10)}" 루틴을/를 삭제하시겠습니까?
+        &quot;{selectedDeleteRoutine?.title}&quot;<br/>루틴을/를 삭제하시겠습니까?
       </S.ModalText>
       <S.DeleteDropboxButtonSection>
         <S.DeleteDropboxButton
@@ -43,4 +43,4 @@ export default function RoutineDelete({ selectedDeleteRoutine, setDeleteModal })
       </S.DeleteDropboxButtonSection>
     </S.DeleteDropboxContainer>
   );
-};
+}

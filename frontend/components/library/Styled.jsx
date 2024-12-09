@@ -30,13 +30,20 @@ export const BookTitle = styled.div`
   font-weight: bold;
   color: #1e293b;
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
   margin: 10% 0;
+`;
+
+export const BookTitleText = styled.div`
+  width: 70%;
+  line-height: 18px;
 `;
 
 export const BookMore = styled(FontAwesomeIcon)`
   padding-right: 5%;
   font-size: 10px;
+  width: 25px;
   cursor: pointer;
   z-index: 150;
 `;
@@ -69,10 +76,13 @@ export const RecordBookTitle = styled.div`
   align-items: center;
   padding: 5%;
   width: 100%;
+  line-height: 25px;
+  background-color: transparent;
 `;
 
 export const RecordModalCloseButton = styled(FontAwesomeIcon)`
   font-size: 20px;
+  width: 20px;
 `;
 
 export const RecordList = styled.div`
@@ -121,6 +131,7 @@ export const SearchBookInputSection = styled.form`
 
 export const SearchBookInputIcon = styled(FontAwesomeIcon)`
   font-size: 12px;
+  width: 12px;
 `;
 
 export const SearchBookInput = styled.input`
@@ -129,6 +140,7 @@ export const SearchBookInput = styled.input`
   outline: none;
   border: none;
   background-color: transparent;
+  color: #64748b;
   font-weight: 500;
 `;
 
@@ -211,6 +223,8 @@ export const DeleteDropboxContainer = styled.div`
   justify-content: center;
   font-size: 14px;
   font-weight: 500;
+  text-align: center;
+  line-height: 20px;
 `;
 
 export const DeleteDropboxButtonSection = styled.div`

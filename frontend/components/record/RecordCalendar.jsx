@@ -1,4 +1,4 @@
-import { useEffect, useState, useR } from "react";
+import { useEffect, useState } from "react";
 import * as RS from "./Styled";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,6 +13,7 @@ export default function RecordCalendar({ data, isSelect, setIsSelect }) {
       const newDate = new Date(prev);
       newDate.setMonth(prev.getMonth() - 1);
       setCurrentDate(newDate);
+      // setIsSelect(newDate);
       return newDate;
     });
   };
@@ -22,6 +23,8 @@ export default function RecordCalendar({ data, isSelect, setIsSelect }) {
     setCurrentDate((next) => {
       const newDate = new Date(next);
       newDate.setMonth(next.getMonth() + 1);
+      setCurrentDate(newDate);
+      // setIsSelect(newDate);
       return newDate;
     });
   };
@@ -29,6 +32,10 @@ export default function RecordCalendar({ data, isSelect, setIsSelect }) {
   const handleDateClick = (date) => {
     setIsSelect(date);
   };
+
+  useEffect(() => {
+    handleDateClick(currentDate);
+  }, [currentDate]);
 
   const getCalendarData = () => {
     const year = currentDate.getFullYear();
@@ -113,7 +120,7 @@ export default function RecordCalendar({ data, isSelect, setIsSelect }) {
                   (item) =>
                     currentDateString === new Date(item.date).toDateString()
                 );
-                const percent = matchingDate?.percent ?? 0;
+                const percent = matchingDate ? 100 : 0;
 
                 return (
                   <RS.RecordCalendDayText
