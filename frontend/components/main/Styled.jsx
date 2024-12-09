@@ -78,36 +78,37 @@ export const ClubIcon = styled(FontAwesomeIcon)`
   background-color: transparent;
 `;
 export const EmptyState = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
 `;
 
 export const EmptyIcon = styled(FontAwesomeIcon)`
-    font-size: 24px;
-    color: #94A3B8;
+  font-size: 24px;
+  width: 24px;
+  color: #94a3b8;
 `;
 
 export const EmptyText = styled.div`
-    color: #475569;
-    font-size: 14px;
-    font-weight: 500;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
 `;
 
 export const GoClubIcon = styled(FontAwesomeIcon)`
-    width: 14px;
-    height: 14px;
-    color: #475569;
-    cursor: pointer;
+  width: 14px;
+  height: 14px;
+  color: #475569;
+  cursor: pointer;
 
-    &:hover {
-        color: #1E293B; 
-    }
+  &:hover {
+    color: #1e293b;
+  }
 `;
 
 //PopularClub
@@ -118,39 +119,39 @@ export const PopularPlaceContainer = styled.div`
   gap: 20px;
 `;
 export const PlaceCardContainer = styled.div`
-    width: 100%;
-    display:flex;
-    gap:20px;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
 `;
 
 export const PlaceCard = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-    align-items: center;
-    border-radius: 10px;
-    background: #FFF;
-    margin-left: 5px;
-    box-shadow: 0px 3px 4px 1px rgba(0, 0, 0, 0.25);
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    opacity: 1;
-    &.fade-out {
-        opacity: 0;
-        transform: translateY(30%);
-    }
-    &.fade-in {
-        opacity: 5;
-        transform: translateX(0);
-    }
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  align-items: center;
+  border-radius: 10px;
+  background: #fff;
+  margin-left: 5px;
+  box-shadow: 0px 3px 4px 1px rgba(0, 0, 0, 0.25);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 1;
+  &.fade-out {
+    opacity: 0;
+    transform: translateY(30%);
+  }
+  &.fade-in {
+    opacity: 5;
+    transform: translateX(0);
+  }
 `;
 export const PlaceTextContainer = styled.div`
-    display:flex;
-    width:100%;
-    gap:5px;
-    padding: 5%;
-    justify-content: space-between;
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  padding: 5%;
+  justify-content: space-between;
 `;
 export const PlaceNameText = styled.div`
   color: #1e293b;
