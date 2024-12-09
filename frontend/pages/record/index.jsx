@@ -118,9 +118,6 @@ export default function Record() {
   }, [currentRoutine, routineData]);
 
   const [deleteModal, setDeleteModal] = useState(false);
-  const handleDeleteModal = () => {
-    setDeleteModal(!deleteModal);
-  };
 
   return (
     <MS.MainWrapper>
@@ -162,7 +159,7 @@ export default function Record() {
                 (routine) => routine.id === record.routine
               );
               return (
-                <div>
+                <div key={idx}>
                   {deleteModal && (
                     <LS.LibraryRecordModalOverlay>
                       <RecordDelete
@@ -194,7 +191,7 @@ export default function Record() {
                 (routine) => routine.id === record.routine
               );
               return (
-                <div>
+                <div key={idx}>
                   {deleteModal && (
                     <LS.LibraryRecordModalOverlay>
                       <RecordDelete
@@ -205,7 +202,6 @@ export default function Record() {
                   )}
 
                   <motion.div
-                    key={idx}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 20 }}
