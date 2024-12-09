@@ -7,7 +7,6 @@ export default function RoutineIng() {
 
     useEffect(() => {
         const handlePopState = () => {
-            // 뒤로 가기 시 로컬스토리지 값 삭제
             localStorage.removeItem("routineContent");
             localStorage.removeItem("routineId");
             localStorage.removeItem("routineTime");
