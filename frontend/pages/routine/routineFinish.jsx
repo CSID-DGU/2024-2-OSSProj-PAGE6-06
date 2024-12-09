@@ -83,6 +83,7 @@ export default function RoutineFinish() {
             localStorage.removeItem("routineId");
             localStorage.removeItem("routineTime");
             localStorage.removeItem("routineTitle");
+            localStorage.removeItem("isRoutineFinished"); 
         };
 
         window.addEventListener("popstate", handlePopState);
