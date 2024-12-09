@@ -1,46 +1,50 @@
-import { useCallback } from "react";
-import * as S from "./Styled";
 import { useRouter } from "next/router";
+import * as S from "./Styled";
 import { API } from "@/pages/api";
 
-export default function RoutineDelete({ selectedDeleteRoutine, setDeleteModal }) {
+export default function RoutineDelete({
+  selectedDeleteRoutine,
+  setDeleteModal,
+  setRoutines,
+}) {
   const router = useRouter();
 
-  const fetchDeleteRoutine = useCallback(async (selectedDeleteRoutine) => {
+  const fetchDeleteRoutine = async () => {
     try {
       const token = localStorage.getItem("token");
-      if (!token) {
-        console.error("토큰이 존재하지 않습니다.");
-        return;
-      }
-      const response = await API.delete(`/routinedelete/${selectedDeleteRoutine.id}`, {});
-      console.log("삭제 성공", response.data);
-      setDeleteModal(false);
-      router.reload();
+      await API.delete(`routinelist/routinedelete/${selectedDeleteRoutine.id}`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
     } catch (error) {
-      console.error("루틴 삭제 중 오류 발생:", error);
+      console.error("루틴 삭제 실패:", error);
     }
-  }, [router, setDeleteModal]);
+  };
+  const handleDelete = (() => {
+    fetchDeleteRoutine();
+    setDeleteModal(false);
+    router.reload();
+  })
 
   return (
     <S.DeleteDropboxContainer>
       <S.ModalText>
-        &quot;{selectedDeleteRoutine?.title}&quot;<br/>루틴을/를 삭제하시겠습니까?
+        &quot;{selectedDeleteRoutine?.title}&quot; 루틴을/를 삭제하시겠습니까?
       </S.ModalText>
       <S.DeleteDropboxButtonSection>
         <S.DeleteDropboxButton
-          onClick={() => fetchDeleteRoutine(selectedDeleteRoutine)}
+          onClick={handleDelete}
           style={{ color: "red" }}
         >
           삭제
         </S.DeleteDropboxButton>
         <S.DeleteDropboxButtonLine />
-        <S.DeleteDropboxButton
-          onClick={() => setDeleteModal(false)}
-        >
+        <S.DeleteDropboxButton onClick={() => setDeleteModal(false)}>
           취소
         </S.DeleteDropboxButton>
       </S.DeleteDropboxButtonSection>
     </S.DeleteDropboxContainer>
   );
 }
+

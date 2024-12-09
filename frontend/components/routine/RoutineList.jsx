@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { faCirclePlay, faUserGroup, faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { API } from "@/pages/api";
 
-export default function RoutineList({ onSelectRoutine }) {
+export default function RoutineList({ onSelectRoutine, onDeleteSuccess }) {
   const [routines, setRoutines] = useState([]);
   const [selectedRoutine, setSelectedRoutine] = useState(null);
   const router = useRouter();
@@ -24,8 +24,13 @@ export default function RoutineList({ onSelectRoutine }) {
   }, []);
 
   const handleRoutineClick = (routine) => {
-    setSelectedRoutine(routine);
-    onSelectRoutine(routine); 
+    if (selectedRoutine?.id === routine.id) {
+      setSelectedRoutine(null); 
+      onSelectRoutine(null); 
+    } else {
+      setSelectedRoutine(routine);
+      onSelectRoutine(routine); 
+    }
     console.log(routine);
   };
 
@@ -66,6 +71,7 @@ export default function RoutineList({ onSelectRoutine }) {
               <S.RoutineContainer
                 key={routine.id}
                 onClick={() => handleRoutineClick(routine)}
+                isSelected={selectedRoutine?.id === routine.id}
               >
                 <S.RoutineTextContainer>
                   {routine.is_club && <S.ClubIcon icon={faUserGroup} />}
@@ -92,4 +98,5 @@ export default function RoutineList({ onSelectRoutine }) {
       </S.StartButton>
     </S.RoutineListContainer>
   );
-} 
+}
+
