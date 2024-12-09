@@ -8,21 +8,31 @@ export const RoutineContainer = styled.div`
 `;
 
 export const RoutineContentContainer = styled.div`
-  width: 346px;
+  width: 100%;
+  background-color: #fff;
+  height: calc(100vh - 80px);
+  padding-bottom: 80px;
+  /* margin-bottom: 80px; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap:20px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: none; // Width of the scrollbar
+    display: none;
+  }
 `;
 export const Line = styled.hr`
-  width: 345px;
+  width: 90%;
   height: 1px;
+  margin: 3% 0;
   background: #94a3b8;
 `;
 
 export const DeleteIconWrapper = styled.div`
   width: 100%;
   display: flex;
+  margin-right: 10%;
   justify-content: flex-end;
 `;
 export const DeleteIcon = styled(FontAwesomeIcon)`
@@ -60,6 +70,7 @@ export const RoutineIngContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  background: #f1f5f9;
 `;
 
 //routineFinish
@@ -129,6 +140,8 @@ export const MakeRoutineContentContainer = styled(RoutineContentContainer)`
   flex-direction: column;
   gap: 21px;
   margin-top: 22px;
+  width: 100%;
+  padding: 0 5%;
 `;
 export const PageTitle = styled.div`
   width: 100%;

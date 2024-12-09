@@ -13,10 +13,10 @@ export const ClubCardContainer = styled.div`
   align-items: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  margin: 15px 0;
+  margin: 10px 0;
 `;
 
-export const ClubCardImage = styled.img`
+export const ClubCardImage = styled(Image)`
   object-fit: cover;
   width: 160px;
   border-radius: 10px 10px 0 0;
@@ -39,7 +39,9 @@ export const ClubCardInfoText = styled.div`
   white-space: nowrap;
 `;
 
-export const ClubCardInfoIcon = styled(FontAwesomeIcon)``;
+export const ClubCardInfoIcon = styled(FontAwesomeIcon)`
+  width: 10px;
+`;
 
 export const ClubCardTitle = styled.div`
   font-size: 12px;
@@ -63,6 +65,7 @@ export const ClubCardButtonSection = styled.div`
   padding: 0 8% 8% 8%;
   font-size: 10px;
   font-weight: 500;
+  background-color: transparent;
 `;
 
 export const ClubCardButtonShow = styled.div`
@@ -108,6 +111,7 @@ export const ClubSearchSection = styled.form`
 
 export const ClubSearchIcon = styled(FontAwesomeIcon)`
   font-size: 12px;
+  width: 12px;
 `;
 
 export const ClubSearchInput = styled.input`

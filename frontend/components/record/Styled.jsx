@@ -2,7 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
 export const RecordCardWrapper = styled.div`
-  width: 100%;
+  width: 90%;
+  margin: 3% 5%;
 `;
 
 export const RecordCardContainer = styled.div`
@@ -25,7 +26,8 @@ export const RecordCardRoutine = styled.div`
 `;
 
 export const RecordCardMore = styled(FontAwesomeIcon)`
-  font-size: 14px;
+  font-size: 4px;
+  width: 4px;
 `;
 
 export const RecordDescription = styled.div`
@@ -58,7 +60,8 @@ export const RecordCalendarMonth = styled.div`
 `;
 
 export const RecordCalendarButton = styled(FontAwesomeIcon)`
-  font-size: 15px;
+  font-size: 10px;
+  width: 10px;
   color: #8a8a8a;
 `;
 
@@ -122,6 +125,7 @@ export const RecordCardRoutineInfoText = styled.div``;
 
 export const RecordCardBookTitle = styled.div`
   color: #475569;
+  background-color: transparent;
   font-size: 12px;
   padding-bottom: 2%;
 `;
@@ -145,15 +149,16 @@ export const RecordMonthListSearch = styled.div`
 `;
 
 export const RecordMonthListIcon = styled(FontAwesomeIcon)`
-  font-size: 20px;
+  font-size: 18px;
+  width: 18px;
   color: #64748b;
 `;
 
 export const RecordMonthListModalContainer = styled.div`
   width: 90%;
   margin: 5% 0;
+  border: 1px solid #64748b;
   border-radius: 10px;
-  border: #64748b 1px solid;
   /* padding: 3% 0; */
   font-size: 14px;
   font-weight: 500;
@@ -171,8 +176,9 @@ export const RecordMonthListModalText = styled.div`
   font-size: 14px;
   font-weight: 500;
   color: #0f172a;
-  width: 100%;
-  padding: 5%;
+  width: 90%;
+  margin: 0 10%;
+  padding: 5% 0;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -206,9 +212,11 @@ export const DropboxText = styled.div`
   align-items: center;
   justify-content: space-evenly;
   padding: 7%;
+  background-color: transparent;
 `;
 
 export const DropboxIcon = styled(FontAwesomeIcon)`
   margin: 0 5%;
   font-size: 12px;
+  width: 12px;
 `;

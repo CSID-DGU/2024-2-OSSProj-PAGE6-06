@@ -1,13 +1,15 @@
 import Header from "@/components/layout/Header";
 import * as MS from "../../components/_styled/mainStyled";
 import * as RS from "../../components/_styled/recordStyled";
-import { useEffect, useState } from "react";
+import * as LS from "../../components/_styled/libraryStyled";
+import { useCallback, useEffect, useState } from "react";
 import RecordCalendar from "@/components/record/RecordCalendar";
 import RecordCard from "@/components/record/RecordCard";
 
 import { motion } from "framer-motion";
 import RecordMonthList from "@/components/record/RecordMonthList";
 import { API } from "../api";
+import RecordDelete from "@/components/record/RecordDelete";
 
 export default function Record() {
   const [currentTap, setCurrentTap] = useState("month");
@@ -17,12 +19,15 @@ export default function Record() {
   ];
   const handleCurrentTap = (type) => {
     setCurrentTap(type);
+    if (type === "month") {
+      setIsSelect(new Date());
+    }
   };
 
   const [calendarData, setCalendarData] = useState([]);
   const [isSelect, setIsSelect] = useState(new Date());
 
-  const fetchCalendarData = async () => {
+  const fetchCalendarData = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
       const year = new Date(isSelect).getFullYear();
@@ -38,7 +43,7 @@ export default function Record() {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, [isSelect]);
 
   const handleDateClick = (date) => {
     setIsSelect(date);
@@ -55,7 +60,7 @@ export default function Record() {
   const [routineList, setRoutineList] = useState([]);
   const [currentRoutine, setCurrentRoutine] = useState(0);
 
-  const fetchRoutineList = async () => {
+  const fetchRoutineList = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await API.get(`/routinelist`, {
@@ -68,7 +73,7 @@ export default function Record() {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, []);
 
   const handleCurrentRoutine = (id) => {
     setCurrentRoutine(id);
@@ -77,7 +82,7 @@ export default function Record() {
   const [routineData, setRoutineData] = useState([]);
   const [filteredRoutineData, setFilteredRoutineData] = useState([]);
 
-  const fetchRoutineData = async () => {
+  const fetchRoutineData = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await API.get(`/record/all`, {
@@ -94,7 +99,7 @@ export default function Record() {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchRoutineList();
@@ -110,7 +115,9 @@ export default function Record() {
       );
       setFilteredRoutineData(filterdData);
     }
-  }, [currentRoutine]);
+  }, [currentRoutine, routineData]);
+
+  const [deleteModal, setDeleteModal] = useState(false);
 
   return (
     <MS.MainWrapper>
@@ -152,15 +159,30 @@ export default function Record() {
                 (routine) => routine.id === record.routine
               );
               return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }} // 초기 상태: 투명하고 아래에서 시작
-                  animate={{ opacity: 1, y: 0 }} // 애니메이션: 불투명해지고 원래 위치로 올라옴
-                  exit={{ opacity: 0, y: 20 }} // 종료 상태: 투명하고 아래로
-                  transition={{ duration: 0.3, delay: idx * 0.1 }} // 각 항목에 지연을 주어 순차적으로 나타남
-                >
-                  <RecordCard record={record} routine={routine} />
-                </motion.div>
+                <div key={idx}>
+                  {deleteModal && (
+                    <LS.LibraryRecordModalOverlay>
+                      <RecordDelete
+                        selectedDeleteRecord={record}
+                        setDeleteModal={setDeleteModal}
+                      />
+                    </LS.LibraryRecordModalOverlay>
+                  )}
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }} // 초기 상태: 투명하고 아래에서 시작
+                    animate={{ opacity: 1, y: 0 }} // 애니메이션: 불투명해지고 원래 위치로 올라옴
+                    exit={{ opacity: 0, y: 20 }} // 종료 상태: 투명하고 아래로
+                    transition={{ duration: 0.3, delay: idx * 0.1 }} // 각 항목에 지연을 주어 순차적으로 나타남
+                  >
+                    <RecordCard
+                      record={record}
+                      routine={routine}
+                      deleteModal={deleteModal}
+                      setDeleteModal={setDeleteModal}
+                    />
+                  </motion.div>
+                </div>
               );
             })
           ) : currentTap === "routine" ? (
@@ -169,15 +191,30 @@ export default function Record() {
                 (routine) => routine.id === record.routine
               );
               return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.3, delay: idx * 0.1 }}
-                >
-                  <RecordCard record={record} routine={routine} />
-                </motion.div>
+                <div key={idx}>
+                  {deleteModal && (
+                    <LS.LibraryRecordModalOverlay>
+                      <RecordDelete
+                        selectedDeleteRecord={record}
+                        setDeleteModal={setDeleteModal}
+                      />
+                    </LS.LibraryRecordModalOverlay>
+                  )}
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.3, delay: idx * 0.1 }}
+                  >
+                    <RecordCard
+                      record={record}
+                      routine={routine}
+                      deleteModal={deleteModal}
+                      setDeleteModal={setDeleteModal}
+                    />
+                  </motion.div>
+                </div>
               );
             })
           ) : (

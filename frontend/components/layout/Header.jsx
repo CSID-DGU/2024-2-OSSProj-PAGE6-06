@@ -35,7 +35,7 @@ export default function Header({ path }) {
   }, [fetchUser]);
 
   const handleProfileClick = () => {
-    router.push("/sign/userInfo"); 
+    router.push("/sign/userInfo");
   };
 
   const getProfileImage = (profileImage) => {
