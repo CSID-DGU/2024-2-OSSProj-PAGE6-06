@@ -61,10 +61,8 @@ export const RoutineContainer = styled.button`
   padding: 4%;
   border-radius: 10px;
   border: none;
-  background: #f1f4f7;
-  &:focus {
-    border: 1px solid #94a3b8;
-  }
+  background: #F1F4F7;
+  border: ${(props) => (props.isSelected ? "1px solid #94a3b8" : "none")};
 `;
 export const RoutineListScrollWrapper = styled.div`
   width: 100%;
