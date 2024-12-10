@@ -32,6 +32,7 @@ export default function Record() {
       const token = localStorage.getItem("token");
       const year = new Date(isSelect).getFullYear();
       const month = new Date(isSelect).getMonth() + 1;
+      console.log(month);
 
       const response = await API.get(`/record/month/${year}/${month}`, {
         headers: {
@@ -55,7 +56,7 @@ export default function Record() {
 
   useEffect(() => {
     fetchCalendarData();
-  }, []);
+  }, [isSelect]);
 
   const [routineList, setRoutineList] = useState([]);
   const [currentRoutine, setCurrentRoutine] = useState(0);
