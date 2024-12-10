@@ -23,14 +23,14 @@ class BookSerializer(serializers.ModelSerializer):
 # RoutineCompleteSerializer 수정
 class RoutineCompleteSerializer(serializers.ModelSerializer):
     userNickname = serializers.CharField(source='user.nickname', read_only=True)
-    
+    userImage = serializers.CharField(source='user.profileImage', read_only=True)  # 사용자 이미지 추가
     # title을 통해 book을 선택할 수 있도록 수정
     title = serializers.CharField(write_only=True)  # title 필드 추가 (book title을 받기 위한 필드)
     book = BookSerializer(read_only=True)  # book 필드는 BookSerializer를 통해 직렬화하여 반환
 
     class Meta:
         model = RoutineComplete
-        fields = ['id', 'routine', 'user', 'userNickname', 'date', 'title', 'location', 'memo', 'book']
+        fields = ['id', 'routine', 'user', 'userNickname', 'userImage', 'date', 'title', 'location', 'memo', 'book']
         read_only_fields = ['date', 'user', 'book']  # book 필드는 읽기 전용
 
     def validate_title(self, value):
