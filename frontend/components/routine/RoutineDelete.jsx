@@ -33,7 +33,9 @@ export default function RoutineDelete({
   return (
     <S.DeleteDropboxContainer>
       <S.ModalText>
-        &quot;{selectedDeleteRoutine?.title}&quot; 루틴을/를 삭제하시겠습니까?
+        &quot;{selectedDeleteRoutine?.title}&quot;
+        <br />
+        루틴을/를 삭제하시겠습니까?
       </S.ModalText>
       <S.DeleteDropboxButtonSection>
         <S.DeleteDropboxButton onClick={handleDelete} style={{ color: "red" }}>

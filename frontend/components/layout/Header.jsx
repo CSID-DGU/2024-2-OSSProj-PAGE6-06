@@ -49,7 +49,7 @@ export default function Header({ path }) {
       case "image4":
         return profile4;
       default:
-        return profile1; 
+        return profile1;
     }
   };
 
@@ -59,7 +59,7 @@ export default function Header({ path }) {
       <HS.HeaderMypage
         src={getProfileImage(user.profileImage)}
         alt="profile_image"
-        onClick={handleProfileClick} 
+        onClick={handleProfileClick}
       />
     </HS.HeaderContainer>
   );
