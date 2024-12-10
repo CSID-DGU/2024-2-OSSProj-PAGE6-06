@@ -10,14 +10,19 @@ export const LayoutWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  border: 1px solid black;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 5px;
+  /* border: 1px solid black; */
   overflow: hidden;
   font-family: Pretendard;
+  background-color: #fff;
+  color: #0f172a;
 `;
 
 export const LayoutContent = styled.div`
   flex: 1 0 auto;
   width: 100%;
+  background-color: #fff;
   /* margin: 5%; */
 `;
 
@@ -36,7 +41,7 @@ export const HeaderContainer = styled.div`
 
 export const HeaderPath = styled.div`
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 600;
 `;
 
 export const HeaderMypage = styled(Image)`
@@ -52,7 +57,7 @@ export const FooterContainer = styled.div`
   width: 100%;
   height: 80px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   border-top: 1px solid #cbd5e1;
   background-color: white;
   z-index: 150;
@@ -64,5 +69,5 @@ export const FooterContainer = styled.div`
 export const FooterButton = styled(FontAwesomeIcon)`
   color: ${(props) => (props.$isActive ? `#475569` : `#cbd5e1`)};
   font-size: 25px;
-  padding: 5%;
+  width: 25px;
 `;

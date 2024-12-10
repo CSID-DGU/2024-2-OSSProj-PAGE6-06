@@ -6,7 +6,7 @@ import * as LS from "../../components/_styled/libraryStyled";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import BookDelete from "@/components/library/BookDelete";
 import { API } from "../api";
 import BookCard from "@/components/library/BookCard";
@@ -52,6 +52,9 @@ export default function Library() {
   };
 
   const [deleteModal, setDeleteModal] = useState(false);
+  const handleDeleteModal = useCallback((value) => {
+    setDeleteModal(value);
+  }, []);
   const [selectedDeleteBook, setSelectedDeleteBook] = useState(null);
 
   return (
@@ -68,7 +71,7 @@ export default function Library() {
         <LS.LibraryRecordModalOverlay>
           <BookDelete
             selectedDeleteBook={selectedDeleteBook}
-            setDeleteModal={setDeleteModal}
+            setDeleteModal={handleDeleteModal}
           />
         </LS.LibraryRecordModalOverlay>
       )}
@@ -84,20 +87,24 @@ export default function Library() {
           </LS.LibraryButtonBox>
         </LS.LibraryAdd>
         {/* Library List Section */}
-        <LS.LibraryList>
-          {books.map((book, idx) => (
-            <BookCard
-              onClick={() => {
-                handleRecordClick(book);
-              }}
-              key={idx}
-              book={book}
-              deleteModal={deleteModal}
-              setDeleteModal={setDeleteModal}
-              setSelectedDeleteBook={setSelectedDeleteBook}
-            />
-          ))}
-        </LS.LibraryList>
+        {books.length === 0 ? (
+          <LS.LibraryListEmpty>등록된 책 정보가 없습니다.</LS.LibraryListEmpty>
+        ) : (
+          <LS.LibraryList>
+            {books.map((book, idx) => (
+              <BookCard
+                onClick={() => {
+                  handleRecordClick(book);
+                }}
+                key={idx}
+                book={book}
+                deleteModal={deleteModal}
+                setDeleteModal={setDeleteModal}
+                setSelectedDeleteBook={setSelectedDeleteBook}
+              />
+            ))}
+          </LS.LibraryList>
+        )}
       </LS.LibraryContainer>
     </LS.LibraryWrapper>
   );

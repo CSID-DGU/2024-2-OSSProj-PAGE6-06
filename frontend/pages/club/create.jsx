@@ -83,12 +83,7 @@ export default function Create() {
             </>
           ) : (
             <>
-              <S.ClubCreateImage
-                src={image}
-                alt="club_image"
-                layout="fill"
-                objectFit="cover"
-              />
+              <S.ClubCreateImage src={image} alt="club_image" fill />
               <S.ClubCreateImageDelete onClick={handleImageDelete}>
                 <S.ClubCreateImageDeleteIcon icon={faXmark} />
               </S.ClubCreateImageDelete>

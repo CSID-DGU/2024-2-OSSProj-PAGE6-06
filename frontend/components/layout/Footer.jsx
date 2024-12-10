@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faClockFour } from "@fortawesome/free-regular-svg-icons";
 import * as HS from "./Styled.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router.js";
 
 export default function Footer() {
@@ -16,6 +16,7 @@ export default function Footer() {
     setCurrentPage(data);
     router.push(`/${data}`);
   };
+  useEffect(() => {}, [router.pathname]);
   return (
     <HS.FooterContainer>
       <HS.FooterButton
@@ -30,8 +31,8 @@ export default function Footer() {
       />
       <HS.FooterButton
         icon={faHome}
-        onClick={() => handlePageChange("")}
-        $isActive={currentPage === ""}
+        onClick={() => handlePageChange("main")}
+        $isActive={currentPage === "main" || currentPage === ""}
       />
       <HS.FooterButton
         icon={faChartSimple}

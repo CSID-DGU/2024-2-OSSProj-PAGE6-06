@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 //MakeRoutineButton
 export const MakeRoutineButton = styled.button`
-  width: 345px;
+  width: 90%;
   height: 60px;
   border-radius: 10px;
   border: none;
@@ -12,6 +12,7 @@ export const MakeRoutineButton = styled.button`
   justify-content: space-between;
   align-items: center;
   padding: 4%;
+  cursor: pointer;
 `;
 export const MakeRoutineButtonText = styled.div`
   color: #0f172a;
@@ -19,20 +20,23 @@ export const MakeRoutineButtonText = styled.div`
   font-weight: 600;
   line-height: 132%;
   letter-spacing: -0.4px;
+  background-color: transparent;
 `;
 export const PlusIcon = styled(FontAwesomeIcon)`
   width: 24px;
   height: 24px;
+  color: #334155;
 `;
 //RoutineList
 export const RoutineListContainer = styled.div`
-  width: 346px;
+  width: 90%;
   height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  justify-content: space-between ;
+  margin-top: 5%;
+  justify-content: space-between;
 `;
 export const SettingIconWrapper = styled.div`
   width: 100%;
@@ -49,9 +53,8 @@ export const RoutineListWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  gap:10px;
-
+  align-items: center;
+  gap: 10px;
 `;
 export const RoutineContainer = styled.button`
   width: 100%;
@@ -61,8 +64,8 @@ export const RoutineContainer = styled.button`
   padding: 4%;
   border-radius: 10px;
   border: none;
-  background: #F1F4F7;
-  border: ${(props) => (props.isSelected ? "1px solid #94a3b8" : "none")};
+  background: #f1f4f7;
+  border: ${(props) => (props.$isSelected ? "1px solid #94a3b8" : "none")};
 `;
 export const RoutineListScrollWrapper = styled.div`
   width: 100%;
@@ -71,7 +74,7 @@ export const RoutineListScrollWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  overflow: auto; 
+  overflow: auto;
 `;
 export const RoutineText = styled.div`
   color: #0f172a;
@@ -79,6 +82,7 @@ export const RoutineText = styled.div`
   font-weight: 500;
   line-height: 132%;
   letter-spacing: -0.32px;
+  background-color: transparent;
 `;
 export const MinuteTextContainer = styled.div`
   width: 58px;
@@ -99,15 +103,16 @@ export const MinuteText = styled.div`
   font-weight: 500;
   line-height: 132%;
   letter-spacing: -0.32px;
+  background-color: transparent;
 `;
 
 export const StartButton = styled.button`
   position: absolute;
   background: none;
-  bottom:115px;
+  bottom: 115px;
   width: 70px;
   height: 70px;
-  border:none;
+  border: none;
 `;
 export const StartIcon = styled(FontAwesomeIcon)`
   width: 70px;
@@ -117,34 +122,38 @@ export const StartIcon = styled(FontAwesomeIcon)`
 export const ClubIcon = styled(FontAwesomeIcon)`
   color: #475569;
   font-size: 12px;
+  width: 12px;
+  background-color: transparent;
 `;
 export const RoutineTextContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  background-color: transparent;
 `;
 
 export const EmptyState = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
 `;
 
 export const EmptyIcon = styled(FontAwesomeIcon)`
-    font-size: 24px;
-    color: #94A3B8;
+  font-size: 24px;
+  width: 24px;
+  color: #94a3b8;
 `;
 
 export const EmptyText = styled.div`
-    color: #475569;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 2;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2;
 `;
 
 //Timer
@@ -154,6 +163,7 @@ export const TimerContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: transparent;
 `;
 export const TimerText = styled.p`
   color: #0f172a;
@@ -164,6 +174,7 @@ export const TimerText = styled.p`
   letter-spacing: -0.96px;
   position: relative;
   bottom: 200px;
+  background: transparent;
 `;
 
 //TimerInfo
@@ -172,6 +183,7 @@ export const TimerInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  background: transparent;
 `;
 export const TitleText = styled.div`
   color: #0f172a;
@@ -180,6 +192,7 @@ export const TitleText = styled.div`
   font-weight: 600;
   line-height: 132%;
   letter-spacing: -0.4px;
+  background: transparent;
 `;
 export const ContentText = styled.div`
   color: var(--gray600, #475569);
@@ -188,12 +201,14 @@ export const ContentText = styled.div`
   font-weight: 500;
   line-height: 132%;
   letter-spacing: -0.3px;
+  background: transparent;
 `;
 //ProgressBar
 export const ProgressBarContainer = styled.div`
   width: 100%;
   position: relative;
   bottom: 50px;
+  background: transparent;
 `;
 export const PauseButton = styled.button`
   width: 70px;
@@ -252,6 +267,7 @@ export const BookText = styled.div`
   font-weight: 500;
   line-height: 132%;
   letter-spacing: -0.32px;
+  background-color: transparent;
 `;
 export const DownIcon = styled(FontAwesomeIcon)`
   width: 20px;
@@ -266,6 +282,7 @@ export const DropdownListItem = styled.div`
   font-weight: 500;
   line-height: 132%;
   letter-spacing: -0.32px;
+  background: transparent;
 
   &:hover {
     background-color: #cbd5e1;
@@ -351,6 +368,7 @@ export const MapContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  background: transparent;
 `;
 
 export const PlacesList = styled.ul`
@@ -377,7 +395,8 @@ export const MarkerBg = styled.div`
   height: 36px;
   background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
     no-repeat;
-  background-position: ${({ markerIndex }) => `0 ${-10 - 46 * markerIndex}px`};
+  background-position: ${({ $markerIndex }) =>
+    `0 ${-10 - 46 * $markerIndex}px`};
 `;
 export const Info = styled.div`
   display: flex;
@@ -493,8 +512,10 @@ export const ModalContent = styled.div`
 
 export const CloseButton = styled(FontAwesomeIcon)`
   position: relative;
-  left: 47%;
+  left: 95%;
   color: #334155;
+  /* font-size: 14px; */
+  width: 14px;
 `;
 export const PlaceSubmitButton = styled.button`
   width: 100%;

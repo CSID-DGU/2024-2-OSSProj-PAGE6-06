@@ -6,6 +6,9 @@ import { API } from "@/pages/api";
 export default function ClubCard({ club, handleErrorModal }) {
   const router = useRouter();
 
+  const title = club.title;
+  const shortTitle = title.length > 10 ? title.slice(0, 10) + "..." : title;
+
   const content = club.content;
   const shortContent =
     content.length > 30 ? content.slice(0, 30) + "..." : content;
@@ -38,12 +41,17 @@ export default function ClubCard({ club, handleErrorModal }) {
 
   return (
     <S.ClubCardContainer>
-      <S.ClubCardImage
-        src={club.image}
-        width={160}
-        height={100}
-        alt="club_image"
-      />
+      {club.image ? (
+        <S.ClubCardImage
+          src={club.image}
+          width={160}
+          height={100}
+          alt="club_image"
+        />
+      ) : (
+        <>Loading...</>
+      )}
+
       <S.ClubCardInfo>
         <S.ClubCardInfoText>
           <S.ClubCardInfoIcon icon={faUserGroup} />
@@ -54,7 +62,7 @@ export default function ClubCard({ club, handleErrorModal }) {
           {club.time}분
         </S.ClubCardInfoText>
       </S.ClubCardInfo>
-      <S.ClubCardTitle>{club.title}</S.ClubCardTitle>
+      <S.ClubCardTitle>{shortTitle}</S.ClubCardTitle>
       <S.ClubCardDescription>{shortContent}</S.ClubCardDescription>
       <S.ClubCardButtonSection>
         <S.ClubCardButtonShow onClick={() => router.push(`/club/${club.id}`)}>
