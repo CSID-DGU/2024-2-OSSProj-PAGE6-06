@@ -1,4 +1,4 @@
-import * as SS from "../../components/_styled/signStyled.jsx";
+import * as SS from "../../components/_styled/signStyled";
 import Title from "@/components/sign/Title";
 import SigninInput from "@/components/sign/SigninInput";
 
