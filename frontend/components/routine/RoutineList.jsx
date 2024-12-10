@@ -68,6 +68,7 @@ export default function RoutineList({ onSelectRoutine, onDeleteSuccess }) {
     fetchRoutine();
   }, [fetchRoutine]);
 
+  
   return (
     <S.RoutineListContainer>
       <S.RoutineListWrapper>
