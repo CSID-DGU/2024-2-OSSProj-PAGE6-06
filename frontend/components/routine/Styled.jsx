@@ -12,6 +12,7 @@ export const MakeRoutineButton = styled.button`
   justify-content: space-between;
   align-items: center;
   padding: 4%;
+  cursor: pointer;
 `;
 export const MakeRoutineButtonText = styled.div`
   color: #0f172a;
@@ -63,8 +64,8 @@ export const RoutineContainer = styled.button`
   padding: 4%;
   border-radius: 10px;
   border: none;
-  background: #F1F4F7;
-  border: ${(props) => (props.isSelected ? "1px solid #94a3b8" : "none")};
+  background: #f1f4f7;
+  border: ${(props) => (props.$isSelected ? "1px solid #94a3b8" : "none")};
 `;
 export const RoutineListScrollWrapper = styled.div`
   width: 100%;
@@ -108,10 +109,10 @@ export const MinuteText = styled.div`
 export const StartButton = styled.button`
   position: absolute;
   background: none;
-  bottom:115px;
+  bottom: 115px;
   width: 70px;
   height: 70px;
-  border:none;
+  border: none;
 `;
 export const StartIcon = styled(FontAwesomeIcon)`
   width: 70px;
@@ -132,26 +133,27 @@ export const RoutineTextContainer = styled.div`
 `;
 
 export const EmptyState = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
 `;
 
 export const EmptyIcon = styled(FontAwesomeIcon)`
-    font-size: 24px;
-    color: #94A3B8;
+  font-size: 24px;
+  width: 24px;
+  color: #94a3b8;
 `;
 
 export const EmptyText = styled.div`
-    color: #475569;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 2;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2;
 `;
 
 //Timer
