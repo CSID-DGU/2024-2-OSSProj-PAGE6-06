@@ -21,6 +21,7 @@ export default function RoutineList({ onSelectRoutine, onDeleteSuccess }) {
           Authorization: `Token ${token}`,
         },
       });
+      console.log(response.data);
       setRoutines(response.data);
     } catch (err) {
       console.error("Failed to fetch routines:", err);
@@ -77,7 +78,7 @@ export default function RoutineList({ onSelectRoutine, onDeleteSuccess }) {
               <S.RoutineContainer
                 key={routine.id}
                 onClick={() => handleRoutineClick(routine)}
-                isSelected={selectedRoutine?.id === routine.id}
+                $isSelected={selectedRoutine?.id === routine.id}
               >
                 <S.RoutineTextContainer>
                   {routine.is_club && <S.ClubIcon icon={faUserGroup} />}

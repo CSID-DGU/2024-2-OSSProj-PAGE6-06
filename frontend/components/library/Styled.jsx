@@ -9,7 +9,7 @@ export const BookContainer = styled.div`
   flex-direction: column;
   cursor: pointer;
   /* margin-bottom: 5%; */
-  margin: 0 1vh 5%;
+  margin: 5% 1vh 5%;
 `;
 
 export const BookImage = styled(Image)`
@@ -83,6 +83,7 @@ export const RecordBookTitle = styled.div`
 export const RecordModalCloseButton = styled(FontAwesomeIcon)`
   font-size: 20px;
   width: 20px;
+  cursor: pointer;
 `;
 
 export const RecordList = styled.div`
@@ -169,6 +170,7 @@ export const SearchCardContainer = styled.div`
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   position: relative;
+  cursor: pointer;
 `;
 
 export const SearchCardImageSection = styled.div`

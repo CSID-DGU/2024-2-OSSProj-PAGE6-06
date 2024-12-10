@@ -35,6 +35,9 @@ export const RecordList = styled.div`
   flex-direction: column;
   /* padding: 5%; */
   overflow-y: auto;
+  display: flex;
+  font-size: 14px;
+  text-align: center;
 
   /* Custom scrollbar styles */
   &::-webkit-scrollbar {

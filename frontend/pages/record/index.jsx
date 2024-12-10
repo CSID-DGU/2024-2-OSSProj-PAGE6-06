@@ -55,7 +55,7 @@ export default function Record() {
 
   useEffect(() => {
     fetchCalendarData();
-  }, []);
+  }, [isSelect]);
 
   const [routineList, setRoutineList] = useState([]);
   const [currentRoutine, setCurrentRoutine] = useState(0);
@@ -218,7 +218,7 @@ export default function Record() {
               );
             })
           ) : (
-            <></>
+            <>작성된 기록이 없습니다.</>
           )}
         </RS.RecordList>
       </MS.MainContainer>

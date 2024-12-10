@@ -38,6 +38,7 @@ export const DeleteIconWrapper = styled.div`
 export const DeleteIcon = styled(FontAwesomeIcon)`
   width: 20px;
   height: 20px;
+  cursor: pointer;
   flex-shrink: 0;
   color: #334155;
 `;
