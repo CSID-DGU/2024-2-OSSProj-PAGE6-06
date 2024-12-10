@@ -4,6 +4,7 @@ import MakeRoutineButton from "@/components/routine/MakeRoutineButton";
 import RoutineList from "@/components/routine/RoutineList";
 import { useState } from "react";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
 import RoutineDelete from "@/components/routine/RoutineDelete.jsx";
 
 export default function Routine() {
