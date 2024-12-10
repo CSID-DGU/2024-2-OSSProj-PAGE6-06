@@ -21,7 +21,6 @@ export default function RoutineList({ onSelectRoutine, onDeleteSuccess }) {
           Authorization: `Token ${token}`,
         },
       });
-      console.log(response.data);
       setRoutines(response.data);
     } catch (err) {
       console.error("Failed to fetch routines:", err);
