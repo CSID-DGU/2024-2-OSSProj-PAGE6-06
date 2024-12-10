@@ -21,18 +21,25 @@ export default function SigninInput() {
       });
       const token = response.data.token;
       localStorage.setItem("token", token);
-      document.cookie = `token=${token}; path=/`;
-      // console.log('로그인 성공', token);
-      router.push("/main");
+      document.cookie = `token=${token}; path=/;`;
+      //   console.log("로그인 성공", token);
+      router.push("/");
     } catch (error) {
-      console.error("로그인 요청 중 오류 발생:", error);
-      setErrorMessage("로그인 요청 중 오류가 발생했습니다.");
+      if (error.response && error.response.status === 401) {
+        setErrorMessage("가입되지 않은 사용자입니다. 회원가입을 진행해주세요.");
+      } else if (error.response && error.response.status === 400) {
+        setErrorMessage("아이디 또는 비밀번호가 올바르지 않습니다.");
+      } else {
+        console.error("로그인 요청 중 오류 발생:", error);
+        setErrorMessage("로그인 요청 중 오류가 발생했습니다.");
+      }
     }
   };
 
   const isFormValid = (values) => {
     return values.username.trim() !== "" && values.password.trim() !== "";
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -54,6 +61,7 @@ export default function SigninInput() {
       [name]: value,
     }));
   };
+
   useEffect(() => {
     setIsValid(isFormValid(values));
   }, [values]);
@@ -79,6 +87,7 @@ export default function SigninInput() {
           placeholder="비밀번호를 입력해주세요"
           required
         />
+        {errorMessage && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
         <S.SubmitButton type="submit" disabled={!isValid}>
           로그인
         </S.SubmitButton>

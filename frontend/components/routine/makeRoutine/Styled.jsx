@@ -5,6 +5,7 @@ export const FormContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
 `;
 export const Label = styled.div`
@@ -21,22 +22,22 @@ export const InputContainer = styled.div`
   flex-direction: column;
 `;
 export const Input = styled.input`
-  width: 100%;
-  height: 49px;
-  border-radius: 10px;
-  background: #f1f4f7;
-  color: #0f172a;
-  border: none;
-  display: flex;
-  align-items: center;
-  padding: 3%;
-  &:focus {
-    border: 1px solid #94a3b8;
-    outline: none;
-  }
-  &::placeholder {
-    color: #94a3b8;
-  }
+    width:100%;
+    height:49px;
+    border-radius: 10px;
+    background: #F1F4F7;
+    color: #0f172a;
+    border:none;
+    display:flex;
+    align-items:center;
+    padding:3%;
+    &:focus {
+        border: 1px solid #94A3B8;
+        outline:none; 
+    }
+    &::placeholder {
+        color:#94A3B8;
+    }
 `;
 
 export const MemoInput = styled.textarea`
@@ -105,7 +106,7 @@ export const DropdownItem = styled.div`
   letter-spacing: -0.32px;
 `;
 export const SubmitButton = styled.div`
-  width: 346px;
+  width: 90%;
   height: 61px;
   border-radius: 10px;
   background: #cbd5e1;

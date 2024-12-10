@@ -44,6 +44,7 @@ export const LibraryButtonBox = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 export const LibraryAddButton = styled(FontAwesomeIcon)`
@@ -53,10 +54,16 @@ export const LibraryAddButton = styled(FontAwesomeIcon)`
 
 export const LibraryList = styled.div`
   width: 90%;
-  margin: 0 5%;
+  margin: 0 5% 80px 5%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: flex-start;
+`;
+
+export const LibraryListEmpty = styled.div`
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
 `;
 
 // add book

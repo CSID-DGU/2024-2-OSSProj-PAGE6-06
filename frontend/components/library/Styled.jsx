@@ -9,7 +9,7 @@ export const BookContainer = styled.div`
   flex-direction: column;
   cursor: pointer;
   /* margin-bottom: 5%; */
-  margin: 0 1vh 5%;
+  margin: 5% 1vh 5%;
 `;
 
 export const BookImage = styled(Image)`
@@ -83,6 +83,7 @@ export const RecordBookTitle = styled.div`
 export const RecordModalCloseButton = styled(FontAwesomeIcon)`
   font-size: 20px;
   width: 20px;
+  cursor: pointer;
 `;
 
 export const RecordList = styled.div`
@@ -169,6 +170,7 @@ export const SearchCardContainer = styled.div`
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   position: relative;
+  cursor: pointer;
 `;
 
 export const SearchCardImageSection = styled.div`
@@ -223,6 +225,8 @@ export const DeleteDropboxContainer = styled.div`
   justify-content: center;
   font-size: 14px;
   font-weight: 500;
+  text-align: center;
+  line-height: 20px;
 `;
 
 export const DeleteDropboxButtonSection = styled.div`
@@ -255,13 +259,13 @@ export const DeleteDropboxButton = styled.div`
 export const RecordDeleteDropboxContainer = styled.div`
   background-color: #fff;
   color: #0f172a;
-  top: 0;
+  top: 40vh;
   left: 0;
   z-index: 1000;
   width: 90%;
   margin: 3% 5%;
   padding-top: 7%;
-  position: fixed;
+  position: absolute;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   overflow: hidden;

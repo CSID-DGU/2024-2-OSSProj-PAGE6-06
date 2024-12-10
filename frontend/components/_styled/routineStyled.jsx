@@ -38,6 +38,7 @@ export const DeleteIconWrapper = styled.div`
 export const DeleteIcon = styled(FontAwesomeIcon)`
   width: 20px;
   height: 20px;
+  cursor: pointer;
   flex-shrink: 0;
   color: #334155;
 `;
@@ -49,7 +50,7 @@ export const RoutineModalOverlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: #9fa2a6b3;
-  z-index: 200;
+  z-index: 1000;
 `;
 //routineIng
 export const RoutineIngPage = styled.div`
@@ -140,6 +141,8 @@ export const MakeRoutineContentContainer = styled(RoutineContentContainer)`
   flex-direction: column;
   gap: 21px;
   margin-top: 22px;
+  width: 100%;
+  padding: 0 5%;
 `;
 export const PageTitle = styled.div`
   width: 100%;
@@ -148,4 +151,51 @@ export const PageTitle = styled.div`
   font-size: 24px;
   line-height: 132%;
   letter-spacing: -0.48px;
+`;
+
+//RoutineDelete
+export const DeleteDropboxContainer = styled.div`
+  background-color: #fff;
+  color: #0f172a;
+  top: 30vh;
+  z-index: 400;
+  width: 90%;
+  margin: 5%;
+  padding-top: 7%;
+  position: absolute;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+`;
+
+export const DeleteDropboxButtonSection = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 7%;
+  border-top: 1px solid #64748b;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const DeleteDropboxButtonLine = styled.div`
+  width: 0.5px;
+  background-color: #64748b;
+  align-self: stretch;
+  display: flex;
+  height: auto;
+`;
+
+export const DeleteDropboxButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 60px;
+  cursor: pointer;
 `;

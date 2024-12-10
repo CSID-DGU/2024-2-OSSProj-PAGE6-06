@@ -2,7 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
 export const RecordCardWrapper = styled.div`
-  width: 100%;
+  width: 90%;
+  margin: 3% 5%;
 `;
 
 export const RecordCardContainer = styled.div`
@@ -41,7 +42,7 @@ export const RecordDescription = styled.div`
 // Record Calendar
 export const RecordCalendarContainer = styled.div`
   width: 90%;
-  margin: 5%;
+  margin: 0 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -132,7 +133,7 @@ export const RecordCardBookTitle = styled.div`
 // Record Month List
 export const RecordMonthListContainer = styled.div`
   width: 90%;
-  margin: 5%;
+  margin: 0 5%;
 `;
 
 export const RecordMonthListSearch = styled.div`

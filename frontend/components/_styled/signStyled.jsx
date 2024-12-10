@@ -9,12 +9,16 @@ export const SignContainer = styled.div`
 `;
 
 export const SignContentContainer = styled.div`
-  width:90%;
+  width: 90%;
   display: flex;
-  flex-direction:column;
-  align-items:center;
-  gap:32px;
-  margin-top:50px;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  margin-top: 50px;
+
+  @media (max-height: 667px) {
+    margin-top: 20px;
+  }
 `;
 
 export const SigninContentContainer = styled(SignContentContainer)`

@@ -20,7 +20,7 @@ export default function RoutineFinish() {
     memo: "",
   });
 
-  const postRoutineFinish = useCallback(async (recordData) => {
+  const postRoutineFinish = async (recordData) => {
     try {
       const token = localStorage.getItem("token");
       const response = await API.post(`/routinefinish`, recordData, {
@@ -28,21 +28,26 @@ export default function RoutineFinish() {
           Authorization: `Token ${token}`,
         },
       });
-      // console.log("루틴 기록 완료", response.data);
-
       localStorage.removeItem("routineContent");
       localStorage.removeItem("routineId");
       localStorage.removeItem("routineTime");
       localStorage.removeItem("routineTitle");
       localStorage.removeItem("selectedPlaceName");
       localStorage.removeItem("selectedPlaceAddress");
+      localStorage.removeItem("isRoutineFinished");
       router.push("/record");
     } catch (err) {
       console.error("Failed to submit routine record:", err);
     }
-  }, []);
+  };
 
   useEffect(() => {
+    const isRoutineFinished = localStorage.getItem("isRoutineFinished");
+    if (isRoutineFinished == "false") {
+      alert("루틴이 종료되어야 완료 기록을 작성 할 수 있습니다");
+      router.push("/routine");
+      return;
+    }
     const today = new Date();
     const formattedDate = today.toLocaleDateString("ko-KR", {
       year: "numeric",
@@ -68,6 +73,20 @@ export default function RoutineFinish() {
     postRoutineFinish(newRecord);
     // console.log("Sending record to server:", newRecord);
   };
+  useEffect(() => {
+    const handlePopState = () => {
+      localStorage.removeItem("routineContent");
+      localStorage.removeItem("routineId");
+      localStorage.removeItem("routineTime");
+      localStorage.removeItem("routineTitle");
+      localStorage.removeItem("isRoutineFinished");
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
 
   return (
     <RS.RoutineFinishPage>

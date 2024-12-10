@@ -5,7 +5,7 @@ export const API = axios.create({
   headers: {
     "Content-type": "application/json",
   },
-  withCredentials:true
+  withCredentials:true,
 });
 
 API.interceptors.request.use(
@@ -38,4 +38,4 @@ API.interceptors.response.use(
 
     return Promise.reject(error); 
   }
-);
+);``
