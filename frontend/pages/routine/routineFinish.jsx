@@ -20,7 +20,7 @@ export default function RoutineFinish() {
     memo: "",
   });
 
-  const postRoutineFinish = useCallback(async (recordData) => {
+  const postRoutineFinish = async (recordData) => {
     try {
       const token = localStorage.getItem("token");
       const response = await API.post(`/routinefinish`, recordData, {
@@ -39,7 +39,7 @@ export default function RoutineFinish() {
     } catch (err) {
       console.error("Failed to submit routine record:", err);
     }
-  }, []);
+  };
 
   useEffect(() => {
     const isRoutineFinished = localStorage.getItem("isRoutineFinished");
