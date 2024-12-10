@@ -36,7 +36,7 @@ export default function Timer() {
   useEffect(() => {
     // console.log(zeroCount);
     if (zeroCount === 3) {
-      localStorage.setItem("isRoutineFinished", "true");
+      localStorage.setItem("isRoutineInProgress", "true");
       router.replace("/routine/routineFinish");
     }
   }, [zeroCount]);

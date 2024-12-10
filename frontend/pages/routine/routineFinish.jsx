@@ -43,7 +43,7 @@ export default function RoutineFinish() {
 
   useEffect(() => {
     const isRoutineFinished = localStorage.getItem("isRoutineFinished");
-    if (isRoutineFinished !== "true") {
+    if (isRoutineFinished == "false") {
       alert("루틴이 종료되어야 완료 기록을 작성 할 수 있습니다");
       router.push("/routine");
       return;
