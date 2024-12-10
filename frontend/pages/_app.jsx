@@ -180,6 +180,12 @@ export default function App({ Component, pageProps }) {
               text-decoration: none;
               color: inherit;
             }
+
+            /* 전체 스크롤바 스타일링 */
+            ::-webkit-scrollbar {
+              width: 6px; /* 스크롤바 너비 */
+              height: 6px; /* 가로 스크롤바 높이 */
+            }
           `}
         </style>
       </Body>
