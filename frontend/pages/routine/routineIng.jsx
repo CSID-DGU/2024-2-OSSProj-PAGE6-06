@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import * as RS from "@/components/_styled/routineStyled";
 import Timer from '@/components/routine/routineIng/Timer';
 import TimerInfo from '@/components/routine/routineIng/TimerInfo';
-import router from "next/router";
+
 export default function RoutineIng() {
+
     useEffect(() => {
         const handlePopState = () => {
             localStorage.removeItem("routineContent");
@@ -19,14 +20,6 @@ export default function RoutineIng() {
         };
     }, []);
 
-    useEffect(() => {
-        const routineId = localStorage.getItem("routineId");
-        if (routineId == null) {
-          alert("루틴을 선택하세요");
-          router.replace("/routine");
-          return;
-        }
-      },[])
     return (
         <RS.RoutineIngPage>
           <RS.RoutineIngContainer>
