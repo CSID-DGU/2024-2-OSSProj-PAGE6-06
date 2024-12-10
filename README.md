@@ -65,3 +65,4 @@
 <a href='https://github.com/CSID-DGU/2024-2-OSSProj-PAGE6-06/blob/main/Doc/%5BOSSP-2%5D%20%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4SW%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A4%91%EA%B0%84%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf'>중간보고서</a><br>
 <a href='https://github.com/CSID-DGU/2024-2-OSSProj-PAGE6-06/blob/main/Doc/%E1%84%8C%E1%85%AE%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A1%E1%86%AF%E1%84%91%E1%85%AD_PAGE6.pdf'>중간발표자료</a><br>
 - 최종발표<br>
+<a href='https://github.com/CSID-DGU/2024-2-OSSProj-PAGE6-06/blob/main/Doc/%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_PAGE6.pdf'>최종발표자료</a><br>
