@@ -37,7 +37,9 @@ export default function Timer() {
     // console.log(zeroCount);
     if (zeroCount === 3) {
       localStorage.setItem("isRoutineFinished", "true");
-      router.replace("/routine/routineFinish");
+      router.replace("/routine/routineFinish").then(() => {
+        window.location.reload();
+      });
     }
   }, [zeroCount]);
 
